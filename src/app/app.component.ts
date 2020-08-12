@@ -1,4 +1,12 @@
 import { Component } from '@angular/core';
+import * as $ from 'jquery';
+
+$(document).ready(function () {
+  $('#sidebarCollapse').on('click', function () {
+      $('#sidebar').toggleClass('active');
+      $(this).toggleClass('active');
+  });
+});
 
 @Component({
   selector: 'app-root',
@@ -6,5 +14,5 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'MyFinance';
+  title = 'FinanceManager';
 }
