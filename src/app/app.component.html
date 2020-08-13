@@ -1,75 +1,87 @@
-<div class="wrapper text-white">
+<div class="containder-fluid col">
+    <div class="row">
+        <aside class="">
+            <div class="wrapper text-white">
+            
+                <nav id="sidebar" class="navbar">
+            
+                    <ul class="list-unstyled components">
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" routerLink='/transaction' id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <i class="far fa-user"></i>&nbsp;&nbsp;&nbsp;Accounts
+                            </a>
+                        </li>
+            
+                        <div class="dropdown-divider"></div>
+                        <li class="">
+                            <a class="nav-link" routerLink='/desktop'><i class="fas fa-desktop"></i>&nbsp;&nbsp;&nbsp;Desktop</a>
+                        </li>
+                        <li class="">
+                            <a class="nav-link" href=""><i class="fas fa-clipboard-list"></i>&nbsp;&nbsp;&nbsp; Categories</a>
+                        </li>
+                        <li class="">
+                            <a class="nav-link" href=""><i class="far fa-file"></i>&nbsp;&nbsp;&nbsp; Templates</a>
+                        </li>
+                        <div class="dropdown-divider"></div>
+                        <li class="">
+                            <a class="nav-link" href=""><i class="fab fa-blackberry"></i>&nbsp;&nbsp;&nbsp;Uncategorized</a>
+                        </li>
+                        <li class="">
+                            <a class="nav-link" href=""><i class="fas fa-history"></i>&nbsp;&nbsp;&nbsp;History</a>
+                        </li>
+                        <li class="">
+                            <a class="nav-link" href=""><i class="fas fa-sync"></i>&nbsp;&nbsp;&nbsp;Recurring Payment</a>
+                        </li>
+                        <li class="">
+                            <a class="nav-link" href=""><i class="fas fa-space-shuttle"></i>&nbsp;&nbsp;&nbsp;Planned transactions</a>
+                        </li>
+                        <li class="">
+                            <a class="nav-link" href=""><i class="fas fa-exchange-alt"></i>&nbsp;&nbsp;&nbsp;Transfers</a>
+                        </li>
+                        <div class="dropdown-divider"></div>
+                        <li class="">
+                            <a class="nav-link" href=""><i class="far fa-clone"></i>&nbsp;&nbsp;&nbsp;Backup</a>
+                        </li>
+                        <li class="">
+                            <a class="nav-link" href=""><i class="fas fa-expand-alt"></i>&nbsp;&nbsp;&nbsp;Import, Export</a>
+                        </li>
+                        <div class="dropdown-divider"></div>
+                        <li class="">
+                            <a class="nav-link" href=""><i class="fas fa-shopping-cart"></i>&nbsp;&nbsp;&nbsp;Store</a>
+                        </li>
+                        <li class="">
+                            <a class="nav-link" href=""><i class="far fa-window-maximize"></i>&nbsp;&nbsp;&nbsp;Web version</a>
+                        </li>
+                        <li class="">
+                            <a class="nav-link" href=""><i class="fas fa-cog"></i>&nbsp;&nbsp;&nbsp;Settings</a>
+                        </li>
+                        <li class="">
+                            <a class="nav-link" href=""><i class="fas fa-user-friends"></i>&nbsp;&nbsp;&nbsp;Follow us</a>
+                        </li>
+                        <li class="">
+                            <a class="nav-link" href=""><i class="far fa-heart"></i>&nbsp;&nbsp;&nbsp;Rate application</a>
+                        </li>
+                        <li class="">
+                            <a class="nav-link" href=""><i class="fas fa-info-circle"></i>&nbsp;&nbsp;&nbsp;About</a>
+                        </li>
+                    </ul>
+                </nav>
+                
+                <div id="content">
+                    <button type="button" id="sidebarCollapse" class="border-left-secondary rounded">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </button>
+                </div>
+                
+            </div>
+        </aside>
     
-    <nav id="sidebar" class="navbar">
-
-        <ul class="list-unstyled components">
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <i class="far fa-user"></i>&nbsp;&nbsp;&nbsp;Accounts
-                </a>
-            </li>
-
-            <div class="dropdown-divider"></div>
-            <li class="">
-                <a class="nav-link" href=""><i class="fas fa-desktop"></i>&nbsp;&nbsp;&nbsp;Desktop</a>
-            </li>
-            <li class="">
-                <a class="nav-link" href=""><i class="fas fa-clipboard-list"></i>&nbsp;&nbsp;&nbsp; Categories</a>
-            </li>
-            <li class="">
-                <a class="nav-link" href=""><i class="far fa-file"></i>&nbsp;&nbsp;&nbsp; Templates</a>
-            </li>
-            <div class="dropdown-divider"></div>
-            <li class="">
-                <a class="nav-link" href=""><i class="fab fa-blackberry"></i>&nbsp;&nbsp;&nbsp;Uncategorized</a>
-            </li>
-            <li class="">
-                <a class="nav-link" href=""><i class="fas fa-history"></i>&nbsp;&nbsp;&nbsp;History</a>
-            </li>
-            <li class="">
-                <a class="nav-link" href=""><i class="fas fa-sync"></i>&nbsp;&nbsp;&nbsp;Recurring Payment</a>
-            </li>
-            <li class="">
-                <a class="nav-link" href=""><i class="fas fa-space-shuttle"></i>&nbsp;&nbsp;&nbsp;Planned transactions</a>
-            </li>
-            <li class="">
-                <a class="nav-link" href=""><i class="fas fa-exchange-alt"></i>&nbsp;&nbsp;&nbsp;Transfers</a>
-            </li>
-            <div class="dropdown-divider"></div>
-            <li class="">
-                <a class="nav-link" href=""><i class="far fa-clone"></i>&nbsp;&nbsp;&nbsp;Backup</a>
-            </li>
-            <li class="">
-                <a class="nav-link" href=""><i class="fas fa-expand-alt"></i>&nbsp;&nbsp;&nbsp;Import, Export</a>
-            </li>
-            <div class="dropdown-divider"></div>
-            <li class="">
-                <a class="nav-link" href=""><i class="fas fa-shopping-cart"></i>&nbsp;&nbsp;&nbsp;Store</a>
-            </li>
-            <li class="">
-                <a class="nav-link" href=""><i class="far fa-window-maximize"></i>&nbsp;&nbsp;&nbsp;Web version</a>
-            </li>
-            <li class="">
-                <a class="nav-link" href=""><i class="fas fa-cog"></i>&nbsp;&nbsp;&nbsp;Settings</a>
-            </li>
-            <li class="">
-                <a class="nav-link" href=""><i class="fas fa-user-friends"></i>&nbsp;&nbsp;&nbsp;Follow us</a>
-            </li>
-            <li class="">
-                <a class="nav-link" href=""><i class="far fa-heart"></i>&nbsp;&nbsp;&nbsp;Rate application</a>
-            </li>
-            <li class="">
-                <a class="nav-link" href=""><i class="fas fa-info-circle"></i>&nbsp;&nbsp;&nbsp;About</a>
-            </li>
-        </ul>
-    </nav>
-    
-    <div id="content">
-        <button type="button" id="sidebarCollapse" class="border-left-secondary rounded">
-            <span></span>
-            <span></span>
-            <span></span>
-        </button>
-    <div>
-        
+        <aside class="">
+            <router-outlet></router-outlet>
+        </aside>
+    </div>
 </div>
+
+

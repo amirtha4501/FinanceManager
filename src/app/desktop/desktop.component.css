@@ -1,0 +1,14 @@
+nav {
+    background: #593481;
+    color: #c3b8d9 !important;
+    z-index: -1 !important;
+}
+
+div a {
+    color: #c3b8d9;
+}
+
+i:hover {
+    color: white;
+    cursor: pointer;
+}

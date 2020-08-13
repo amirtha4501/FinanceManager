@@ -3,13 +3,16 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing/app-routing.module';
 import { AppComponent } from './app.component';
-import { TransactionComponent } from './transaction/transaction.component';
+
 import * as $ from 'jquery';
+import { DesktopComponent } from './desktop/desktop.component';
+import { CategoryComponent } from './category/category.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    TransactionComponent
+    DesktopComponent,
+    CategoryComponent
   ],
   imports: [
     BrowserModule,
