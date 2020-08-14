@@ -1,6 +1,6 @@
 <div class="containder-fluid col">
     <div class="row">
-        <aside class="">
+        <aside id="sidenav">
             <div class="wrapper text-white">
             
                 <nav id="sidebar" class="navbar">
@@ -13,44 +13,49 @@
                         </li>
             
                         <div class="dropdown-divider"></div>
+
                         <li class="">
                             <a class="nav-link" routerLink='/desktop'><i class="fas fa-desktop"></i>&nbsp;&nbsp;&nbsp;Desktop</a>
                         </li>
                         <li class="">
-                            <a class="nav-link" href=""><i class="fas fa-clipboard-list"></i>&nbsp;&nbsp;&nbsp; Categories</a>
+                            <a class="nav-link" routerLink='/category'><i class="fas fa-clipboard-list"></i>&nbsp;&nbsp;&nbsp; Categories</a>
                         </li>
                         <li class="">
-                            <a class="nav-link" href=""><i class="far fa-file"></i>&nbsp;&nbsp;&nbsp; Templates</a>
+                            <a class="nav-link" routerLink='/template'><i class="far fa-file"></i>&nbsp;&nbsp;&nbsp; Templates</a>
                         </li>
+
                         <div class="dropdown-divider"></div>
+
                         <li class="">
-                            <a class="nav-link" href=""><i class="fab fa-blackberry"></i>&nbsp;&nbsp;&nbsp;Uncategorized</a>
+                            <a class="nav-link" routerLink='/uncategorized'><i class="fab fa-blackberry"></i>&nbsp;&nbsp;&nbsp;Uncategorized</a>
                         </li>
                         <li class="">
-                            <a class="nav-link" href=""><i class="fas fa-history"></i>&nbsp;&nbsp;&nbsp;History</a>
+                            <a class="nav-link" routerLink='/history'><i class="fas fa-history"></i>&nbsp;&nbsp;&nbsp;History</a>
                         </li>
                         <li class="">
-                            <a class="nav-link" href=""><i class="fas fa-sync"></i>&nbsp;&nbsp;&nbsp;Recurring Payment</a>
+                            <a class="nav-link" routerLink='/recurringpayment'><i class="fas fa-sync"></i>&nbsp;&nbsp;&nbsp;Recurring Payment</a>
                         </li>
                         <li class="">
-                            <a class="nav-link" href=""><i class="fas fa-space-shuttle"></i>&nbsp;&nbsp;&nbsp;Planned transactions</a>
+                            <a class="nav-link" routerLink='/plannedtransaction'><i class="fas fa-space-shuttle"></i>&nbsp;&nbsp;&nbsp;Planned transactions</a>
                         </li>
                         <li class="">
-                            <a class="nav-link" href=""><i class="fas fa-exchange-alt"></i>&nbsp;&nbsp;&nbsp;Transfers</a>
+                            <a class="nav-link" routerLink='/transfer'><i class="fas fa-exchange-alt"></i>&nbsp;&nbsp;&nbsp;Transfers</a>
                         </li>
-                        <div class="dropdown-divider"></div>
+                        <!-- <div class="dropdown-divider"></div>
                         <li class="">
                             <a class="nav-link" href=""><i class="far fa-clone"></i>&nbsp;&nbsp;&nbsp;Backup</a>
                         </li>
                         <li class="">
                             <a class="nav-link" href=""><i class="fas fa-expand-alt"></i>&nbsp;&nbsp;&nbsp;Import, Export</a>
-                        </li>
+                        </li> -->
+
                         <div class="dropdown-divider"></div>
+
                         <li class="">
                             <a class="nav-link" href=""><i class="fas fa-cog"></i>&nbsp;&nbsp;&nbsp;Settings</a>
                         </li>
                         <li class="">
-                            <a class="nav-link" href=""><i class="fas fa-info-circle"></i>&nbsp;&nbsp;&nbsp;About</a>
+                            <a class="nav-link" routerLink='/about'><i class="fas fa-info-circle"></i>&nbsp;&nbsp;&nbsp;About</a>
                         </li>
                     </ul>
                 </nav>

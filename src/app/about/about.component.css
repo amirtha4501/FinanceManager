@@ -1,13 +1,7 @@
-.top-nav {
+nav {
     background: #593481;
     color: #c3b8d9 !important;
-    z-index: 0 !important;
-}
-
-#subnav {
-    background: #7143a3;
-    color: #c3b8d9 !important;
-    z-index: 0 !important;
+    z-index: -1 !important;
 }
 
 div a {
@@ -17,4 +11,11 @@ div a {
 ul li a:hover {
     color: white;
     cursor: pointer;
+}
+
+.head {
+    background: #3a2154;
+    border-radius: 20px;
+    border-style: inset;
+    border-width: .7px;
 }
