@@ -32,22 +32,22 @@
             <div class="ml-auto">
                 <ul class="list-inline mb-0">
                     <li class="list-inline-item">
-                        <a class="nav-link">
+                        <a class="nav-link" (click)="expContent(1)">
                             <i class="fas fa-list-ul"></i>
                         </a>
                     </li>
                     <li class="list-inline-item">
-                        <a class="nav-link">
+                        <a class="nav-link" (click)="expContent(2)">
                             <i class="fas fa-sort-alpha-down"></i>
                         </a>
                     </li>
                     <li class="list-inline-item">
-                        <a class="nav-link">
+                        <a class="nav-link" (click)="expContent(3)">
                             <i class="fas fa-star"></i>
                         </a>
                     </li>
                     <li class="list-inline-item">
-                        <a class="nav-link">
+                        <a class="nav-link" (click)="expContent(4)">
                             <i class="fas fa-history"></i>
                         </a>
                     </li>
@@ -58,16 +58,81 @@
 </div>
 <br><br>
 <div class="mt-5">
-    <div id="main" class="container border rounded mt-5 pl-1">
+    <!-- Basic categories -->
+    <div *ngIf="val == 1" id="basic" class="container border rounded mt-5 p-0 main">
+        <div id="accordion">
+            <div class="card">
+                <a class="card-link" data-toggle="collapse" data-parent="#accordion" href="#food">
+                    <div class="card-header">
+                        <div>
+                            <img src="assets/images/icons/a1.png" class="img rounded-circle" width="50px" alt="">
+                            <span> Food</span>
+                        </div>
+                    </div> 
+                </a>
+                <div id="food" class="collapse show">
+                    <div class="card-body">
+                        Lorem ipsum..
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <a class="card-link" data-toggle="collapse" data-parent="#accordion" href="#entertainment">
+                    <div class="card-header">
+                        <div>
+                            <img src="assets/images/icons/a1.png" class="img rounded-circle" width="50px" alt="">
+                            <span> Entertainment</span>
+                        </div>
+                    </div> 
+                </a>
+                <div id="entertainment" class="collapse">
+                    <div class="card-body">
+                        Lorem ipsum..
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <a class="card-link" data-toggle="collapse" data-parent="#accordion" href="#car">
+                    <div class="card-header">
+                        <div>
+                            <img src="assets/images/icons/a1.png" class="img rounded-circle" width="50px" alt="">
+                            <span> Car</span>
+                        </div>
+                    </div> 
+                </a>
+                <div id="car" class="collapse">
+                    <div class="card-body">
+                        Lorem ipsum..
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- All categories -->
+    <div *ngIf="val == 2" id="all" class="container border rounded mt-5 pl-1 main">
         <ul class="list-unstyled mb-0 col">
             <li class="p-2 pt-3 row text-center">
                 <div>
                     <img src="assets/images/icons/a1.png" class="img rounded-circle" width="50px" alt="">
                 </div>
                 <div class="main-content w-50 m-0 my-auto mx-auto">
+                    <a data-toggle="collapse" href="" role="button" aria-expanded="false" aria-controls="collapseExample">
+                        <p class="mb-0">Food</p>
+                    </a>
+                    
+                </div>
+                <div class="main-content my-auto">
+                    <a routerLink='/about'><p class="mb-0"><i class="far fa-star"></i></p></a>
+                </div>
+            </li>
+            <li class="p-2 row text-center">
+                <div>
+                    <img src="assets/images/icons/a1.png" class="img rounded-circle" width="50px" alt="">
+                </div>
+                <div class="main-content w-50 m-0 my-auto mx-auto">
                     <a routerLink='/about'>
-                        <p class="mb-0">Title</p>
-                        <p class="mb-0">type</p>
+                        <p class="mb-0">Entertainment</p>
                     </a>
                 </div>
                 <div class="main-content my-auto">
@@ -80,8 +145,7 @@
                 </div>
                 <div class="main-content w-50 m-0 my-auto mx-auto">
                     <a routerLink='/about'>
-                        <p class="mb-0">Title</p>
-                        <p class="mb-0">type</p>
+                        <p class="mb-0">Car</p>
                     </a>
                 </div>
                 <div class="main-content my-auto">
@@ -94,22 +158,7 @@
                 </div>
                 <div class="main-content w-50 m-0 my-auto mx-auto">
                     <a routerLink='/about'>
-                        <p class="mb-0">Title</p>
-                        <p class="mb-0">type</p>
-                    </a>
-                </div>
-                <div class="main-content my-auto">
-                    <a routerLink='/about'><p class="mb-0"><i class="far fa-star"></i></p></a>
-                </div>
-            </li>
-            <li class="p-2 row text-center">
-                <div>
-                    <img src="assets/images/icons/a1.png" class="img rounded-circle" width="50px" alt="">
-                </div>
-                <div class="main-content w-50 m-0 my-auto mx-auto">
-                    <a routerLink='/about'>
-                        <p class="mb-0">Title</p>
-                        <p class="mb-0">type</p>
+                        <p class="mb-0">Home</p>
                     </a>
                 </div>
                 <div class="main-content my-auto">

@@ -7,7 +7,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CategoryComponent implements OnInit {
 
+  val: number = 1;
+
   constructor() { }
+
+  expContent(val: number) {
+    this.val = val;
+    return this.val;
+  }
 
   ngOnInit(): void {
   }

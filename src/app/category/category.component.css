@@ -10,7 +10,7 @@
     z-index: 1;
 }
 
-#main {
+.main {
     z-index: 0;
     position: absolute;
     width: 75%;
@@ -29,7 +29,7 @@
     display: inline-block;
 }
 
-#main ul li:after {
+.main ul li:after {
     content: ""; 
     display: block;
     margin: 0 auto;
@@ -38,6 +38,6 @@
     border-bottom: 1px solid #cebce0ef; 
 }
 
-#main ul li:last-child::after {
+.main ul li:last-child::after {
     border-bottom: none !important;
 }
