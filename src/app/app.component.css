@@ -105,3 +105,11 @@ nav ul li a:hover {
 #sidenav {
     z-index: 5 !important;
 }
+
+.bg-default {
+    background-color: #6f5b96;
+}
+
+a {
+    cursor: pointer;
+}

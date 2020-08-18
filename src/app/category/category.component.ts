@@ -1,5 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 
+jQuery(function($) {
+  $('li.search').find('a').on('click', function(e) {
+      e.preventDefault();
+      $(this).next('input').toggleClass('active');
+  });
+});
+
 @Component({
   selector: 'app-category',
   templateUrl: './category.component.html',

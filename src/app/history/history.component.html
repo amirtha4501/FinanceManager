@@ -1,28 +1,77 @@
 <div id="history">
-    <nav class="navbar navbar-expand-lg fixed-top top-nav">
+    <nav id="top-nav" class="navbar navbar-expand-lg fixed-top top-nav">
         <div class="ml-auto">
-           <ul class="list-inline mb-0">
+           <ul id="tools-nav" class="list-inline mb-0">
                <li class="list-inline-item">
                    <a class="nav-link text-white">
                        History
                    </a>
                </li>
-               <li class="list-inline-item">
-                   <a class="nav-link">
-                    <i class="fas fa-search"></i>
-                   </a>
-               </li>
+              
                <li class="list-inline-item">
                    <a class="nav-link">
                        <i class="far fa-bell"></i>
                     </a>
                 </li>
-                <li class="list-inline-item">
-                    <a class="nav-link">
+
+                <li class="list-inline-item dropdown">
+                    <a class="nav-link" id="filter-sort-dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <i class="fas fa-ellipsis-v"></i>
                     </a>
+                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="filter-sort-dropdown">
+                        <a class="dropdown-item text-dark" data-toggle="collapse" data-target=".navbar-collapse.show">Sort</a>
+                        <a class="dropdown-item text-dark" data-toggle="collapse" data-target=".navbar-collapse.show" routerLink='/filter'>Filter</a>
+                    </div>
+                </li>
+
+                <li class="list-inline-item search icon m-0">
+                    <a class="nav-link pr-4">
+                        <i class="fas fa-search"></i>
+                    </a>
+                    <input type="text" class="mt-2 pl-2 pr-2" placeholder="Search..."/>
                 </li>
            </ul> 
        </div>
     </nav>
+</div>
+
+<br><br>
+
+<div class="mt-5">
+    <div id="main" class="container border rounded mt-5 pl-1">
+        <ul class="list-unstyled mb-0 col">
+
+            <li class="p-2 pt-3 row">
+                <div>
+                    <img src="assets/images/icons/a1.png" class="img rounded-circle" width="50px" alt="">
+                </div>
+                <div class="main-content w-50 m-0 my-auto mr-auto">
+                    <a data-toggle="collapse" href="" role="button" aria-expanded="false" aria-controls="collapseExample">
+                        <p class="mb-0 pl-4 text-success">₹30000</p>
+                        <p class="mb-0 pl-4 category-title">Salary</p>
+                    </a>
+                    
+                </div>
+                <div class="main-content my-auto">
+                    <p class="mb-0">June 4, 2020</p>
+                </div>
+            </li>    
+
+            <li class="p-2 pt-3 row">
+                <div>
+                    <img src="assets/images/icons/a1.png" class="img rounded-circle" width="50px" alt="">
+                </div>
+                <div class="main-content w-50 m-0 my-auto mr-auto">
+                    <a data-toggle="collapse" href="" role="button" aria-expanded="false" aria-controls="collapseExample">
+                        <p class="mb-0 pl-4 text-danger">₹30000</p>
+                        <p class="mb-0 pl-4 category-title">Uncategorized</p>
+                    </a>
+                    
+                </div>
+                <div class="main-content my-auto">
+                    <p class="mb-0">August 9, 2019</p>
+                </div>
+            </li>    
+        </ul>
+    </div>
 </div>

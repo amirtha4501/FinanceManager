@@ -16,6 +16,7 @@ import { AboutComponent } from './about/about.component';
 import { ReviewComponent } from './review/review.component';
 import { SummaryComponent } from './summary/summary.component';
 import { PlannedTransactionComponent } from './planned-transaction/planned-transaction.component';
+import { FilterComponent } from './filter/filter.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { PlannedTransactionComponent } from './planned-transaction/planned-trans
     AboutComponent,
     ReviewComponent,
     SummaryComponent,
-    PlannedTransactionComponent
+    PlannedTransactionComponent,
+    FilterComponent
   ],
   imports: [
     BrowserModule,

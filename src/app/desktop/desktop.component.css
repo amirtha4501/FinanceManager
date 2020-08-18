@@ -41,3 +41,12 @@
 #main ul li:last-child::after {
     border-bottom: none !important;
 }
+
+a {
+    text-decoration: none;
+}
+
+.category-title {
+    font-size: 1.4em;
+    color: black ;
+}

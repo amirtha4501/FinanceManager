@@ -1,0 +1,24 @@
+#top-nav {
+    background: #593481;
+    color: #c3b8d9;
+    z-index: 1;
+}
+
+#main {
+    z-index: 0;
+    position: absolute;
+    width: 75%;
+}
+
+#top-nav div a {
+    color: #c3b8d9;
+}
+
+.bg-default {
+    background-color: #593481;
+    color: #d4cce4;
+}
+
+.bg-default:hover {
+    color: white;
+}
