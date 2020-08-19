@@ -1,83 +1,88 @@
-<div class="containder-fluid col">
-    <div class="row">
-        <aside id="sidenav">
-            <div class="wrapper text-white">
+<div class="wrapper">
+    <router-outlet></router-outlet>
+
+    <!-- Sidebar  -->
+    <nav id="sidebar">
+        <div id="dismiss">
+            <i class="fas fa-arrow-left"></i>
+        </div>
+        <br><br>
+        <ul class="list-unstyled components">
+              
+            <li class="nav-item">
+                <a class="nav-link" data-target="#account-modal" data-toggle="modal">
+                    <i class="far fa-user"></i>&nbsp;&nbsp;&nbsp;Accounts
+                </a>
+            </li>
             
-                <nav id="sidebar" class="navbar sticky-top">
-            
-                    <ul class="list-unstyled components">
-                        <li class="nav-item">
-                            <a class="nav-link" data-target="#account-modal" data-toggle="modal">
-                                <i class="far fa-user"></i>&nbsp;&nbsp;&nbsp;Accounts
-                            </a>
-                        </li>
-                        
-                        <div class="dropdown-divider"></div>
+            <div class="dropdown-divider"></div>
 
-                        <li class="">
-                            <a class="nav-link" routerLink='/desktop'><i class="fas fa-desktop"></i>&nbsp;&nbsp;&nbsp;Desktop</a>
-                        </li>
-                        <li class="">
-                            <a class="nav-link" routerLink='/category'><i class="fas fa-clipboard-list"></i>&nbsp;&nbsp;&nbsp; Categories</a>
-                        </li>
-                        <li class="">
-                            <a class="nav-link" routerLink='/template'><i class="far fa-file"></i>&nbsp;&nbsp;&nbsp; Templates</a>
-                        </li>
+            <li class="">
+                <a class="nav-link" routerLink='/desktop'><i class="fas fa-desktop"></i>&nbsp;&nbsp;&nbsp;Desktop</a>
+            </li>
+            <li class="">
+                <a class="nav-link" routerLink='/category'><i class="fas fa-clipboard-list"></i>&nbsp;&nbsp;&nbsp; Categories</a>
+            </li>
+            <li class="">
+                <a class="nav-link" routerLink='/template'><i class="far fa-file"></i>&nbsp;&nbsp;&nbsp; Templates</a>
+            </li>
 
-                        <div class="dropdown-divider"></div>
+            <div class="dropdown-divider"></div>
 
-                        <li class="">
-                            <a class="nav-link" routerLink='/uncategorized'><i class="fab fa-blackberry"></i>&nbsp;&nbsp;&nbsp;Uncategorized</a>
-                        </li>
-                        <li class="">
-                            <a class="nav-link" routerLink='/history'><i class="fas fa-history"></i>&nbsp;&nbsp;&nbsp;History</a>
-                        </li>
-                        <li class="">
-                            <a class="nav-link" routerLink='/recurringpayment'><i class="fas fa-sync"></i>&nbsp;&nbsp;&nbsp;Recurring Payment</a>
-                        </li>
-                        <li class="">
-                            <a class="nav-link" routerLink='/plannedtransaction'><i class="fas fa-space-shuttle"></i>&nbsp;&nbsp;&nbsp;Planned transactions</a>
-                        </li>
-                        <li class="">
-                            <a class="nav-link" routerLink='/transfer'><i class="fas fa-exchange-alt"></i>&nbsp;&nbsp;&nbsp;Transfers</a>
-                        </li>
-                        <!-- <div class="dropdown-divider"></div>
-                        <li class="">
-                            <a class="nav-link" href=""><i class="far fa-clone"></i>&nbsp;&nbsp;&nbsp;Backup</a>
-                        </li>
-                        <li class="">
-                            <a class="nav-link" href=""><i class="fas fa-expand-alt"></i>&nbsp;&nbsp;&nbsp;Import, Export</a>
-                        </li> -->
+            <li class="">
+                <a class="nav-link" routerLink='/uncategorized'><i class="fab fa-blackberry"></i>&nbsp;&nbsp;&nbsp;Uncategorized</a>
+            </li>
+            <li class="">
+                <a class="nav-link" routerLink='/history'><i class="fas fa-history"></i>&nbsp;&nbsp;&nbsp;History</a>
+            </li>
+            <li class="">
+                <a class="nav-link" routerLink='/recurringpayment'><i class="fas fa-sync"></i>&nbsp;&nbsp;&nbsp;Recurring Payment</a>
+            </li>
+            <li class="">
+                <a class="nav-link" routerLink='/plannedtransaction'><i class="fas fa-space-shuttle"></i>&nbsp;&nbsp;&nbsp;Planned transactions</a>
+            </li>
+            <li class="">
+                <a class="nav-link" routerLink='/transfer'><i class="fas fa-exchange-alt"></i>&nbsp;&nbsp;&nbsp;Transfers</a>
+            </li>
+            <!-- <div class="dropdown-divider"></div>
+            <li class="">
+                <a class="nav-link" href=""><i class="far fa-clone"></i>&nbsp;&nbsp;&nbsp;Backup</a>
+            </li>
+            <li class="">
+                <a class="nav-link" href=""><i class="fas fa-expand-alt"></i>&nbsp;&nbsp;&nbsp;Import, Export</a>
+            </li> -->
 
-                        <div class="dropdown-divider"></div>
+            <div class="dropdown-divider"></div>
 
-                        <li class="">
-                            <a class="nav-link" href=""><i class="fas fa-cog"></i>&nbsp;&nbsp;&nbsp;Settings</a>
-                        </li>
-                        <li class="">
-                            <a class="nav-link" routerLink='/about'><i class="fas fa-info-circle"></i>&nbsp;&nbsp;&nbsp;About</a>
-                        </li>
-                    </ul>
-                </nav>
-                
-                <div id="content" class="pr-0 sticky-top">
-                    <button type="button" id="sidebarCollapse" class="border-left-secondary rounded">
-                        <span></span>
-                        <span></span>
-                        <span></span>
-                    </button>
-                </div>
-                
+            <li class="">
+                <a class="nav-link" href=""><i class="fas fa-cog"></i>&nbsp;&nbsp;&nbsp;Settings</a>
+            </li>
+            <li class="">
+                <a class="nav-link" routerLink='/about'><i class="fas fa-info-circle"></i>&nbsp;&nbsp;&nbsp;About</a>
+            </li>
+        </ul>
+
+    </nav>
+
+    <!-- Page Content  -->
+    <div id="content">
+
+        <nav id="collapseButton" class="navbar navbar-expand-lg navbar-light fixed-top w-25">
+            <div class="container-fluid">
+
+                <button type="button" id="sidebarCollapse" class="btn">
+                    <i class="fas fa-bars"></i>
+                </button>
             </div>
-        </aside>
-    
-        <aside class="">
-            <router-outlet></router-outlet>
-        </aside>
+        </nav>
     </div>
+    <!-- <router-outlet></router-outlet> -->
 </div>
 
-<form novalidate [formGroup]="accountForm" autocomplete="off">
+<div class="overlay"></div>
+
+
+<form novalidate autocomplete="off">
     <div class="modal fade" id="account-modal" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -110,7 +115,7 @@
     </div>
 </form>
 
-<form novalidate [formGroup]="newAccountForm" autocomplete="off">
+<form novalidate autocomplete="off">
     <div class="modal fade" id="new-account" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -155,3 +160,35 @@
         </div>
     </div>
 </form>
+
+<!-- jQuery CDN - Slim version (=without AJAX) -->
+<!-- <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script> -->
+
+<!-- Popper.JS -->
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script> -->
+
+<!-- Bootstrap JS -->
+<!-- <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script> -->
+
+<!-- jQuery Custom Scroller CDN -->
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.concat.min.js"></script> -->
+
+<!-- <script type="text/javascript">
+    $(document).ready(function () {
+        $("#sidebar").mCustomScrollbar({
+            theme: "minimal"
+        });
+
+        $('#dismiss, .overlay').on('click', function () {
+            $('#sidebar').removeClass('active');
+            $('.overlay').removeClass('active');
+        });
+
+        $('#sidebarCollapse').on('click', function () {
+            $('#sidebar').addClass('active');
+            $('.overlay').addClass('active');
+            $('.collapse.in').toggleClass('in');
+            $('a[aria-expanded=true]').attr('aria-expanded', 'false');
+        });
+    });
+</script> -->

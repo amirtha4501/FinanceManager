@@ -13,7 +13,7 @@
 #main {
     z-index: 0;
     position: absolute;
-    width: 75%;
+    width: 99%;
 }
 
 #top-nav div a, #subnav div a {
@@ -47,7 +47,7 @@ a {
 }
 
 .category-title {
-    font-size: 1.4em;
+    font-size: 1em;
     color: black ;
 }
 
@@ -55,7 +55,9 @@ a {
 
 #tools-nav .search a {
     width: 20px;
+    background-color: aqua;
 }
+
 #tools-nav .search a:hover {
     width: 20px;
 }
@@ -75,8 +77,9 @@ li.search input {
     left: 0;
     border-radius: 30px;
     color: white;
-    background: #593481;
-
+    /* background: #593481; */
+    background: orangered;
+    
     -webkit-transition: all .3s;
     -moz-transition: all .3s;
     -ms-transition: all .3s;

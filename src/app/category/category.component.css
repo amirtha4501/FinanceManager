@@ -13,7 +13,7 @@
 .main {
     z-index: 0;
     position: absolute;
-    width: 75%;
+    width: 95%;
 }
 
 #top-nav div a, #subnav div a {
@@ -47,7 +47,7 @@ a {
 }
 
 .category-title {
-    font-size: 1.4em;
+    font-size: 1.1em;
     color: black ;
 }
 

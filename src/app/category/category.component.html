@@ -21,7 +21,7 @@
                 </li>
                
                 <li class="list-inline-item search icon m-0">
-                    <a class="nav-link pr-4">
+                    <a class="nav-link">
                         <i class="fas fa-search"></i>
                     </a>
                     <input type="text" class="mt-2 pl-2 pr-2" placeholder="Search..."/>
@@ -38,7 +38,8 @@
                 <ul class="list-inline mb-0">
                     <li class="list-inline-item">
                         <a class="nav-link" (click)="expContent(1)">
-                            <i class="fas fa-list-ul"></i>
+                            <i class="fas fa-align-left"></i>
+                            <!-- <i class="fas fa-list-ul"></i> -->
                         </a>
                     </li>
                     <li class="list-inline-item">
@@ -62,12 +63,12 @@
     </section>
 </div>
 
-<br><br>
+<!-- <br><br> -->
 
-<div class="mt-5">
+<div class="row justify-content-center">
     <!-- Basic categories -->
-    <div *ngIf="val == 1" id="basic" class="container border rounded mt-5 p-0 main">
-        <div id="accordion">
+    <div *ngIf="val == 1" id="basic" class="container rounded mt-5 p-0 pt-5 main">
+        <div id="accordion" class="mt-5">
 
             <div class="card">
                 <a class="card-link" data-toggle="collapse" data-parent="#accordion" href="#food">
@@ -286,9 +287,9 @@
     </div>
 
     <!-- All categories -->
-    <div *ngIf="val == 2" id="all" class="container border rounded mt-5 pl-1 main">
-        <ul class="list-unstyled mb-0 col">
-            <li class="p-2 pt-3 row">
+    <div *ngIf="val == 2" id="all" class="container mt-5 pl-1 pt-5 main">
+        <ul class="list-unstyled mb-0 col mt-5 border rounded">
+            <li class="p-2 pr-4 row">
                 <div>
                     <img src="assets/images/icons/a1.png" class="img rounded-circle" width="50px" alt="">
                 </div>
@@ -304,7 +305,7 @@
                 </div>
             </li>
           
-            <li class="p-2 pt-3 row">
+            <li class="p-2 pr-4 row">
                 <div>
                     <img src="assets/images/icons/a1.png" class="img rounded-circle" width="50px" alt="">
                 </div>
@@ -324,10 +325,10 @@
     </div>
 
     <!-- Starred categories -->
-    <div *ngIf="val == 3" id="all" class="container border rounded mt-5 pl-1 main">
+    <div *ngIf="val == 3" id="all" class="container rounded mt-5 pl-1 pt-5 main">
     
-        <ul class="list-unstyled mb-0 col">
-            <li class="p-2 pt-3 row">
+        <ul class="list-unstyled mb-0 col mt-5 border rounded">
+            <li class="p-2 pr-4 row">
                 <div>
                     <img src="assets/images/icons/a1.png" class="img rounded-circle" width="50px" alt="">
                 </div>
@@ -343,7 +344,7 @@
                 </div>
             </li>
           
-            <li class="p-2 pt-3 row">
+            <li class="p-2 pr-4 row">
                 <div>
                     <img src="assets/images/icons/a1.png" class="img rounded-circle" width="50px" alt="">
                 </div>
@@ -363,10 +364,10 @@
     </div>
 
     <!-- History -->
-    <div *ngIf="val == 4" id="all" class="container border rounded mt-5 pl-1 main">
+    <div *ngIf="val == 4" id="all" class="container mt-5 pl-1 pt-5 main">
     
-        <ul class="list-unstyled mb-0 col">
-            <li class="p-2 pt-3 row">
+        <ul class="list-unstyled mb-0 col border rounded mt-5">
+            <li class="p-2 pr-4 row">
                 <div>
                     <img src="assets/images/icons/a1.png" class="img rounded-circle" width="50px" alt="">
                 </div>
@@ -382,7 +383,7 @@
                 </div>
             </li>
           
-            <li class="p-2 pt-3 row">
+            <li class="p-2 pr-4 row">
                 <div>
                     <img src="assets/images/icons/a1.png" class="img rounded-circle" width="50px" alt="">
                 </div>

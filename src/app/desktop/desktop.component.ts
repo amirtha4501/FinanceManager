@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 
 @Component({
   selector: 'app-desktop',
   templateUrl: './desktop.component.html',
-  styleUrls: ['./desktop.component.css']
+  styleUrls: ['./desktop.component.css'],
+  encapsulation: ViewEncapsulation.None
 })
 export class DesktopComponent implements OnInit {
 

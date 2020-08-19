@@ -13,7 +13,7 @@
 #main {
     z-index: 0;
     position: absolute;
-    width: 75%;
+    width: 99%;
 }
 
 #top-nav div a, #subnav div a {
@@ -33,7 +33,7 @@
     content: ""; 
     display: block;
     margin: 0 auto;
-    width: 90%; 
+    width: 95%; 
     padding-top: 1%;
     border-bottom: 1px solid #cebce0ef; 
 }
@@ -43,10 +43,10 @@
 }
 
 a {
-    text-decoration: none;
+    text-decoration: none !important;
 }
 
 .category-title {
-    font-size: 1.4em;
+    font-size: 1em;
     color: black ;
 }
