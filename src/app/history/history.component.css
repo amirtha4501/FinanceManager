@@ -1,17 +1,17 @@
 #top-nav {
     background: #593481;
     color: #c3b8d9;
-    z-index: 1;
+    z-index: 5;
 }
 
 #subnav {
     background: #7143a3;
     color: #c3b8d9;
-    z-index: 1;
+    z-index: 5;
 }
 
 #main {
-    z-index: 0;
+    z-index: 4;
     position: absolute;
     width: 99%;
 }
@@ -55,7 +55,6 @@ a {
 
 #tools-nav .search a {
     width: 20px;
-    background-color: aqua;
 }
 
 #tools-nav .search a:hover {
@@ -77,8 +76,7 @@ li.search input {
     left: 0;
     border-radius: 30px;
     color: white;
-    /* background: #593481; */
-    background: orangered;
+    background: #593481;
     
     -webkit-transition: all .3s;
     -moz-transition: all .3s;

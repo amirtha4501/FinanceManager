@@ -2,10 +2,17 @@ import { Component, OnInit } from '@angular/core';
 import * as $ from 'jquery';
 
 jQuery(function($) {
-  $('li.search').find('a').on('click', function(e) {
+  $('.search').find('a').on('click', function(e) {
       e.preventDefault();
       $(this).next('input').toggleClass('active');
       console.log("Button clicked");
+  });
+});
+
+$(document).ready(function(){
+  $("#search-btn").click(function(){
+    $('input').toggleClass("active");
+    console.log("Btn toggled");
   });
 });
 
