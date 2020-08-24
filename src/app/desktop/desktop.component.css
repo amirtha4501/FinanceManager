@@ -20,7 +20,7 @@
     color: #c3b8d9;
 }
 
-#top-nav ul li a:hover, #subnav ul li a:hover {
+#top-nav ul li a:hover, #subnav ul li a:hover, #bottom-nav ul li a:hover {
     color: white;
     cursor: pointer;
 }
@@ -46,7 +46,18 @@ a {
     text-decoration: none !important;
 }
 
+#bottom-nav {
+    background: #593481;
+    color: #c3b8d9;
+    font-size: 1em;
+    z-index: 1;
+}
+
+#create-nav {
+    z-index: 1;
+}
+
 .category-title {
     font-size: 1em;
-    color: black ;
+    color: black;
 }

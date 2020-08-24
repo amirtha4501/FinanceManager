@@ -12,3 +12,7 @@ ul li a:hover {
     color: white;
     cursor: pointer;
 }
+
+#create-nav {
+    z-index: 1;
+}

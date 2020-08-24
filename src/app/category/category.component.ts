@@ -1,12 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 
-jQuery(function($) {
-  $('li.search').find('a').on('click', function(e) {
-      e.preventDefault();
-      $(this).next('input').toggleClass('active');
-  });
-});
-
 @Component({
   selector: 'app-category',
   templateUrl: './category.component.html',
@@ -15,6 +8,7 @@ jQuery(function($) {
 export class CategoryComponent implements OnInit {
 
   val: number = 1;
+  searchToggler: boolean = false;
 
   constructor() { }
 
@@ -26,4 +20,8 @@ export class CategoryComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  searchToggle() {
+    this.searchToggler = !this.searchToggler;
+  }
+  
 }

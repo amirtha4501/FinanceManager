@@ -1,28 +1,40 @@
 <div id="template">
     <nav id="top-nav" class="navbar navbar-expand-lg fixed-top">
         <div class="ml-auto">
-           <ul class="list-inline mb-0">
-               <li class="list-inline-item">
-                   <a class="nav-link text-white">
-                       Template list
-                   </a>
-               </li>
-               <li class="list-inline-item">
-                   <a class="nav-link">
-                    <i class="fas fa-search"></i>
-                   </a>
-               </li>
-               <li class="list-inline-item">
-                   <a class="nav-link">
+            <ul id="tools-nav" class="list-inline mb-0">
+                <li class="list-inline-item">
+                    <a class="nav-link text-white">
+                        Template
+                    </a>
+                </li>
+                <li class="list-inline-item">
+                    <a class="nav-link">
                         <i class="fas fa-sort"></i>
-                   </a>
-               </li>
-               <li class="list-inline-item">
-                   <a class="nav-link">
-                       <i class="far fa-bell"></i>
-                   </a>
-               </li>
+                    </a>
+                </li>
+                <li class="list-inline-item">
+                    <a class="nav-link">
+                        <i class="far fa-bell"></i>
+                    </a>
+                </li>
+                <li class="list-inline-item template-search icon m-0">
+                    <a class="nav-link pr-4" (click)="searchToggle()">
+                        <i class="fas fa-search"></i>
+                    </a>
+                    <input type="text" class="mt-2 pl-2 pr-2" [ngClass]="[ searchToggler ? 'template-input-active' : '']" placeholder="Search..."/>
+                    <button type="reset" class="btn template-clear-btn" [ngClass]="[ searchToggler ? 'template-clear-active' : '']" (click)="searchToggle()">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </li>
            </ul> 
        </div>
     </nav>
 </div>
+
+<nav id="create-nav" class="navbar navbar-expand-lg fixed-bottom w-25 ml-auto text-warning">
+    <div class="ml-auto pr-4 pb-4">
+        <a href="" class="text-warning">
+            <i class="fas fa-plus-circle bg-white rounded-circle" style="font-size: 45px;"></i>
+        </a>
+    </div>
+</nav>

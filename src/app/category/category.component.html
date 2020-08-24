@@ -1,7 +1,7 @@
 <div id="category">
     <nav id="top-nav" class="navbar navbar-expand-lg fixed-top">
         <div class="ml-auto">
-           <ul class="list-inline">
+           <ul id="tools-nav" class="list-inline">
                 <li class="list-inline-item">
                     <a class="nav-link text-white">
                         Category
@@ -20,11 +20,14 @@
                     </a>
                 </li>
                
-                <li class="list-inline-item search icon m-0">
-                    <a class="nav-link" id="search-btn">
+                <li class="list-inline-item category-search icon m-0">
+                    <a class="nav-link pr-4" (click)="searchToggle()">
                         <i class="fas fa-search"></i>
                     </a>
-                    <input type="text" class="mt-2 pl-2 pr-2" placeholder="Search..."/>
+                    <input type="text" class="mt-2 pl-2 pr-2" [ngClass]="[ searchToggler ? 'category-input-active' : '']" placeholder="Search..."/>
+                    <button type="reset" class="btn category-clear-btn" [ngClass]="[ searchToggler ? 'category-clear-active' : '']" (click)="searchToggle()">
+                        <i class="fas fa-times"></i>
+                    </button>
                 </li>
 
            </ul>
@@ -69,7 +72,6 @@
     <!-- Basic categories -->
     <div *ngIf="val == 1" id="basic" class="container rounded mt-5 p-0 pt-5 main">
         <div id="accordion" class="mt-5">
-            <a href="">asddfaf</a>
             <div class="card">
                 <a class="card-link" data-toggle="collapse" data-parent="#accordion" href="#food">
                     <div class="card-header bg-white">
@@ -402,3 +404,11 @@
 
     </div>
 </div>
+
+<nav id="create-nav" class="navbar navbar-expand-lg fixed-bottom w-25 ml-auto text-warning">
+    <div class="ml-auto pr-4 pb-4">
+        <a href="" class="text-warning">
+            <i class="fas fa-plus-circle bg-white rounded-circle" style="font-size: 45px;"></i>
+        </a>
+    </div>
+</nav>

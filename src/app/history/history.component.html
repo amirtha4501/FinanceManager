@@ -23,13 +23,15 @@
                         <a class="dropdown-item text-dark" data-toggle="collapse" data-target=".navbar-collapse.show" routerLink='/filter'>Filter</a>
                     </div>
                 </li>
-
-                <li class="list-inline-item search icon m-0">
-                    <a class="nav-link pr-4" id="search-btn">
+                <li class="list-inline-item history-search icon m-0">
+                    <a class="nav-link pr-4" (click)="searchToggle()">
                         <i class="fas fa-search"></i>
                     </a>
-                    <input type="text" class="mt-2 pl-2 pr-2" placeholder="Search..."/>
-                </li>
+                    <input type="text" class="mt-2 pl-2 pr-2" [ngClass]="[ searchToggler ? 'history-input-active' : '']" placeholder="Search..."/>
+                    <button type="reset" class="btn history-clear-btn" [ngClass]="[ searchToggler ? 'history-clear-active' : '']" (click)="searchToggle()">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </li> 
            </ul> 
        </div>
     </nav>
@@ -73,3 +75,11 @@
         </ul>
     </div>
 </div>
+
+<nav id="create-nav" class="navbar navbar-expand-lg fixed-bottom w-25 ml-auto text-warning">
+    <div class="ml-auto pr-4 pb-4">
+        <a href="" class="text-warning">
+            <i class="fas fa-plus-circle bg-white rounded-circle" style="font-size: 45px;"></i>
+        </a>
+    </div>
+</nav>

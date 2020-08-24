@@ -7,9 +7,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TemplateComponent implements OnInit {
 
+  searchToggler: boolean = false;
+
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  searchToggle() {
+    this.searchToggler = !this.searchToggler;
   }
 
 }

@@ -7,9 +7,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class UncategorizedComponent implements OnInit {
 
+  searchToggler: boolean = false;
+
   constructor() { }
 
   ngOnInit(): void {
   }
+  
+  searchToggle() {
+    this.searchToggler = !this.searchToggler;
+  }
+
 
 }

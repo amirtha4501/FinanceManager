@@ -1,20 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import * as $ from 'jquery';
-
-jQuery(function($) {
-  $('.search').find('a').on('click', function(e) {
-      e.preventDefault();
-      $(this).next('input').toggleClass('active');
-      console.log("Button clicked");
-  });
-});
-
-$(document).ready(function(){
-  $("#search-btn").click(function(){
-    $('input').toggleClass("active");
-    console.log("Btn toggled");
-  });
-});
 
 @Component({
   selector: 'app-history',
@@ -23,9 +7,15 @@ $(document).ready(function(){
 })
 export class HistoryComponent implements OnInit {
 
+  searchToggler: boolean = false;
+
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  searchToggle() {
+    this.searchToggler = !this.searchToggler;
   }
 
 }
