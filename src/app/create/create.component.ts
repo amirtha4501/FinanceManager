@@ -2,11 +2,14 @@ import { Component, OnInit } from '@angular/core';
 import { Location } from '@angular/common';
 
 @Component({
-  selector: 'app-filter',
-  templateUrl: './filter.component.html',
-  styleUrls: ['./filter.component.css']
+  selector: 'app-create',
+  templateUrl: './create.component.html',
+  styleUrls: ['./create.component.css']
 })
-export class FilterComponent implements OnInit {
+export class CreateComponent implements OnInit {
+
+  desktop: boolean = true;
+  category: boolean = true;
 
   constructor(private location: Location) { }
 

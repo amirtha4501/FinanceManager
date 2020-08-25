@@ -1,0 +1,217 @@
+<div id="create">
+    <nav id="top-nav" class="navbar navbar-expand-lg fixed-top">
+        <div class="ml-auto">
+            <ul class="list-inline mb-0">
+                <li class="list-inline-item">
+                    <a class="nav-link text-white" (click)="navigateBack()">
+                        <i class="fas fa-arrow-left"></i>
+                    </a>
+                </li>
+                <li class="list-inline-item">
+                    <a class="nav-link text-white">
+                        New transaction
+                    </a>
+                </li>
+            </ul> 
+        </div>
+    </nav>
+</div>
+
+<div class="row justify-content-center">
+    <div id="desktop" *ngIf="desktop" class="container-fluid rounded mt-5 pt-5">
+        <form>
+            <table class="table table-borderless">
+                <tbody>
+                    <tr>
+                        <td class="p-0 pr-4">
+                            <i class="fas fa-rupee-sign bg-icon" style="font-size: 23px;"></i>
+                        </td>
+                        <td class="p-0">
+                            <div class="form-group">
+                                <input type="number" class="form-control border-top-0 border-right-0 border-left-0" placeholder="0.00">
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <br>
+            <table class="table table-borderless">
+                <tr>
+                    <td class="p-0 pr-4">
+                        <i class="fas fa-wallet bg-icon" style="font-size: 23px;"></i>
+                    </td>
+                    <td class="p-0">
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="income-expense" id="income-expense" value="expense">
+                            <label class="form-check-label" for="expense">Expense</label>
+                        </div>
+                    </td>
+                    <td class="p-0">
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="income-expense" id="income-expense" value="income">
+                            <label class="form-check-label" for="income">Income</label>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+            <br>
+            <table class="table table-borderless">
+                <tbody>
+                    <tr>
+                        <td class="p-0 pr-4">
+                            <i class="fas fa-puzzle-piece bg-icon" style="font-size: 23px;"></i>
+                        </td>
+                        <td class="p-0">
+                            <div class="form-group">
+                                <input type="text" class="form-control border-top-0 border-right-0 border-left-0" placeholder="Select category">
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="p-0 pr-4">
+                            <i class="fas fa-pencil-alt bg-icon" style="font-size: 23px;"></i>
+                        </td>
+                        <td class="p-0">
+                            <div class="form-group">
+                                <input type="text" class="form-control border-top-0 border-right-0 border-left-0" placeholder="Insert title">
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="p-0 pr-4">
+                            <i class="fas fa-tag bg-icon" style="font-size: 23px;"></i>
+                        </td>
+                        <td class="p-0">
+                            <div class="form-group">
+                                <input type="text" class="form-control border-top-0 border-right-0 border-left-0" placeholder="Add tag">
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="p-0 pr-4">
+                            <i class="fas fa-sticky-note bg-icon" style="font-size: 23px;"></i>
+                        </td>
+                        <td class="p-0">
+                            <div class="form-group">
+                                <input type="text" class="form-control border-top-0 border-right-0 border-left-0" placeholder="Add note">
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="p-0 pr-4">
+                            <i class="fas fa-user bg-icon" style="font-size: 23px;"></i>
+                        </td>
+                        <td class="p-0">
+                            <div class="form-group">
+                                <input type="text" class="form-control border-top-0 border-right-0 border-left-0" placeholder="Account">
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="p-0 pr-4 text-nowrap">
+                            <i class="fas fa-calendar-minus bg-icon" style="font-size: 23px;"></i>
+                        </td>
+                        <td class="p-0">
+                            <div class="form-group">
+                                <input type="date" class="form-control col-11 p-1 border-top-0 border-right-0 border-left-0">
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <table class="table table-borderless">
+                <tr>
+                    <td class="p-0">
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" name="save-as-template" id="save-as-template" value="save-as-template">
+                            <label class="form-check-label" for="save-as-template">Save as template</label>
+                        </div>
+                    </td>
+                    <td class="p-0">
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" name="recurring-payment" id="recurring-payment" value="recurring-payment">
+                            <label class="form-check-label" for="recurring-payment">Recurring payment</label>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+            <hr>
+            <div class="container text-center mb-5">
+                <div class="text-center">
+                    <button class="btn btn-sm ok-btn col-4 bg-default" type="reset">Ok</button>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <div id="category" *ngIf="!category" class="container-fluid rounded mt-5 pt-5">
+        <form>
+            <br>
+            <table class="table table-borderless">
+                <tbody>
+                    <tr>
+                        <td class="p-0 pr-4">
+                            <i class="fas fa-pencil-alt bg-icon" style="font-size: 23px;"></i>
+                        </td>
+                        <td class="p-0">
+                            <div class="form-group">
+                                <input type="text" class="form-control border-top-0 border-right-0 border-left-0" placeholder="Enter the name">
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="p-0 pr-4">
+                            <i class="fas fa-th-large bg-icon" style="font-size: 23px;"></i>
+                        </td>
+                        <td class="p-0">
+                            <div class="form-group">
+                                <input type="text" class="form-control border-top-0 border-right-0 border-left-0" placeholder="Parent category">
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="p-0 pr-4">
+                            <i class="fas fa-palette bg-icon" style="font-size: 23px;"></i>
+                        </td>
+                        <td class="p-0">
+                            <div class="form-group">
+                                <input type="text" class="form-control border-top-0 border-right-0 border-left-0" placeholder="Choose a color">
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="p-0 pr-4">
+                            <i class="fas fa-percentage bg-icon" style="font-size: 23px;"></i>
+                        </td>
+                        <td class="p-0">
+                            <div class="form-group">
+                                <input type="text" class="form-control border-top-0 border-right-0 border-left-0" placeholder="Default operation type">
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="p-0">
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="income-expense" id="income-expense" value="expense">
+                                <label class="form-check-label" for="expense">Expense</label>
+                            </div>
+                        </td>
+                        <td class="p-0">
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="income-expense" id="income-expense" value="income">
+                                <label class="form-check-label" for="income">Income</label>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <br>
+            <hr>
+            <div class="container text-center mb-5">
+                <div class="text-center">
+                    <button class="btn btn-sm ok-btn col-4 bg-default" type="reset">Ok</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

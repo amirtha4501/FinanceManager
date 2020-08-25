@@ -17,6 +17,7 @@ import { ReviewComponent } from './review/review.component';
 import { SummaryComponent } from './summary/summary.component';
 import { PlannedTransactionComponent } from './planned-transaction/planned-transaction.component';
 import { FilterComponent } from './filter/filter.component';
+import { CreateComponent } from './create/create.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { FilterComponent } from './filter/filter.component';
     ReviewComponent,
     SummaryComponent,
     PlannedTransactionComponent,
-    FilterComponent
+    FilterComponent,
+    CreateComponent
   ],
   imports: [
     BrowserModule,

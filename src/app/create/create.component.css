@@ -1,0 +1,38 @@
+#top-nav {
+    background: #593481;
+    color: #c3b8d9;
+    z-index: 5;
+}
+
+#desktop, #category {
+    z-index: 4;
+    position: absolute;
+    width: 75%;
+}
+
+#top-nav div a {
+    color: #c3b8d9;
+}
+
+.bg-default {
+    background-color: #593481;
+    color: #d4cce4;
+}
+
+.bg-default:hover {
+    color: white;
+}
+
+.bg-icon {
+    color: #593481;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type=number] {
+  -moz-appearance: textfield;
+}
