@@ -291,38 +291,20 @@
     <!-- All categories -->
     <div *ngIf="val == 2" id="all" class="container mt-5 pl-1 pt-5 main">
         <ul class="list-unstyled mb-0 col mt-5 border rounded">
-            <li class="p-2 pr-4 row">
+            <li class="p-2 pr-4 row" *ngFor="let transaction of transactions">
                 <div>
                     <img src="assets/images/icons/a1.png" class="img rounded-circle" width="50px" alt="">
                 </div>
                 <div class="main-content w-50 m-0 my-auto mr-auto">
                     <a data-toggle="collapse" href="" role="button" aria-expanded="false" aria-controls="collapseExample">
-                        <p class="mb-0 pl-4 text-dark">Car</p>
-                        <p class="mb-0 pl-4 category-title">Accessories</p>
+                        <p class="mb-0 pl-4 text-dark">{{ transaction.title | titlecase }}</p>
+                        <p class="mb-0 pl-4 category-title">{{ transaction.category | titlecase }}</p>
                     </a>
-                    
                 </div>
                 <div class="main-content my-auto">
                     <a routerLink='/about'><p class="mb-0"><i class="far fa-star"></i></p></a>
                 </div>
             </li>
-          
-            <li class="p-2 pr-4 row">
-                <div>
-                    <img src="assets/images/icons/a1.png" class="img rounded-circle" width="50px" alt="">
-                </div>
-                <div class="main-content w-50 m-0 my-auto mr-auto">
-                    <a data-toggle="collapse" href="" role="button" aria-expanded="false" aria-controls="collapseExample">
-                        <p class="mb-0 pl-4 text-dark">Electronics</p>
-                        <p class="mb-0 pl-4 category-title">Accessories</p>
-                    </a>
-                    
-                </div>
-                <div class="main-content my-auto">
-                    <a routerLink='/about'><p class="mb-0"><i class="far fa-star"></i></p></a>
-                </div>
-            </li>
-            
         </ul>
     </div>
 
@@ -330,7 +312,7 @@
     <div *ngIf="val == 3" id="all" class="container rounded mt-5 pl-1 pt-5 main">
     
         <ul class="list-unstyled mb-0 col mt-5 border rounded">
-            <li class="p-2 pr-4 row">
+            <li class="p-2 pr-4 row" *ngFor="let transaction of transactions">
                 <div>
                     <img src="assets/images/icons/a1.png" class="img rounded-circle" width="50px" alt="">
                 </div>
@@ -369,37 +351,19 @@
     <div *ngIf="val == 4" id="all" class="container mt-5 pl-1 pt-5 main">
     
         <ul class="list-unstyled mb-0 col border rounded mt-5">
-            <li class="p-2 pr-4 row">
+            <li class="p-2 pr-4 row" *ngFor="let transaction of transactions">
                 <div>
                     <img src="assets/images/icons/a1.png" class="img rounded-circle" width="50px" alt="">
                 </div>
                 <div class="main-content w-50 m-0 my-auto mr-auto">
                     <a data-toggle="collapse" href="" role="button" aria-expanded="false" aria-controls="collapseExample">
-                        <p class="mb-0 pl-4 text-dark">Car</p>
-                        <p class="mb-0 pl-4 category-title">Accessories</p>
-                    </a>
-                    
+                        <p class="mb-0 pl-4 category-title">{{ transaction.category | titlecase }}</p>
+                    </a>              
                 </div>
                 <div class="main-content my-auto">
                     <a routerLink='/about'><p class="mb-0"><i class="far fa-star"></i></p></a>
                 </div>
-            </li>
-          
-            <li class="p-2 pr-4 row">
-                <div>
-                    <img src="assets/images/icons/a1.png" class="img rounded-circle" width="50px" alt="">
-                </div>
-                <div class="main-content w-50 m-0 my-auto mr-auto">
-                    <a data-toggle="collapse" href="" role="button" aria-expanded="false" aria-controls="collapseExample">
-                        <p class="mb-0 pl-4 text-dark">Electronics</p>
-                        <p class="mb-0 pl-4 category-title">Accessories</p>
-                    </a>
-                    
-                </div>
-                <div class="main-content my-auto">
-                    <a routerLink='/about'><p class="mb-0"><i class="far fa-star"></i></p></a>
-                </div>
-            </li>    
+            </li> 
         </ul>
 
     </div>
@@ -407,7 +371,7 @@
 
 <nav id="create-nav" class="navbar navbar-expand-lg fixed-bottom w-25 ml-auto text-warning">
     <div class="ml-auto pr-4 pb-4">
-        <a href="" class="text-warning">
+        <a routerLink='/create' (click)="enableComponent()" class="text-warning">
             <i class="fas fa-plus-circle bg-white rounded-circle" style="font-size: 45px;"></i>
         </a>
     </div>

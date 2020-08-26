@@ -47,154 +47,18 @@
 <div class="row justify-content-center">
     <div id="main" class="container mt-5 pl-1 pt-5 mx-auto">
         <ul class="list-unstyled mb-0 col mt-3">
-
-            <li class="p-2 pt-3 row">
+            <li class="p-2 row" *ngFor="let transaction of transactions">
                 <div>
                     <img src="assets/images/icons/a1.png" class="img rounded-circle" width="50px" alt="">
                 </div>
                 <div class="main-content w-50 m-0 my-auto mr-auto">
                     <a data-toggle="collapse" href="" role="button" aria-expanded="false" aria-controls="collapseExample">
-                        <p class="mb-0 pl-4 text-secondary">Electronics</p>
-                        <p class="mb-0 pl-4 category-title">Accessories</p>
+                        <p class="mb-0 pl-4 text-secondary">{{ transaction.title | titlecase }}</p>
+                        <p class="mb-0 pl-4 category-title">{{ transaction.category | titlecase }}</p>
                     </a>   
                 </div>
                 <div class="main-content my-auto">
-                    <p class="mb-0">₹30000</p>
-                </div>
-            </li>    
-
-            <li class="p-2 pt-3 row">
-                <div>
-                    <img src="assets/images/icons/a1.png" class="img rounded-circle" width="50px" alt="">
-                </div>
-                <div class="main-content w-50 m-0 my-auto mr-auto">
-                    <a data-toggle="collapse" href="" role="button" aria-expanded="false" aria-controls="collapseExample">
-                        <p class="mb-0 pl-4 text-secondary">Electronics</p>
-                        <p class="mb-0 pl-4 category-title">Accessories</p>
-                    </a>
-                </div>
-                <div class="main-content my-auto">
-                    <p class="mb-0">₹30000</p>
-                </div>
-            </li>    
-            
-            <li class="p-2 pt-3 row">
-                <div>
-                    <img src="assets/images/icons/a1.png" class="img rounded-circle" width="50px" alt="">
-                </div>
-                <div class="main-content w-50 m-0 my-auto mr-auto">
-                    <a data-toggle="collapse" href="" role="button" aria-expanded="false" aria-controls="collapseExample">
-                        <p class="mb-0 pl-4 text-secondary">Electronics</p>
-                        <p class="mb-0 pl-4 category-title">Accessories</p>
-                    </a>
-                </div>
-                <div class="main-content my-auto">
-                    <p class="mb-0">₹30000</p>
-                </div>
-            </li>    
-            
-            <li class="p-2 pt-3 row">
-                <div>
-                    <img src="assets/images/icons/a1.png" class="img rounded-circle" width="50px" alt="">
-                </div>
-                <div class="main-content w-50 m-0 my-auto mr-auto">
-                    <a data-toggle="collapse" href="" role="button" aria-expanded="false" aria-controls="collapseExample">
-                        <p class="mb-0 pl-4 text-secondary">Electronics</p>
-                        <p class="mb-0 pl-4 category-title">Accessories</p>
-                    </a>
-                </div>
-                <div class="main-content my-auto">
-                    <p class="mb-0">₹30000</p>
-                </div>
-            </li>    
-            
-            <li class="p-2 pt-3 row">
-                <div>
-                    <img src="assets/images/icons/a1.png" class="img rounded-circle" width="50px" alt="">
-                </div>
-                <div class="main-content w-50 m-0 my-auto mr-auto">
-                    <a data-toggle="collapse" href="" role="button" aria-expanded="false" aria-controls="collapseExample">
-                        <p class="mb-0 pl-4 text-secondary">Electronics</p>
-                        <p class="mb-0 pl-4 category-title">Accessories</p>
-                    </a>
-                </div>
-                <div class="main-content my-auto">
-                    <p class="mb-0">₹30000</p>
-                </div>
-            </li>    
-            
-            <li class="p-2 pt-3 row">
-                <div>
-                    <img src="assets/images/icons/a1.png" class="img rounded-circle" width="50px" alt="">
-                </div>
-                <div class="main-content w-50 m-0 my-auto mr-auto">
-                    <a data-toggle="collapse" href="" role="button" aria-expanded="false" aria-controls="collapseExample">
-                        <p class="mb-0 pl-4 text-secondary">Electronics</p>
-                        <p class="mb-0 pl-4 category-title">Accessories</p>
-                    </a>
-                </div>
-                <div class="main-content my-auto">
-                    <p class="mb-0">₹30000</p>
-                </div>
-            </li>    
-            
-            <li class="p-2 pt-3 row">
-                <div>
-                    <img src="assets/images/icons/a1.png" class="img rounded-circle" width="50px" alt="">
-                </div>
-                <div class="main-content w-50 m-0 my-auto mr-auto">
-                    <a data-toggle="collapse" href="" role="button" aria-expanded="false" aria-controls="collapseExample">
-                        <p class="mb-0 pl-4 text-secondary">Electronics</p>
-                        <p class="mb-0 pl-4 category-title">Accessories</p>
-                    </a>
-                </div>
-                <div class="main-content my-auto">
-                    <p class="mb-0">₹30000</p>
-                </div>
-            </li>    
-            
-            <li class="p-2 pt-3 row">
-                <div>
-                    <img src="assets/images/icons/a1.png" class="img rounded-circle" width="50px" alt="">
-                </div>
-                <div class="main-content w-50 m-0 my-auto mr-auto">
-                    <a data-toggle="collapse" href="" role="button" aria-expanded="false" aria-controls="collapseExample">
-                        <p class="mb-0 pl-4 text-secondary">Electronics</p>
-                        <p class="mb-0 pl-4 category-title">Accessories</p>
-                    </a>
-                </div>
-                <div class="main-content my-auto">
-                    <p class="mb-0">₹30000</p>
-                </div>
-            </li>    
-            
-            <li class="p-2 pt-3 row">
-                <div>
-                    <img src="assets/images/icons/a1.png" class="img rounded-circle" width="50px" alt="">
-                </div>
-                <div class="main-content w-50 m-0 my-auto mr-auto">
-                    <a data-toggle="collapse" href="" role="button" aria-expanded="false" aria-controls="collapseExample">
-                        <p class="mb-0 pl-4 text-secondary">Electronics</p>
-                        <p class="mb-0 pl-4 category-title">Accessories</p>
-                    </a>
-                </div>
-                <div class="main-content my-auto">
-                    <p class="mb-0">₹30000</p>
-                </div>
-            </li>    
-            
-            <li class="p-2 pt-3 row">
-                <div>
-                    <img src="assets/images/icons/a1.png" class="img rounded-circle" width="50px" alt="">
-                </div>
-                <div class="main-content w-50 m-0 my-auto mr-auto">
-                    <a data-toggle="collapse" href="" role="button" aria-expanded="false" aria-controls="collapseExample">
-                        <p class="mb-0 pl-4 text-secondary">Electronics</p>
-                        <p class="mb-0 pl-4 category-title">Accessories</p>
-                    </a>
-                </div>
-                <div class="main-content my-auto">
-                    <p class="mb-0">₹30000</p>
+                    <p class="mb-0">₹{{ transaction.amount }}</p>
                 </div>
             </li>    
         </ul>
@@ -203,7 +67,7 @@
 
 <nav id="create-nav" class="navbar navbar-expand-lg fixed-bottom w-25 mb-5 ml-auto text-warning">
     <div class="ml-auto pr-4 pb-4">
-        <a routerLink="/create" class="text-warning">
+        <a routerLink="/create" (click)="enableComponent()" class="text-warning">
             <i class="fas fa-plus-circle bg-white rounded-circle" style="font-size: 45px;"></i>
         </a>
     </div>

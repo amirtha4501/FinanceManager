@@ -39,11 +39,11 @@
 }
 
 #main ul li:last-child::after {
-    border-bottom: none !important;
+    border-bottom: none;
 }
 
 a {
-    text-decoration: none !important;
+    text-decoration: none;
 }
 
 #bottom-nav {
@@ -58,6 +58,6 @@ a {
 }
 
 .category-title {
-    font-size: 1em;
+    font-size: 1.1em;
     color: black;
 }

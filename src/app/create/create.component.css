@@ -4,7 +4,7 @@
     z-index: 5;
 }
 
-#desktop, #category {
+#desktop, #category, #transfer {
     z-index: 4;
     position: absolute;
     width: 75%;

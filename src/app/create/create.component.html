@@ -9,7 +9,7 @@
                 </li>
                 <li class="list-inline-item">
                     <a class="nav-link text-white">
-                        New transaction
+                        {{ createName }}
                     </a>
                 </li>
             </ul> 
@@ -18,7 +18,7 @@
 </div>
 
 <div class="row justify-content-center">
-    <div id="desktop" *ngIf="desktop" class="container-fluid rounded mt-5 pt-5">
+    <div id="desktop" *ngIf="isDesktop || isUncategory || isHistory || isTemplate || isRecurringPayment || isPlannedTransaction" class="container-fluid rounded mt-5 pt-5">
         <form>
             <table class="table table-borderless">
                 <tbody>
@@ -33,8 +33,9 @@
                         </td>
                     </tr>
                 </tbody>
-            </table>
+            </table> 
             <br>
+
             <table class="table table-borderless">
                 <tr>
                     <td class="p-0 pr-4">
@@ -55,6 +56,7 @@
                 </tr>
             </table>
             <br>
+            
             <table class="table table-borderless">
                 <tbody>
                     <tr>
@@ -107,7 +109,7 @@
                             </div>
                         </td>
                     </tr>
-                    <tr>
+                    <tr *ngIf="!isTemplate">
                         <td class="p-0 pr-4 text-nowrap">
                             <i class="fas fa-calendar-minus bg-icon" style="font-size: 23px;"></i>
                         </td>
@@ -119,7 +121,8 @@
                     </tr>
                 </tbody>
             </table>
-            <table class="table table-borderless">
+            
+            <table *ngIf="!isTemplate && !isRecurringPayment" class="table table-borderless">
                 <tr>
                     <td class="p-0">
                         <div class="form-check form-check-inline">
@@ -135,7 +138,38 @@
                     </td>
                 </tr>
             </table>
+            
+            <div *ngIf="isRecurringPayment" class="form-check form-check-inline mb-4">
+                <input class="form-check-input" type="checkbox" name="recurring-payment" id="recurring-payment" value="recurring-payment">
+                <label class="form-check-label" for="recurring-payment"><h5 class="m-0">Recurring payment</h5></label>
+            </div>
+            
+            <table *ngIf="isRecurringPayment" class="table table-borderless">
+                <tbody>
+                    <tr>
+                        <td class="p-0 pr-4">
+                            <i class="fas fa-history bg-icon" style="font-size: 23px;"></i>
+                        </td>
+                        <td class="p-0">
+                            <div class="form-group">
+                                <input type="text" class="form-control border-top-0 border-right-0 border-left-0" placeholder="Select frequency">
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="p-0 pr-4">
+                            <i class="far fa-calendar-times bg-icon" style="font-size: 23px;"></i>
+                        </td>
+                        <td class="p-0">
+                            <div class="form-group">
+                                <input type="date" class="form-control border-top-0 border-right-0 border-left-0" placeholder="Select end date">
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
             <hr>
+            
             <div class="container text-center mb-5">
                 <div class="text-center">
                     <button class="btn btn-sm ok-btn col-4 bg-default" type="reset">Ok</button>
@@ -144,7 +178,7 @@
         </form>
     </div>
 
-    <div id="category" *ngIf="!category" class="container-fluid rounded mt-5 pt-5">
+    <div id="category" *ngIf="isCategory" class="container-fluid rounded mt-5 pt-5">
         <form>
             <br>
             <table class="table table-borderless">
@@ -200,6 +234,63 @@
                             <div class="form-check form-check-inline">
                                 <input class="form-check-input" type="radio" name="income-expense" id="income-expense" value="income">
                                 <label class="form-check-label" for="income">Income</label>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <br>
+            <hr>
+            <div class="container text-center mb-5">
+                <div class="text-center">
+                    <button class="btn btn-sm ok-btn col-4 bg-default" type="reset">Ok</button>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <div id="transfer" *ngIf="isTransfer" class="container-fluid rounded mt-5 pt-5">
+        <form>
+            <br>
+            <table class="table table-borderless">
+                <tbody>
+                    <tr>
+                        <td class="p-0 pr-4">
+                            <i class="fas fa-upload bg-icon" style="font-size: 23px;"></i>
+                        </td>
+                        <td class="p-0">
+                            <div class="form-group">
+                                <input type="text" class="form-control border-top-0 border-right-0 border-left-0" placeholder="Select source account">
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="p-0 pr-4">
+                            <i class="fas fa-download bg-icon" style="font-size: 23px;"></i>
+                        </td>
+                        <td class="p-0">
+                            <div class="form-group">
+                                <input type="text" class="form-control border-top-0 border-right-0 border-left-0" placeholder="Select target account">
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="p-0 pr-4">
+                            <i class="fas fa-pencil-alt bg-icon" style="font-size: 23px;"></i>
+                        </td>
+                        <td class="p-0">
+                            <div class="form-group">
+                                <input type="text" class="form-control border-top-0 border-right-0 border-left-0" placeholder="Insert title">
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="p-0 pr-4">
+                            <i class="fas fa-calendar bg-icon" style="font-size: 23px;"></i>
+                        </td>
+                        <td class="p-0">
+                            <div class="form-group">
+                                <input type="date" class="form-control border-top-0 border-right-0 border-left-0" placeholder="Default operation type">
                             </div>
                         </td>
                     </tr>
