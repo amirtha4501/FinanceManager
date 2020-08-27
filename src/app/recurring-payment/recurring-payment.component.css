@@ -1,18 +1,24 @@
 .top-nav {
     background: #593481;
     color: #c3b8d9;
-    z-index: 1;
+    z-index: 5;
 }
 
-div a {
+#main {
+    z-index: 4;
+    position: absolute;
+    width: 99%;
+}
+
+#recurring-payment div a {
     color: #d2cae4;
 }
 
-ul li a:hover {
+#recurring-payment ul li a:hover {
     color: white;
     cursor: pointer;
 }
 
 #create-nav {
-    z-index: 1;
+    z-index: 4;
 }

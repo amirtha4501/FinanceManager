@@ -1,17 +1,17 @@
 #top-nav {
     background: #593481;
     color: #c3b8d9;
-    z-index: 1;
+    z-index: 5;
 }
 
 #subnav {
     background: #7143a3;
     color: #c3b8d9;
-    z-index: 1;
+    z-index: 5;
 }
 
 #main {
-    z-index: 0;
+    z-index: 4;
     position: absolute;
     width: 99%;
 }
@@ -44,6 +44,10 @@
 
 a {
     text-decoration: none !important;
+}
+
+#create-nav {
+    z-index: 4;
 }
 
 .category-title {
