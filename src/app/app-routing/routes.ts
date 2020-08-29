@@ -12,6 +12,7 @@ import { PlannedTransactionComponent } from '../planned-transaction/planned-tran
 import { AboutComponent } from '../about/about.component';
 import { FilterComponent } from '../filter/filter.component';
 import { CreateComponent } from '../create/create.component';
+import { ReportsComponent } from '../reports/reports.component';
 
 
 export const allroutes: Routes = [
@@ -26,6 +27,7 @@ export const allroutes: Routes = [
   { path: 'about', component: AboutComponent},
   { path: 'review', component: ReviewComponent},
   { path: 'summary', component: SummaryComponent},
+  { path: 'report', component: ReportsComponent},
   { path: 'plannedtransaction', component: PlannedTransactionComponent},
   { path: 'filter', component: FilterComponent},
   { path: 'create', component: CreateComponent}

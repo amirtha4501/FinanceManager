@@ -5,6 +5,7 @@ import { AppRoutingModule } from './app-routing/app-routing.module';
 import { AppComponent } from './app.component';
 
 import * as $ from 'jquery';
+
 import { DesktopComponent } from './desktop/desktop.component';
 import { CategoryComponent } from './category/category.component';
 import { UncategorizedComponent } from './uncategorized/uncategorized.component';
@@ -18,6 +19,7 @@ import { SummaryComponent } from './summary/summary.component';
 import { PlannedTransactionComponent } from './planned-transaction/planned-transaction.component';
 import { FilterComponent } from './filter/filter.component';
 import { CreateComponent } from './create/create.component';
+import { ReportsComponent } from './reports/reports.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +36,8 @@ import { CreateComponent } from './create/create.component';
     SummaryComponent,
     PlannedTransactionComponent,
     FilterComponent,
-    CreateComponent
+    CreateComponent,
+    ReportsComponent
   ],
   imports: [
     BrowserModule,

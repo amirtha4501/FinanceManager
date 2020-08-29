@@ -16,7 +16,7 @@
     width: 99%;
 }
 
-#top-nav div a, #subnav div a {
+#top-nav div a, #subnav div a, #bottom-nav ul li a {
     color: #c3b8d9;
 }
 
