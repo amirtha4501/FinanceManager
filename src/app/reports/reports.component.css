@@ -7,11 +7,27 @@
 #main {
     z-index: 4;
     position: absolute;
-    width: 75%;
+    width: 100%;
 }
 
 #top-nav div a {
     color: #c3b8d9;
+}
+
+#bottom-nav {
+    background: #593481;
+    color: #c3b8d9;
+    font-size: 1em;
+    z-index: 4;
+}
+
+#bottom-nav ul li a {
+    color: #c3b8d9;
+}
+
+#bottom-nav ul li a:hover {
+    color: white;
+    cursor: pointer;
 }
 
 .bg-default {
@@ -23,10 +39,23 @@
     color: white;
 }
 
+#create-nav {
+    z-index: 4;
+}
+
+#current-page {
+    background: #8e66b8;
+}
+
 /* =================================================================================================================== */
 
 #chart-transaction, #chart-balance {
     display: block;
-    /* height: 400px;
-    width: 400px; */
+}
+
+@media screen and (min-width: 500px) {
+    #chart-transaction, #chart-balance, #chart-incomes-expenses, #chart-category {
+        width: 70%;
+        margin: auto;
+    }   
 }

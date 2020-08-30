@@ -22,12 +22,83 @@
         
         <!-- Transactions report -->
         <div id="chart-transaction">
-           <canvas id="transaction-canvas"></canvas>
+            <h6><strong>Transaction Report:</strong></h6>
+            <canvas id="transaction-canvas"></canvas>
         </div>
+
+        <br><br>
 
         <!-- Balance report -->
         <div id="chart-balance">
+            <h6><strong>Balance Report:</strong></h6>
+            <br>
            <canvas id="balance-canvas"></canvas>
         </div>
+
+        <br><br>
+
+        <!-- Incomes Vs. Expenses -->
+        <div id="chart-incomes-expenses" class="col">
+            <h6><strong>Incomes Vs. Expenses</strong></h6>
+            <canvas id="incomes-expenses-canvas"></canvas>
+        </div>
+
+        <br><br>
+        
+        <!-- Categories in time -->
+        <div id="chart-category" class="col">
+            <h6><strong>Categories in time</strong></h6>
+            <br>
+            <canvas id="category-canvas"></canvas>
+        </div>
+
+        <br><br>
     </div>
 </div>
+
+<nav id="create-nav" class="navbar navbar-expand-lg fixed-bottom w-25 mb-5 ml-auto text-warning">
+    <div class="ml-auto pr-4 pb-4">
+        <a routerLink="/create" (click)="enableComponent()" class="text-warning">
+            <i class="fas fa-plus-circle bg-white rounded-circle" style="font-size: 45px;"></i>
+        </a>
+    </div>
+</nav>
+
+<!-- Bottom Navigations -->
+<nav id="bottom-nav" class="navbar navbar-expand-lg fixed-bottom text-nowrap p-0">
+    <div class="mx-auto">
+        <ul class="list-inline mb-0">
+            <li class="list-inline-item p-1 text-center">
+                <a class="nav-link p-0" routerLink='/desktop'>
+                    <i class="fas fa-home"></i>
+                    <br>
+                    Transaction
+                </a>
+            </li>
+            
+            <li class="list-inline-item p-1 text-center">
+                <a class="nav-link p-0" routerLink='/review'>
+                    <i class="fas fa-tags"></i>
+                    <br>
+                    Review
+                </a>
+            </li>
+            
+            <li class="list-inline-item p-1 text-center">
+                <a class="nav-link p-0" routerLink='/summary'>
+                    <i class="fas fa-chart-bar"></i>
+                    <br>
+                    Summary
+                </a>
+            </li>
+            
+            <li id="current-page" class="list-inline-item p-1 text-center">
+                <a class="nav-link p-0 text-white" routerLink="/report">
+                    <i class="fas fa-chart-pie"></i>
+                    <br>
+                    Reports
+                </a>
+            </li>           
+        </ul>
+    </div>
+</nav>

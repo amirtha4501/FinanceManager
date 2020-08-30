@@ -1,0 +1,55 @@
+#top-nav {
+    background: #593481;
+    color: #c3b8d9;
+    z-index: 5;
+}
+
+#main {
+    z-index: 4;
+    position: absolute;
+    width: 100%;
+}
+
+#top-nav div a {
+    color: #c3b8d9;
+}
+
+#bottom-nav {
+    background: #593481;
+    color: #c3b8d9;
+    font-size: 1em;
+    z-index: 4;
+}
+
+#bottom-nav ul li a {
+    color: #c3b8d9;
+}
+
+#bottom-nav ul li a:hover {
+    color: white;
+    cursor: pointer;
+}
+
+.bg-default {
+    background-color: #593481;
+    color: #d4cce4;
+}
+
+.bg-default:hover {
+    color: white;
+}
+
+#create-nav {
+    z-index: 4;
+}
+
+#current-page {
+    background: #8e66b8;
+}
+
+@media screen and (min-width: 500px) {
+    .transact-incomes-expenses {
+        /* width: 70%; */
+        margin: auto;
+    }   
+}

@@ -61,3 +61,7 @@ a {
     font-size: 1.1em;
     color: black;
 }
+
+#current-page {
+    background: #8e66b8;
+}

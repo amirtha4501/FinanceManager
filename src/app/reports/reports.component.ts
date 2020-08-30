@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Chart } from 'node_modules/chart.js';
+import { CreateService } from '../services/create.service';
 
 @Component({
   selector: 'app-reports',
@@ -8,16 +9,46 @@ import { Chart } from 'node_modules/chart.js';
 })
 export class ReportsComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private createService: CreateService
+  ) {
+    this.determineFont();
+  }
 
   days: number[] = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25];
   incomeData: number[] = [1000, 300, 5000, 100, 200, 800, 50000, 300, 40000, 20, 7000];
   expenseData: number[] = [100, 3000, 500, 10, 2000, 8000, 90000, 3000, 10000, 2000, 1000];
   balanceData: number[] = [100, 200, 200, 200, 500, 2000, 500, 500, 600, 1000, 900];
+  totalExpenses: number = 60;
+  totalIncomes: number = 60;
+  categoryData: number[] = [200, 300, 100, 500, 3000, 600, 100];
+  categoryLabel: string[] = ["Food", "Car", "Entertainment", "Outing", "Stuffs", "Clothing", "others"]
+  fontSize: number = 10;
 
   ngOnInit(): void {
+    this.determineFont();
     this.transactionChart("transaction-canvas", "line");
     this.balanceChart("balance-canvas", "line");
+    this.incomeExpenseChart("incomes-expenses-canvas", "doughnut");
+    this.categoryChart("category-canvas", "bar");
+  }
+
+  determineFont() {
+    if (window.innerWidth > 320 && window.innerWidth < 480) {
+      this.fontSize = 4;
+    }
+    if (window.innerWidth > 481 && window.innerWidth < 768) {
+      this.fontSize = 6;
+    }
+    if (window.innerWidth > 769 && window.innerWidth < 1024) {
+      this.fontSize = 8;
+    }
+    if (window.innerWidth > 1025 && window.innerWidth < 1200) {
+      this.fontSize = 10;
+    }
+    if (window.innerWidth > 1201) {
+      this.fontSize = 12;
+    }
   }
 
   transactionChart(id, type) {
@@ -48,13 +79,22 @@ export class ReportsComponent implements OnInit {
             ],
             borderWidth: 2
           }
-      ]
+        ]
       },
       options: {
         scales: {
           yAxes: [{
             ticks: {
-              beginAtZero: true
+              beginAtZero: true,
+              fontSize: this.fontSize,
+              callback: function (value) {
+                return '₹' + '.' + value;
+              }
+            }
+          }],
+          xAxes: [{
+            ticks: {
+              fontSize: this.fontSize
             }
           }]
         }
@@ -79,17 +119,104 @@ export class ReportsComponent implements OnInit {
             ],
             borderWidth: 2
           }
-      ]
+        ]
       },
       options: {
+        legend: { display: false },
         scales: {
           yAxes: [{
             ticks: {
-              beginAtZero: true
+              beginAtZero: true,
+              fontSize: this.fontSize,
+              callback: function (value) {
+                return '₹' + '.' + value;
+              }
+            }
+          }],
+          xAxes: [{
+            ticks: {
+              fontSize: this.fontSize
             }
           }]
         }
       }
     });
+  }
+
+  incomeExpenseChart(id, type) {
+    var incomeExpenseCharts = new Chart(id, {
+      type: type,
+      data: {
+        labels: ['incomes', 'expenses'],
+        datasets: [
+          {
+            label: '',
+            data: [this.totalExpenses, this.totalIncomes],
+            backgroundColor: [
+              '#a27fc7',
+              '#fae04d'
+            ],
+            borderWidth: 2
+          }
+        ]
+      },
+      options: {}
+    });
+  }
+
+  categoryChart(id, type) {
+    var incomeExpenseCharts = new Chart(id, {
+      type: type,
+      data: {
+        labels: this.days,
+        datasets: [
+          {
+            label: 'category',
+            data: this.categoryData,
+            backgroundColor: [
+              '#a27fc7',
+              '#fae04d',
+              '#a27fc7',
+              '#fae04d',
+              '#a27fc7',
+              '#fae04d',
+              '#a27fc7'
+            ],
+            borderWidth: 2
+          }
+        ]
+      },
+      options: {
+        legend: { display: false },
+        scales: {
+          yAxes: [{
+            ticks: {
+              beginAtZero: true,
+              fontSize: this.fontSize,
+              callback: function (value) {
+                return '₹' + '.' + value;
+              }
+            }
+          }],
+          xAxes: [{
+            ticks: {
+              fontSize: this.fontSize
+            }
+          }]
+        }
+      }
+    });
+  }
+  
+  enableComponent() {
+    this.createService.isDesktop = true;
+    this.createService.isCategory = false;
+    this.createService.isUncategory = false;
+    this.createService.isHistory = false;
+    this.createService.isTemplate = false;
+    this.createService.isRecurringPayment = false;
+    this.createService.isPlannedTransaction = false;
+    this.createService.isTransfer = false;
+    this.createService.createName = "New transaction";
   }
 }

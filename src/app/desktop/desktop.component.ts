@@ -14,7 +14,7 @@ export class DesktopComponent implements OnInit {
     {
       "title": "car",
       "category": "accessories",
-      "amount": "45000"
+      "amount": "45000",
     },
     {
       "title": "car",

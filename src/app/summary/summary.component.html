@@ -1,1 +1,97 @@
-<p>summary works!</p>
+<div id="summary">
+    <nav id="top-nav" class="navbar navbar-expand-lg fixed-top">
+        <div class="ml-auto">
+            <ul class="list-inline mb-0">
+                <li class="list-inline-item">
+                    <a class="nav-link text-white">
+                        08/2020
+                    </a>
+                </li>
+                <li class="list-inline-item">
+                    <a class="nav-link text-white">
+                        <i class="far fa-bell"></i>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+</div>
+
+<div class="row justify-content-center">
+    <div id="main" class="container-fluid rounded mt-5 p-0 pt-5">
+        <!-- transact credit debit -->
+        <div class="transact-incomes-expenses text-center">
+            <table class="table">
+                <tr *ngFor="let chart of transactionData; let i = index" class="d-flex flex-nowrap mb-5 border">
+                    <div class="col-sm-6 my-auto">
+                        <p class="text-secondary">
+                            {{ chart.month }}
+                        </p>
+                        <p class="text-secondary text-nowrap">
+                            <i class="fas fa-arrow-up"></i>
+                            ₹{{ chart.totalExpenses }}
+                            <i class="fas fa-arrow-down"></i>
+                            ₹{{ chart.totalIncomes }}
+                            Σ
+                            ₹{{ chart.totalIncomes - chart.totalExpenses }}
+                        </p>
+                        <p class="text-secondary">{{ chart.transactions }} transactions</p>
+                    </div>
+                    <div class="col-sm-6">
+                        <canvas id="mychart{{i}}" #mycharts>
+                            {{chart.chart}}
+                        </canvas>
+                    </div>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>
+
+
+<nav id="create-nav" class="navbar navbar-expand-lg fixed-bottom w-25 mb-5 ml-auto text-warning">
+    <div class="ml-auto pr-4 pb-4">
+        <a routerLink="/create" (click)="enableComponent()" class="text-warning">
+            <i class="fas fa-plus-circle bg-white rounded-circle" style="font-size: 45px;"></i>
+        </a>
+    </div>
+</nav>
+
+<!-- Bottom Navigations -->
+<nav id="bottom-nav" class="navbar navbar-expand-lg fixed-bottom text-nowrap p-0">
+    <div class="mx-auto">
+        <ul class="list-inline mb-0">
+            <li class="list-inline-item p-1 text-center">
+                <a class="nav-link p-0" routerLink='/desktop'>
+                    <i class="fas fa-home"></i>
+                    <br>
+                    Transaction
+                </a>
+            </li>
+
+            <li class="list-inline-item p-1 text-center">
+                <a class="nav-link p-0" routerLink='/review'>
+                    <i class="fas fa-tags"></i>
+                    <br>
+                    Review
+                </a>
+            </li>
+
+            <li id="current-page" class="list-inline-item p-1 text-center">
+                <a class="nav-link p-0 text-white" routerLink='/summary'>
+                    <i class="fas fa-chart-bar"></i>
+                    <br>
+                    Summary
+                </a>
+            </li>
+
+            <li class="list-inline-item p-1 text-center">
+                <a class="nav-link p-0" routerLink="/report">
+                    <i class="fas fa-chart-pie"></i>
+                    <br>
+                    Reports
+                </a>
+            </li>
+        </ul>
+    </div>
+</nav>

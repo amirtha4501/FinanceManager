@@ -20,6 +20,8 @@ import { PlannedTransactionComponent } from './planned-transaction/planned-trans
 import { FilterComponent } from './filter/filter.component';
 import { CreateComponent } from './create/create.component';
 import { ReportsComponent } from './reports/reports.component';
+import { SigninComponent } from './signin/signin.component';
+import { SignupComponent } from './signup/signup.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +39,9 @@ import { ReportsComponent } from './reports/reports.component';
     PlannedTransactionComponent,
     FilterComponent,
     CreateComponent,
-    ReportsComponent
+    ReportsComponent,
+    SigninComponent,
+    SignupComponent
   ],
   imports: [
     BrowserModule,
