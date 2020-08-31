@@ -8,7 +8,7 @@
                     </a>
                 </li>
                 <li class="list-inline-item">
-                    <a class="nav-link text-white">
+                    <a class="nav-link" routerLink='/notification'>
                         <i class="far fa-bell"></i>
                     </a>
                 </li>
@@ -22,7 +22,7 @@
         <!-- transact credit debit -->
         <div class="transact-incomes-expenses text-center">
             <table class="table">
-                <tr *ngFor="let chart of transactionData; let i = index" class="d-flex flex-nowrap mb-5 border">
+                <tr *ngFor="let chart of transactionData; let i = index" class="d-flex flex-nowrap mb-5 border" style="margin: auto">
                     <div class="col-sm-6 my-auto">
                         <p class="text-secondary">
                             {{ chart.month }}
@@ -37,7 +37,7 @@
                         </p>
                         <p class="text-secondary">{{ chart.transactions }} transactions</p>
                     </div>
-                    <div class="col-sm-6">
+                    <div class="col-sm-6 p-0">
                         <canvas id="mychart{{i}}" #mycharts>
                             {{chart.chart}}
                         </canvas>

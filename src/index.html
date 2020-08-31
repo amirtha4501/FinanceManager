@@ -33,7 +33,7 @@
   
 </head>
 
-<body>
+<body id="body">
   <app-root></app-root>
 
   <!-- jQuery Custom Scroller CDN -->
@@ -45,7 +45,7 @@
               theme: "minimal"
           });
 
-          $('#dismiss, .overlay').on('click', function () {
+          $('#dismiss, .overlay, .dismiss').on('click', function () {
               $('#sidebar').removeClass('active');
               $('.overlay').removeClass('active');
               $('#collapseButton').addClass('fixed-top');

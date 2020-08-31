@@ -35,19 +35,19 @@ export class ReportsComponent implements OnInit {
 
   determineFont() {
     if (window.innerWidth > 320 && window.innerWidth < 480) {
-      this.fontSize = 4;
+      this.fontSize = 7;
     }
     if (window.innerWidth > 481 && window.innerWidth < 768) {
-      this.fontSize = 6;
+      this.fontSize = 9;
     }
     if (window.innerWidth > 769 && window.innerWidth < 1024) {
-      this.fontSize = 8;
+      this.fontSize = 11;
     }
     if (window.innerWidth > 1025 && window.innerWidth < 1200) {
-      this.fontSize = 10;
+      this.fontSize = 13;
     }
     if (window.innerWidth > 1201) {
-      this.fontSize = 12;
+      this.fontSize = 15;
     }
   }
 

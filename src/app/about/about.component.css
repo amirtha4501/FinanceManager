@@ -1,7 +1,7 @@
 nav {
     background: #593481;
-    color: #c3b8d9 !important;
-    z-index: -1 !important;
+    color: #c3b8d9;
+    z-index: 5;
 }
 
 div a {

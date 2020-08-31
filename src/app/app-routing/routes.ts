@@ -13,10 +13,13 @@ import { AboutComponent } from '../about/about.component';
 import { FilterComponent } from '../filter/filter.component';
 import { CreateComponent } from '../create/create.component';
 import { ReportsComponent } from '../reports/reports.component';
+import { SigninComponent } from '../signin/signin.component';
+import { SignupComponent } from '../signup/signup.component';
+import { NotificationComponent } from '../notification/notification.component';
 
 
 export const allroutes: Routes = [
-  { path: '', redirectTo: '/desktop', pathMatch: 'full'},
+  { path: '', component: DesktopComponent},
   { path: 'desktop', component: DesktopComponent},
   { path: 'category', component: CategoryComponent},
   { path: 'uncategorized', component: UncategorizedComponent},
@@ -30,6 +33,9 @@ export const allroutes: Routes = [
   { path: 'report', component: ReportsComponent},
   { path: 'plannedtransaction', component: PlannedTransactionComponent},
   { path: 'filter', component: FilterComponent},
-  { path: 'create', component: CreateComponent}
+  { path: 'create', component: CreateComponent},
+  { path: 'signin', component: SigninComponent},
+  { path: 'signup', component: SignupComponent},
+  { path: 'notification', component: NotificationComponent}
 ];
   

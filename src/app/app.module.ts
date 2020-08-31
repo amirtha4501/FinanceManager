@@ -22,6 +22,9 @@ import { CreateComponent } from './create/create.component';
 import { ReportsComponent } from './reports/reports.component';
 import { SigninComponent } from './signin/signin.component';
 import { SignupComponent } from './signup/signup.component';
+import { HomeComponent } from '../home/home.component';
+import { NotificationComponent } from './notification/notification.component';
+import { LayoutComponent } from './layout/layout.component';
 
 @NgModule({
   declarations: [
@@ -41,7 +44,10 @@ import { SignupComponent } from './signup/signup.component';
     CreateComponent,
     ReportsComponent,
     SigninComponent,
-    SignupComponent
+    SignupComponent,
+    HomeComponent,
+    NotificationComponent,
+    LayoutComponent
   ],
   imports: [
     BrowserModule,

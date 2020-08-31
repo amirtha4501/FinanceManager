@@ -1,0 +1,34 @@
+@import url('https://fonts.googleapis.com/css2?family=Russo+One&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Paytone+One&family=Russo+One&display=swap');
+
+.card-header {
+    font-family: 'Paytone One', sans-serif;
+    background: -webkit-linear-gradient( #da8cff, #9a55ff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.text-footer {
+    text-decoration: none;
+}
+
+.form-control:focus {
+    border-color: #da8cff;
+    box-shadow: inset 0 1px 1px rgba(230, 155, 240, 0.075), 0 0 5px rgba(204, 0, 255, 0.6);
+}
+
+.btn-gradient-primary {
+    background: linear-gradient(to right, #da8cff, #9a55ff);
+}
+
+.bg-default {
+    background: #3c2257;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+}
+
+#main {
+    z-index: 4;
+    position: absolute;
+}
