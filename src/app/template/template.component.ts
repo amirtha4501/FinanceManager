@@ -10,6 +10,37 @@ export class TemplateComponent implements OnInit {
 
   searchToggler: boolean = false;
 
+  templates: any = [
+    {
+      "amount": 1000,
+      "category": "car",
+      "title": "title",
+      "tag": "tag",
+      "type": "expense"
+    },
+    {
+      "amount": 1000,
+      "category": "car",
+      "title": "title",
+      "tag": "tag",
+      "type": "income"
+    },
+    {
+      "amount": 1000,
+      "category": "car",
+      "title": "title",
+      "tag": "tag",
+      "type": "income"
+    },
+    {
+      "amount": 1000,
+      "category": "car",
+      "title": "title",
+      "tag": "tag",
+      "type": "expense"
+    }
+  ];
+
   constructor(
     private createService: CreateService
   ) { }

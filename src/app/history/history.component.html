@@ -1,78 +1,81 @@
 <div id="history">
     <nav id="top-nav" class="navbar navbar-expand-lg fixed-top top-nav">
         <div class="ml-auto">
-           <ul id="tools-nav" class="list-inline mb-0">
-               <li class="list-inline-item">
-                   <a class="nav-link text-white">
-                       History
-                   </a>
-               </li>
-              
-               <li class="list-inline-item">
-                   <a class="nav-link" routerLink='/notification'>
-                       <i class="far fa-bell"></i>
+            <ul id="tools-nav" class="list-inline mb-0">
+                <li class="list-inline-item">
+                    <a class="nav-link text-white">
+                        History
+                    </a>
+                </li>
+
+                <li class="list-inline-item">
+                    <a class="nav-link" routerLink='/notification'>
+                        <i class="far fa-bell"></i>
                     </a>
                 </li>
 
                 <li class="list-inline-item dropdown">
-                    <a class="nav-link" id="filter-sort-dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <a class="nav-link" id="filter-sort-dropdown" data-toggle="dropdown" aria-haspopup="true"
+                        aria-expanded="false">
                         <i class="fas fa-ellipsis-v"></i>
                     </a>
                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="filter-sort-dropdown">
-                        <a class="dropdown-item text-dark" data-toggle="collapse" data-target=".navbar-collapse.show">Sort</a>
-                        <a class="dropdown-item text-dark" data-toggle="collapse" data-target=".navbar-collapse.show" routerLink='/filter'>Filter</a>
+                        <a class="dropdown-item text-dark" data-toggle="collapse"
+                            data-target=".navbar-collapse.show">Sort</a>
+                        <a class="dropdown-item text-dark" data-toggle="collapse" data-target=".navbar-collapse.show"
+                            routerLink='/filter'>Filter</a>
                     </div>
                 </li>
                 <li class="list-inline-item history-search icon m-0">
                     <a class="nav-link pr-4" (click)="searchToggle()">
                         <i class="fas fa-search"></i>
                     </a>
-                    <input type="text" class="mt-2 pl-2 pr-2" [ngClass]="[ searchToggler ? 'history-input-active' : '']" placeholder="Search..."/>
-                    <button type="reset" class="btn history-clear-btn" [ngClass]="[ searchToggler ? 'history-clear-active' : '']" (click)="searchToggle()">
+                    <input type="text" class="mt-2 pl-2 pr-2" [ngClass]="[ searchToggler ? 'history-input-active' : '']"
+                        placeholder="Search..." />
+                    <button type="reset" class="btn history-clear-btn"
+                        [ngClass]="[ searchToggler ? 'history-clear-active' : '']" (click)="searchToggle()">
                         <i class="fas fa-times"></i>
                     </button>
-                </li> 
-           </ul> 
-       </div>
+                </li>
+            </ul>
+        </div>
     </nav>
 </div>
 
 <div class="row justify-content-center">
-    <div id="main" class="container mt-5 pl-1 pt-5">
-        <ul class="list-unstyled border rounded mb-0 col">
 
-            <li class="p-2 pr-3 row">
-                <div>
-                    <img src="assets/images/icons/a1.png" class="img rounded-circle" width="50px" alt="">
-                </div>
-                <div class="main-content w-50 m-0 my-auto mr-auto">
-                    <a data-toggle="collapse" href="" role="button" aria-expanded="false" aria-controls="collapseExample">
-                        <p class="mb-0 pl-4 text-success">₹30000</p>
-                        <p class="mb-0 pl-4 category-title">Salary</p>
-                    </a>
-                    
-                </div>
-                <div class="main-content my-auto">
-                    <p class="mb-0">Jun 4, 2020</p>
-                </div>
-            </li>    
-
-            <li class="p-2 pr-3 row">
-                <div>
-                    <img src="assets/images/icons/a1.png" class="img rounded-circle" width="50px" alt="">
-                </div>
-                <div class="main-content w-50 m-0 my-auto mr-auto">
-                    <a data-toggle="collapse" href="" role="button" aria-expanded="false" aria-controls="collapseExample">
-                        <p class="mb-0 pl-4 text-danger">₹30000</p>
-                        <p class="mb-0 pl-4 category-title">Uncategorized</p>
-                    </a>
-                    
-                </div>
-                <div class="main-content my-auto">
-                    <p class="mb-0">Aug 9, 2019</p>
-                </div>
-            </li>    
-        </ul>
+    <!-- Main -->
+    <div class="row justify-content-center">
+        <div id="main" class="container mt-5 pl-1 pt-5 mx-auto">
+            <ul class="list-unstyled mb-0 pt-3 col mt-3 border rounded">
+                <li class="p-2 row" *ngFor="let history of histories">
+                    <div>
+                        <img src="assets/images/icons/a1.png" class="img rounded-circle" width="50px" alt="">
+                    </div>
+                    <div class="main-content w-50 m-0 my-auto mr-auto">
+                        <a data-toggle="collapse" href="" role="button" aria-expanded="false"
+                            aria-controls="collapseExample">
+                            <p *ngIf="history.type === 'expense'" class="mb-0 pl-4 category-title text-danger">
+                                -₹{{ history.amount }}
+                            </p>
+                            <p *ngIf="history.type === 'income'" class="mb-0 pl-4 category-title text-success">
+                                ₹{{ history.amount }}
+                            </p>
+                            <p class="mb-0 pl-4 text-secondary">
+                                {{ history.category | titlecase }},
+                                {{ history.title | titlecase }}
+                            </p>
+                            <p *ngIf="history.tag" class="pl-4 category-title text-white">
+                                <small class="bg-default rounded p-1 mb-1">{{ history.tag }}</small>
+                            </p>
+                        </a>
+                    </div>
+                    <div class="main-content my-auto">
+                        <p class="mb-0">{{ history.date }}</p>
+                    </div>
+                </li>
+            </ul>
+        </div>
     </div>
 </div>
 

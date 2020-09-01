@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { MainGuard } from './main.guard';
+import { PublicGuard } from './public.guard';
 
-describe('MainGuard', () => {
-  let guard: MainGuard;
+describe('PublicGuard', () => {
+  let guard: PublicGuard;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    guard = TestBed.inject(MainGuard);
+    guard = TestBed.inject(PublicGuard);
   });
 
   it('should be created', () => {

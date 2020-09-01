@@ -87,13 +87,15 @@ export class ReportsComponent implements OnInit {
             ticks: {
               beginAtZero: true,
               fontSize: this.fontSize,
+              fontColor: 'black',
               callback: function (value) {
-                return '₹' + '.' + value;
+                return '₹' + value;
               }
             }
           }],
           xAxes: [{
             ticks: {
+              fontColor: 'black',
               fontSize: this.fontSize
             }
           }]
@@ -127,14 +129,16 @@ export class ReportsComponent implements OnInit {
           yAxes: [{
             ticks: {
               beginAtZero: true,
+              fontColor: 'black',
               fontSize: this.fontSize,
               callback: function (value) {
-                return '₹' + '.' + value;
+                return '₹' + value;
               }
             }
           }],
           xAxes: [{
             ticks: {
+              fontColor: 'black',
               fontSize: this.fontSize
             }
           }]
@@ -192,14 +196,16 @@ export class ReportsComponent implements OnInit {
           yAxes: [{
             ticks: {
               beginAtZero: true,
+              fontColor: 'black',
               fontSize: this.fontSize,
               callback: function (value) {
-                return '₹' + '.' + value;
+                return '₹' + value;
               }
             }
           }],
           xAxes: [{
             ticks: {
+              fontColor: 'black',
               fontSize: this.fontSize
             }
           }]

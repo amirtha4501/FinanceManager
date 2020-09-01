@@ -7,14 +7,9 @@
                         Template
                     </a>
                 </li>
-                <li class="list-inline-item">
-                    <a class="nav-link">
+                <li class="list-inline-item mr-0">
+                    <a class="nav-link pr-3">
                         <i class="fas fa-sort"></i>
-                    </a>
-                </li>
-                <li class="list-inline-item">
-                    <a class="nav-link" routerLink='/notification'>
-                        <i class="far fa-bell"></i>
                     </a>
                 </li>
                 <li class="list-inline-item template-search icon m-0">
@@ -26,9 +21,35 @@
                         <i class="fas fa-times"></i>
                     </button>
                 </li>
+                <li class="list-inline-item">
+                    <a class="nav-link" routerLink='/notification'>
+                        <i class="far fa-bell"></i>
+                    </a>
+                </li>
            </ul> 
        </div>
     </nav>
+</div>
+
+<!-- Main -->
+<div class="row justify-content-center">
+    <div id="main" class="container mt-5 pl-1 pt-5 mx-auto">
+        <ul class="list-unstyled mb-0 pt-3 col mt-3 border rounded">
+            <li class="p-2 row" *ngFor="let template of templates">
+                <div>
+                    <img src="assets/images/icons/a1.png" class="img rounded-circle" width="50px" alt="">
+                </div>
+                <div class="main-content w-50 m-0 my-auto mr-auto">
+                    <a data-toggle="collapse" href="" role="button" aria-expanded="false" aria-controls="collapseExample">
+                        <p *ngIf="template.type === 'expense'" class="mb-0 pl-4 category-title text-danger">- ₹{{ template.amount }}</p>
+                        <p *ngIf="template.type === 'income'" class="mb-0 pl-4 category-title text-success">₹{{ template.amount }}</p>
+                        <p class="mb-0 pl-4 text-secondary">{{ template.category | titlecase }}, {{ template.title | titlecase }}</p>
+                        <p *ngIf="template.tag" class="pl-4 category-title text-white"><small class="bg-default rounded p-1 mb-1">{{ template.tag }}</small></p>
+                    </a>   
+                </div>
+            </li>    
+        </ul>
+    </div>
 </div>
 
 <nav id="create-nav" class="navbar navbar-expand-lg fixed-bottom w-25 ml-auto text-warning">

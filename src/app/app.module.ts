@@ -25,8 +25,9 @@ import { SignupComponent } from './signup/signup.component';
 import { HomeComponent } from '../home/home.component';
 import { NotificationComponent } from './notification/notification.component';
 import { AuthLayoutComponent } from './auth-layout/auth-layout.component';
-import { MainLayoutComponent } from './main-layout/main-layout.component';
+import { PublicLayoutComponent } from './public-layout/public-layout.component';
 import { AuthGuard } from './services/auth.guard';
+import { PublicGuard } from './services/public.guard';
 
 @NgModule({
   declarations: [
@@ -50,7 +51,7 @@ import { AuthGuard } from './services/auth.guard';
     HomeComponent,
     NotificationComponent,
     AuthLayoutComponent,
-    MainLayoutComponent
+    PublicLayoutComponent
   ],
   imports: [
     BrowserModule,
@@ -59,7 +60,7 @@ import { AuthGuard } from './services/auth.guard';
     ReactiveFormsModule,
     HttpClientModule
   ],
-  providers: [AuthGuard],
+  providers: [AuthGuard, PublicGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { 

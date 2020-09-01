@@ -8,7 +8,28 @@ import { Location } from '@angular/common';
 })
 export class NotificationComponent implements OnInit {
 
-  notifications: any = [];
+  notifications: any = [
+    { 
+      "date": "jun 19, 2019",
+      "title": "Update the app",
+      "content": "Please check our new feature - You can access data from web browser on any device",
+    },
+    { 
+      "date": "jun 19, 2019",
+      "title": "Update the app",
+      "content": "Please check our new feature - You can access data from web browser on any device",
+    },
+    { 
+      "date": "jun 19, 2019",
+      "title": "Update the app",
+      "content": "Please check our new feature - You can access data from web browser on any device",
+    },
+    { 
+      "date": "jun 19, 2019",
+      "title": "Update the app",
+      "content": "Please check our new feature - You can access data from web browser on any device",
+    }
+  ];
   
   constructor(private location: Location) { }
 

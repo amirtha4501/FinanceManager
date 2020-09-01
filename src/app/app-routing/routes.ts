@@ -18,24 +18,26 @@ import { SignupComponent } from '../signup/signup.component';
 import { NotificationComponent } from '../notification/notification.component';
 
 import { AuthLayoutComponent } from '../auth-layout/auth-layout.component';
-import { MainLayoutComponent } from '../main-layout/main-layout.component';
+import { PublicLayoutComponent } from '../public-layout/public-layout.component';
 import { AuthGuard } from '../services/auth.guard';
-import { MainGuard } from '../services/main.guard';
+import { PublicGuard } from '../services/public.guard';
 
 
 export const allroutes: Routes = [
   {
-    path: '', component: AuthLayoutComponent,
+    // path: '', component: AuthLayoutComponent,
+    path: '', component: PublicLayoutComponent,
     children: [
       { path: '', component: SigninComponent },
       { path: 'signin', component: SigninComponent },
       { path: 'signup', component: SignupComponent }
     ],
-    canActivate: [MainGuard]
+    canActivate: [PublicGuard]
   },
 
   {
-    path: '', component: MainLayoutComponent,
+    // path: '', component: MainLayoutComponent,
+    path: '', component: AuthLayoutComponent,
     children: [
       { path: '', redirectTo: 'desktop', pathMatch: 'full' },
       { path: '', component: DesktopComponent },

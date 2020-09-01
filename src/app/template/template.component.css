@@ -55,6 +55,10 @@ a {
     color: black ;
 }
 
+.bg-default {
+    background: #593481;
+}
+
 /* search box */
 
 #tools-nav .template-search a {
