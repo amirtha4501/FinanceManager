@@ -1,10 +1,10 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { HttpClientModule } from '@angular/common/http';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing/app-routing.module';
 import { AppComponent } from './app.component';
-
-import * as $ from 'jquery';
 
 import { DesktopComponent } from './desktop/desktop.component';
 import { CategoryComponent } from './category/category.component';
@@ -24,7 +24,9 @@ import { SigninComponent } from './signin/signin.component';
 import { SignupComponent } from './signup/signup.component';
 import { HomeComponent } from '../home/home.component';
 import { NotificationComponent } from './notification/notification.component';
-import { LayoutComponent } from './layout/layout.component';
+import { AuthLayoutComponent } from './auth-layout/auth-layout.component';
+import { MainLayoutComponent } from './main-layout/main-layout.component';
+import { AuthGuard } from './services/auth.guard';
 
 @NgModule({
   declarations: [
@@ -47,13 +49,17 @@ import { LayoutComponent } from './layout/layout.component';
     SignupComponent,
     HomeComponent,
     NotificationComponent,
-    LayoutComponent
+    AuthLayoutComponent,
+    MainLayoutComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule,
+    ReactiveFormsModule,
+    HttpClientModule
   ],
-  providers: [],
+  providers: [AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { 

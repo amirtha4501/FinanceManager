@@ -8,6 +8,8 @@ import { Location } from '@angular/common';
 })
 export class NotificationComponent implements OnInit {
 
+  notifications: any = [];
+  
   constructor(private location: Location) { }
 
   ngOnInit(): void {
