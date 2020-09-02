@@ -51,6 +51,22 @@
     background: #8e66b8;
 }
 
+.current-status {
+    background: #8e66b8;
+}
+
+.bg-default-header {
+    background: #7143a3;
+}
+
+.text-dark-default {
+    color: #7143a3;
+}
+
+#view-status-nav {
+    z-index: 4;
+}
+
 /* =================================================================================================================== */
 
 #chart-transaction, #chart-balance {

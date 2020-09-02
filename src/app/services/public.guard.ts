@@ -12,7 +12,6 @@ export class PublicGuard implements CanActivate {
 
   canActivate() {
     if(!this.authService.isUserLoggedIn()) {
-      alert('public guard true');
       return true;
     }
   }

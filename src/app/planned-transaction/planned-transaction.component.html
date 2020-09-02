@@ -45,6 +45,42 @@
     </section> 
 </div>
 
+<div class="row justify-content-center">
+    <!-- Main -->
+    <div class="row justify-content-center">
+        <div id="main" class="container mt-5 pl-1 pt-5 mx-auto">
+            <ul class="list-unstyled mb-0 pt-1 col mt-5 border rounded">
+                <li class="p-2 row" *ngFor="let plannedTransaction of plannedTransactions">
+                    <div>
+                        <img src="assets/images/icons/a1.png" class="img rounded-circle" width="50px" alt="">
+                    </div>
+                    <div class="main-content w-50 m-0 my-auto mr-auto">
+                        <a data-toggle="collapse" href="" role="button" aria-expanded="false"
+                            aria-controls="collapseExample">
+                            <p *ngIf="plannedTransaction.type === 'expense'" class="mb-0 pl-4 category-title text-danger">
+                                -₹{{ plannedTransaction.amount }}
+                            </p>
+                            <p *ngIf="plannedTransaction.type === 'income'" class="mb-0 pl-4 category-title text-success">
+                                ₹{{ plannedTransaction.amount }}
+                            </p>
+                            <p class="mb-0 pl-4 text-secondary">
+                                {{ plannedTransaction.category | titlecase }},
+                                {{ plannedTransaction.title | titlecase }}
+                            </p>
+                            <p *ngIf="plannedTransaction.tag" class="pl-4 mb-1 category-title text-white">
+                                <small class="bg-default rounded p-1">{{ plannedTransaction.tag }}</small>
+                            </p>
+                        </a>
+                    </div>
+                    <div class="main-content my-auto">
+                        <p class="mb-0">{{ plannedTransaction.date }}</p>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+
 <nav id="create-nav" class="navbar navbar-expand-lg fixed-bottom w-25 ml-auto text-warning">
     <div class="ml-auto pr-4 pb-4">
         <a routerLink="/create" (click)="enableComponent()" class="text-warning">

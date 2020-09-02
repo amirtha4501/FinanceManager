@@ -19,6 +19,32 @@
     cursor: pointer;
 }
 
+#main-content {
+    display: inline-block;
+}
+
+#main ul li:after {
+    content: ""; 
+    display: block;
+    margin: 0 auto;
+    width: 95%; 
+    padding-top: 1%;
+    border-bottom: 1px solid #cebce0ef; 
+}
+
+#main ul li:last-child::after {
+    border-bottom: none !important;
+}
+
+a {
+    text-decoration: none !important;
+}
+
+.category-title {
+    font-size: 1em;
+    color: #593481 ;
+}
+
 #create-nav {
     z-index: 4;
 }

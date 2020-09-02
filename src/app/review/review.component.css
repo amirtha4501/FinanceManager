@@ -64,6 +64,27 @@ a {
     color: #d4cce4;
 }
 
+.category-title {
+    font-size: 1.1em;
+    color: black;
+}
+
 .bg-default:hover {
     color: white;
+}
+
+.current-status {
+    background: #8e66b8;
+}
+
+.bg-default-header {
+    background: #7143a3;
+}
+
+.text-dark-default {
+    color: #7143a3;
+}
+
+#view-status-nav {
+    z-index: 4;
 }

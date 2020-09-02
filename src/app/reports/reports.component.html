@@ -52,7 +52,7 @@
             <canvas id="category-canvas"></canvas>
         </div>
 
-        <br><br>
+        <br><br><br><br>
     </div>
 </div>
 
@@ -61,6 +61,41 @@
         <a routerLink="/create" (click)="enableComponent()" class="text-warning">
             <i class="fas fa-plus-circle bg-white rounded-circle" style="font-size: 45px;"></i>
         </a>
+    </div>
+</nav>
+
+<nav id="view-status-nav" class="navbar navbar-expand-lg fixed-bottom w-75 mb-5 pl-1 mr-auto">
+    <div id="accordion" class="mr-auto">
+        <a class="text-warning" data-toggle="collapse" data-parent="#accordion" href="#status">
+            <div class="bg-default-header text-white rounded-top">
+                <span class="mb-0 pl-3 pr-5 text-nowrap">
+                    <span><i class="fas fa-wallet"></i> &nbsp; Wallet</span>
+                </span>
+                <span class="pr-2 float-right"><i class="fas fa-times"></i></span>
+            </div>
+        </a>
+
+        <div id="status" class="collapse-status collapse">
+            <div class="mb-0 bg-light text-left text-nowrap rounded" data-toggle="collapse" href="" role="button" aria-expanded="false">
+                <div class="current-status">
+                    <p class="mb-0 p-1 pl-3 text-white">Available</p>
+                    <p class="mb-0 p-1 pl-3 text-white"><small>Until 30-09-2020</small></p>
+                    <p class="mb-0 p-1 pl-3 text-white">₹ 20,00,000</p>
+                </div>
+                <div class="bg-white border rounded-bottom">
+                    <p class="mb-0 p-1 pl-3 pt-3">
+                        <i class="fas fa-money-bill-wave text-dark-default"></i>
+                        <span class="pl-1 text-secondary">Current</span>
+                        <span class="ml-5 mr-3 text-secondary">₹16,995.00</span>
+                    </p>
+                    <p class="mb-0 p-1 pl-3 pb-3">
+                        <i class="fas fa-clock text-dark-default"></i>
+                        <span class="pl-2 text-secondary">Planned</span>
+                        <span class="ml-5 mr-3 text-secondary">₹20,995.00</span>
+                    </p>
+                </div>
+            </div>
+        </div>
     </div>
 </nav>
 

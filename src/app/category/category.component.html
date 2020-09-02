@@ -42,7 +42,6 @@
                     <li class="list-inline-item">
                         <a class="nav-link" (click)="expContent(1)">
                             <i class="fas fa-align-left"></i>
-                            <!-- <i class="fas fa-list-ul"></i> -->
                         </a>
                     </li>
                     <li class="list-inline-item">
@@ -66,260 +65,79 @@
     </section>
 </div>
 
-<!-- <br><br> -->
-
 <div class="row justify-content-center">
     <!-- Basic categories -->
-    <div *ngIf="val == 1" id="basic" class="container rounded mt-5 p-0 pt-5 main">
-        <div id="accordion" class="mt-5">
-            <div class="card">
-                <a class="card-link" data-toggle="collapse" data-parent="#accordion" href="#food">
+    <div *ngIf="val == 1" id="basic" class="container rounded mt-5 p-0 pt-5 main basic">
+        <div id="accordion" class="mt-5 mb-5">
+            <div class="card" *ngFor="let category of basicCategories">
+                <a class="card-link" data-toggle="collapse" data-parent="#accordion" href="#{{category.parentCategory[0]}}">
                     <div class="card-header bg-white">
                         <div class="row h-100 pl-2 pr-2">
                             <img src="assets/images/icons/a1.png" class="img rounded-circle" width="50px" alt="">
-                            <span class="ml-3 my-auto category-title">Food</span>
+                            <span class="ml-3 my-auto category-title">{{ category.parentCategory[0] | titlecase }}</span>
                         </div>
                     </div> 
                 </a>
-                <div id="food" class="collapse show">
-                    <div class="card-body"> 
-                        <!-- Sub menu -->
+                <div id="{{category.parentCategory[0]}}" class="collapse">
+                    <div class="card-body pt-0"> 
                         <ul class="list-unstyled mb-0 col">
-                            <li class="p-2 row text-center">
-                                <div>
+                            <li class="p-2 row text-center" *ngFor="let child of category.parentCategory;">
+                                <div *ngIf="child !== category.parentCategory[0]">
                                     <img src="assets/images/icons/a1.png" class="img rounded-circle" width="50px" alt="">
                                 </div>
-                                <div class="main-content w-50 m-0 my-auto mr-auto">
-                                    <a data-toggle="collapse" href="" role="button" aria-expanded="false" aria-controls="collapseExample">
-                                        <p class="mb-0 text-dark text-left pl-4">Food</p>
+                                <div class="main-content w-50 m-0 my-auto mr-auto" *ngIf="child !== category.parentCategory[0]">
+                                    <a data-toggle="collapse" href="" role="button" aria-expanded="false">
+                                        <p class="mb-0 text-dark text-left pl-4 text-nowrap">{{ child | titlecase }}</p>
+                                    </a>  
+                                </div>
+                                <div class="main-content my-auto" *ngIf="child !== category.parentCategory[0]">
+                                    <a>
+                                        <p class="mb-0">
+                                            <i *ngIf="isStarred" class="fas fa-star text-warning"></i>
+                                            <i *ngIf="!isStarred" class="far fa-star text-dark"></i>
+                                        </p>
                                     </a>
-                                    
-                                </div>
-                                <div class="main-content my-auto">
-                                    <a routerLink='/about'><p class="mb-0"><i class="far fa-star"></i></p></a>
-                                </div>
-                            </li>
-                            <li class="p-2 row text-center">
-                                <div>
-                                    <img src="assets/images/icons/a1.png" class="img rounded-circle" width="50px" alt="">
-                                </div>
-                                <div class="main-content w-50 m-0 my-auto mr-auto">
-                                    <a routerLink='/about'>
-                                        <p class="mb-0 text-dark text-left pl-4 text-nowrap">Entertainment</p>
-                                    </a>
-                                </div>
-                                <div class="main-content my-auto">
-                                    <a routerLink='/about'><p class="mb-0"><i class="far fa-star"></i></p></a>
-                                </div>
-                            </li>
-                            <li class="p-2 row text-center">
-                                <div>
-                                    <img src="assets/images/icons/a1.png" class="img rounded-circle" width="50px" alt="">
-                                </div>
-                                <div class="main-content w-50 m-0 my-auto mr-auto">
-                                    <a routerLink='/about'>
-                                        <p class="mb-0 text-dark text-left pl-4">Car</p>
-                                    </a>
-                                </div>
-                                <div class="main-content my-auto">
-                                    <a routerLink='/about'><p class="mb-0"><i class="far fa-star"></i></p></a>
-                                </div>
-                            </li>
-                            <li class="p-2 row text-center">
-                                <div>
-                                    <img src="assets/images/icons/a1.png" class="img rounded-circle" width="50px" alt="">
-                                </div>
-                                <div class="main-content w-50 m-0 my-auto mr-auto">
-                                    <a routerLink='/about'>
-                                        <p class="mb-0 text-dark text-left pl-4">Home</p>
-                                    </a>
-                                </div>
-                                <div class="main-content my-auto">
-                                    <a routerLink='/about'><p class="mb-0"><i class="far fa-star"></i></p></a>
                                 </div>
                             </li>
                         </ul>
                     </div>
                 </div>
             </div>
-
-            <div class="card">
-                <a class="card-link" data-toggle="collapse" data-parent="#accordion" href="#entertainment">
-                    <div class="card-header bg-white">
-                        <div class="row h-100 pl-2 pr-2">
-                            <img src="assets/images/icons/a1.png" class="img rounded-circle" width="50px" alt="">
-                            <span class="ml-3 my-auto category-title">Entertainment</span>
-                        </div>
-                    </div> 
-                </a>
-                <div id="entertainment" class="collapse show">
-                    <div class="card-body"> 
-                        <!-- Sub menu -->
-                        <ul class="list-unstyled mb-0 col">
-                            <li class="p-2 row text-center">
-                                <div>
-                                    <img src="assets/images/icons/a1.png" class="img rounded-circle" width="50px" alt="">
-                                </div>
-                                <div class="main-content w-50 m-0 my-auto mr-auto">
-                                    <a data-toggle="collapse" href="" role="button" aria-expanded="false" aria-controls="collapseExample">
-                                        <p class="mb-0 text-dark text-left pl-4">Food</p>
-                                    </a>
-                                    
-                                </div>
-                                <div class="main-content my-auto">
-                                    <a routerLink='/about'><p class="mb-0"><i class="far fa-star"></i></p></a>
-                                </div>
-                            </li>
-                            <li class="p-2 row text-center">
-                                <div>
-                                    <img src="assets/images/icons/a1.png" class="img rounded-circle" width="50px" alt="">
-                                </div>
-                                <div class="main-content w-50 m-0 my-auto mr-auto">
-                                    <a routerLink='/about'>
-                                        <p class="mb-0 text-dark text-left pl-4 text-nowrap">Entertainment</p>
-                                    </a>
-                                </div>
-                                <div class="main-content my-auto">
-                                    <a routerLink='/about'><p class="mb-0"><i class="far fa-star"></i></p></a>
-                                </div>
-                            </li>
-                            <li class="p-2 row text-center">
-                                <div>
-                                    <img src="assets/images/icons/a1.png" class="img rounded-circle" width="50px" alt="">
-                                </div>
-                                <div class="main-content w-50 m-0 my-auto mr-auto">
-                                    <a routerLink='/about'>
-                                        <p class="mb-0 text-dark text-left pl-4">Car</p>
-                                    </a>
-                                </div>
-                                <div class="main-content my-auto">
-                                    <a routerLink='/about'><p class="mb-0"><i class="far fa-star"></i></p></a>
-                                </div>
-                            </li>
-                            <li class="p-2 row text-center">
-                                <div>
-                                    <img src="assets/images/icons/a1.png" class="img rounded-circle" width="50px" alt="">
-                                </div>
-                                <div class="main-content w-50 m-0 my-auto mr-auto">
-                                    <a routerLink='/about'>
-                                        <p class="mb-0 text-dark text-left pl-4">Home</p>
-                                    </a>
-                                </div>
-                                <div class="main-content my-auto">
-                                    <a routerLink='/about'><p class="mb-0"><i class="far fa-star"></i></p></a>
-                                </div>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-
-            <div class="card">
-                <a class="card-link" data-toggle="collapse" data-parent="#accordion" href="#car">
-                    <div class="card-header bg-white">
-                        <div class="row h-100 pl-2 pr-2">
-                            <img src="assets/images/icons/a1.png" class="img rounded-circle" width="50px" alt="">
-                            <span class="ml-3 my-auto category-title">Car</span>
-                        </div>
-                    </div> 
-                </a>
-                <div id="car" class="collapse show">
-                    <div class="card-body"> 
-                        <!-- Sub menu -->
-                        <ul class="list-unstyled mb-0 col">
-                            <li class="p-2 row text-center">
-                                <div>
-                                    <img src="assets/images/icons/a1.png" class="img rounded-circle" width="50px" alt="">
-                                </div>
-                                <div class="main-content w-50 m-0 my-auto mr-auto">
-                                    <a data-toggle="collapse" href="" role="button" aria-expanded="false" aria-controls="collapseExample">
-                                        <p class="mb-0 text-dark text-left pl-4">Food</p>
-                                    </a>
-                                    
-                                </div>
-                                <div class="main-content my-auto">
-                                    <a routerLink='/about'><p class="mb-0"><i class="far fa-star"></i></p></a>
-                                </div>
-                            </li>
-                            <li class="p-2 row text-center">
-                                <div>
-                                    <img src="assets/images/icons/a1.png" class="img rounded-circle" width="50px" alt="">
-                                </div>
-                                <div class="main-content w-50 m-0 my-auto mr-auto">
-                                    <a routerLink='/about'>
-                                        <p class="mb-0 text-dark text-left pl-4 text-nowrap">Entertainment</p>
-                                    </a>
-                                </div>
-                                <div class="main-content my-auto">
-                                    <a routerLink='/about'><p class="mb-0"><i class="far fa-star"></i></p></a>
-                                </div>
-                            </li>
-                            <li class="p-2 row text-center">
-                                <div>
-                                    <img src="assets/images/icons/a1.png" class="img rounded-circle" width="50px" alt="">
-                                </div>
-                                <div class="main-content w-50 m-0 my-auto mr-auto">
-                                    <a routerLink='/about'>
-                                        <p class="mb-0 text-dark text-left pl-4">Car</p>
-                                    </a>
-                                </div>
-                                <div class="main-content my-auto">
-                                    <a routerLink='/about'><p class="mb-0"><i class="far fa-star"></i></p></a>
-                                </div>
-                            </li>
-                            <li class="p-2 row text-center">
-                                <div>
-                                    <img src="assets/images/icons/a1.png" class="img rounded-circle" width="50px" alt="">
-                                </div>
-                                <div class="main-content w-50 m-0 my-auto mr-auto">
-                                    <a routerLink='/about'>
-                                        <p class="mb-0 text-dark text-left pl-4">Home</p>
-                                    </a>
-                                </div>
-                                <div class="main-content my-auto">
-                                    <a routerLink='/about'><p class="mb-0"><i class="far fa-star"></i></p></a>
-                                </div>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-
         </div>
     </div>
 
     <!-- All categories -->
-    <div *ngIf="val == 2" id="all" class="container mt-5 pl-1 pt-5 main">
+    <div *ngIf="val == 2" id="all" class="container mt-5 pl-1 pt-5 mb-5 main">
         <ul class="list-unstyled mb-0 col mt-5 border rounded">
-            <li class="p-2 pr-4 row" *ngFor="let transaction of transactions">
+            <li class="p-2 pr-4 row" *ngFor="let category of allCategories">
                 <div>
                     <img src="assets/images/icons/a1.png" class="img rounded-circle" width="50px" alt="">
                 </div>
                 <div class="main-content w-50 m-0 my-auto mr-auto">
                     <a data-toggle="collapse" href="" role="button" aria-expanded="false" aria-controls="collapseExample">
-                        <p class="mb-0 pl-4 text-dark">{{ transaction.title | titlecase }}</p>
-                        <p class="mb-0 pl-4 category-title">{{ transaction.category | titlecase }}</p>
+                        <p class="mb-0 pl-4 text-dark">{{ category.title | titlecase }}</p>
+                        <p class="mb-0 pl-4 category-title">{{ category.category | titlecase }}</p>
                     </a>
                 </div>
                 <div class="main-content my-auto">
-                    <a routerLink='/about'><p class="mb-0"><i class="far fa-star"></i></p></a>
+                    <a><p class="mb-0"><i class="far fa-star text-dark"></i></p></a>
                 </div>
             </li>
         </ul>
     </div>
 
     <!-- Starred categories -->
-    <div *ngIf="val == 3" id="all" class="container rounded mt-5 pl-1 pt-5 main">
+    <div *ngIf="val == 3" id="starred" class="container rounded mt-5 pl-1 pt-5 mb-5 main">
     
         <ul class="list-unstyled mb-0 col mt-5 border rounded">
-            <li class="p-2 pr-4 row" *ngFor="let transaction of transactions">
+            <li class="p-2 pr-4 row" *ngFor="let category of starredCategories">
                 <div>
                     <img src="assets/images/icons/a1.png" class="img rounded-circle" width="50px" alt="">
                 </div>
                 <div class="main-content w-50 m-0 my-auto mr-auto">
                     <a data-toggle="collapse" href="" role="button" aria-expanded="false" aria-controls="collapseExample">
-                        <p class="mb-0 pl-4 text-dark">Car</p>
-                        <p class="mb-0 pl-4 category-title">Accessories</p>
+                        <p class="mb-0 pl-4 text-dark">{{ category.title | titlecase}}</p>
+                        <p class="mb-0 pl-4 category-title">{{ category.category | titlecase }}</p>
                     </a>
                     
                 </div>
@@ -327,22 +145,6 @@
                     <a routerLink='/about'><p class="mb-0"><i class="fas fa-star text-warning"></i></p></a>
                 </div>
             </li>
-          
-            <li class="p-2 pr-4 row">
-                <div>
-                    <img src="assets/images/icons/a1.png" class="img rounded-circle" width="50px" alt="">
-                </div>
-                <div class="main-content w-50 m-0 my-auto mr-auto">
-                    <a data-toggle="collapse" href="" role="button" aria-expanded="false" aria-controls="collapseExample">
-                        <p class="mb-0 pl-4 text-dark">Electronics</p>
-                        <p class="mb-0 pl-4 category-title">Accessories</p>
-                    </a>
-                    
-                </div>
-                <div class="main-content my-auto">
-                    <a routerLink='/about'><p class="mb-0"><i class="fas fa-star text-warning"></i></p></a>
-                </div>
-            </li>    
         </ul>
 
     </div>
@@ -351,13 +153,13 @@
     <div *ngIf="val == 4" id="all" class="container mt-5 pl-1 pt-5 main">
     
         <ul class="list-unstyled mb-0 col border rounded mt-5">
-            <li class="p-2 pr-4 row" *ngFor="let transaction of transactions">
+            <li class="p-2 pr-4 row" *ngFor="let category of historyCategories">
                 <div>
                     <img src="assets/images/icons/a1.png" class="img rounded-circle" width="50px" alt="">
                 </div>
                 <div class="main-content w-50 m-0 my-auto mr-auto">
                     <a data-toggle="collapse" href="" role="button" aria-expanded="false" aria-controls="collapseExample">
-                        <p class="mb-0 pl-4 category-title">{{ transaction.category | titlecase }}</p>
+                        <p class="mb-0 pl-4 category-title">{{ category.category | titlecase }}</p>
                     </a>              
                 </div>
                 <div class="main-content my-auto">

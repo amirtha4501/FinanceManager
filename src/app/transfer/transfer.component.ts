@@ -8,6 +8,33 @@ import { CreateService } from '../services/create.service';
 })
 export class TransferComponent implements OnInit {
 
+  transfers: any = [
+    {
+      "date": "Aug 13, 2020",
+      "fromAccount": "personal account",
+      "toAccount": "public account",
+      "amount": "45000"
+    },
+    {
+      "date": "Aug 13, 2020",
+      "fromAccount": "personal account",
+      "toAccount": "public account",
+      "amount": "45000"
+    },
+    {
+      "date": "Aug 13, 2020",
+      "fromAccount": "personal account",
+      "toAccount": "public account",
+      "amount": "45000"
+    },
+    {
+      "date": "Aug 13, 2020",
+      "fromAccount": "personal account",
+      "toAccount": "public account",
+      "amount": "45000"
+    },
+  ];
+
   constructor(
     private createService: CreateService
   ) { }

@@ -54,3 +54,7 @@ a {
     font-size: 1.1em;
     color: black ;
 }
+
+.bg-default {
+    background: #593481;
+}

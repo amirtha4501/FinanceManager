@@ -8,6 +8,41 @@ import { CreateService } from '../services/create.service';
 })
 export class PlannedTransactionComponent implements OnInit {
 
+  plannedTransactions: any = [
+    {
+      "amount": 1000,
+      "category": "car",
+      "title": "title",
+      "tag": "tag",
+      "date": "yesterday",
+      "type": "expense"
+    },
+    {
+      "amount": 1000,
+      "category": "car",
+      "title": "title",
+      "tag": "tag",
+      "date": "7th june, 2020",
+      "type": "income"
+    },
+    {
+      "amount": 1000,
+      "category": "car",
+      "title": "title",
+      "tag": "tag",
+      "date": "7th oct, 2020",
+      "type": "income"
+    },
+    {
+      "amount": 1000,
+      "category": "car",
+      "title": "title",
+      "tag": "tag",
+      "date": "7th aug, 2020",
+      "type": "expense"
+    }
+  ];
+
   constructor(
     private createService: CreateService
   ) { }
