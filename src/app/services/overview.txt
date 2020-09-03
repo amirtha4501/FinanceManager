@@ -1,0 +1,216 @@
+desktop	getTransactions()	month																							
+		                    date	also ago date																						
+		                    income/expense type																							
+		                    amount																							
+		                    title																							
+		                    category																							
+		                    tag																							
+																									
+	    createTransaction()	amount																							
+	    	                category																							
+	    	                income/expense type																							
+	    	                title																							
+	    	                tag																							
+	    	                date																							
+	    	                note																							
+	    	                account																							
+	    	                save as temp or not																							
+    
+	    filterTransaction()	expenses & incomes type	getTransactions(filter)																						
+	    	                category																							
+	    	                account																							
+	    	                amount from																							
+	    	                amount to																							
+	    	                tag																							
+    
+	    getCurrentStatus()	availableAmount	until date																						
+	    	                currentAmount																							
+	    	                plannedAmount																							
+																									
+																									
+review	getReviews()	    month																							
+		                    category																							
+		                    income/expense type																							
+		                    amount																							
+																									
+	    getCurrentStatus()	as in desktop component																							
+																									
+	    createTransaction()	as in desktop component with recurring payment																							
+																									
+																									
+summary	getSummary()	    month																							
+		                    income amount																							
+		                    expense amount																							
+		                    total amount																							
+		                    total transactions																							
+		                    most spending category																							
+																									
+	    getCurrentStatus()	as in desktop component																							
+    
+	    createTransaction()	as in desktop component with recurring payment																							
+																									
+																									
+reports	getReports()	    income over time																							
+		                    expense over time																							
+		                    balance over time																							
+		                    income and expense total amount																							
+		                    category over time																							
+																									
+	    createTransaction()	as in desktop component with recurring payment																							
+																									
+																									
+category getCategories()	    parent categories	    both basic and 																						
+		                        all child categories	all categories																						
+																									
+	     getStarredCatogories()	parent categories all child 	getCategories(filter)																						
+		                        categories with star filter																							
+																									
+	     getCategoriesHistory()	parent category																							
+		                        starred or not																							
+		                        date																							
+																									
+	     createCategory()    	category name																							
+		                        parent category																							
+		                        type income/expense																							
+																									
+																									
+templatelist	getTemplates()	        category																							
+		                                title																							
+		                                tag																							
+		                                income/expense type																							
+		                                amount																							
+    
+	            searchTemplate()	    search by category, title or tag																							
+    
+	            sortTemplate()	        amount(ascending)																							
+		                                amount(descending)																							
+		                                title( A -> Z )																							
+		                                title( Z -> A )																							
+		                                category(A -> Z)																							
+		                                category(Z -> A)																							
+    
+uncategorized	getUncategorized()      month																							
+		                                date	also ago date																						
+		                                income/expense type																							
+		                                amount																							
+		                                title																							
+		                                category																							
+		                                tag																							
+    
+	            searchUncategorized()	search by category, title or tag																							
+																									
+	            filterUncategorized()	income and expense type	getUncategorized(filter)																						
+		                                account																							
+		                                category(optional)																							
+		                                from date																							
+		                                to date																							
+		                                from amount																							
+		                                to amount																							
+		                                tag																							
+																									
+	            sortUncategorized()	    amount(ascending)																							
+		                                amount(descending)																							
+		                                title( A -> Z )																							
+		                                title( Z -> A )																							
+		                                category(A -> Z)																							
+		                                category(Z -> A)																							
+																									
+	            createUncategorized()	as in desktop component with recurring payment																							
+																									
+																									
+history	        getHistory()	        month																							
+		                                date	with also ago																						
+		                                income/expense type	getTransactions() in decending order																						
+		                                amount																							
+		                                title																							
+		                                category																							
+		                                tag																							
+																									
+	            searchHistory()	        search by category, title, or tag																							
+																									
+	            filterHistory()	        income/expense type	getHistory(filter)																						
+		                                category	as in filterUncategorized()																						
+		                                account																							
+		                                date from																							
+		                                date to 																							
+		                                amount from																							
+		                                amount to																							
+		                                tag																							
+																									
+																									
+recurring payment	getRecurringPayment()	    title																							
+		                                        category																							
+		                                        start date																							
+		                                        end date																							
+		                                        frequency																							
+		                                        next execution date																							
+		                                        income or expense type																							
+		                                        amount																							
+																									
+	                createRecurringPayment()	amount																							
+		                                        category																							
+		                                        income or expense type																							
+		                                        title																							
+		                                        tags																							
+		                                        date																							
+		                                        note																							
+		                                        account																							
+		                                        recurring payment - true																							
+		                                        frequency																							
+		                                        end date																							
+																									
+planned transactions	getPlannedTransactions()	month																							
+		                                            date	planned date																						
+		                                            income / expense type																							
+		                                            amount																							
+		                                            title																							
+		                                            tag																							
+		                                            category																							
+		                                            total planned amount	with income / expense type																						
+																									
+																									
+	                    searchPlannedTransactions()	by category, title, tag																							
+																									
+	                    sortPlannedTransactions()	amount(ascending)																							
+		                                            amount(descending)																							
+		                                            title( A -> Z )																							
+		                                            title( Z -> A )																							
+		                                            category(A -> Z)																							
+		                                            category(Z -> A)																							
+		                                            date(ascending)																							
+		                                            date(descending)																							
+																									
+	                    filterPlannedTransactions()	income and expense																							
+		                                            category																							
+		                                            account																							
+		                                            amount from																							
+		                                            amount to																							
+		                                            tag																							
+																									
+	                    createPlannedTransactions()	as in desktop component with recurring payment																							
+																									
+																									
+transfers	            getTransfers()	        amount																							
+		                                        from account																							
+		                                        to account																							
+		                                        date																							
+																									
+	                    sortTransfers()	        amount(ascending)																							
+		                                        amount(descending)																							
+		                                        title( A -> Z )																							
+		                                        title( Z -> A )																							
+		                                        date(ascending)																							
+		                                        date(descending)																							
+																									
+	                    filterTransfers()	    account																							
+		                                        date from 																							
+		                                        date to 																							
+		                                        amount from																							
+		                                        amount to																							
+																									
+	                    createTransfer()	    amount																							
+		                                        source account																							
+		                                        target account																							
+		                                        title																							
+		                                        date																							
+																									
