@@ -24,40 +24,37 @@ import { PublicGuard } from '../services/public.guard';
 
 
 export const allroutes: Routes = [
-  {
-    // path: '', component: AuthLayoutComponent,
-    path: '', component: PublicLayoutComponent,
-    children: [
-      { path: '', component: SigninComponent },
-      { path: 'signin', component: SigninComponent },
-      { path: 'signup', component: SignupComponent }
-    ],
-    canActivate: [PublicGuard]
-  },
-
-  {
-    // path: '', component: MainLayoutComponent,
-    path: '', component: AuthLayoutComponent,
-    children: [
-      { path: '', redirectTo: 'desktop', pathMatch: 'full' },
-      { path: '', component: DesktopComponent },
-      { path: 'desktop', component: DesktopComponent },
-      { path: 'category', component: CategoryComponent },
-      { path: 'uncategorized', component: UncategorizedComponent },
-      { path: 'template', component: TemplateComponent },
-      { path: 'recurringpayment', component: RecurringPaymentComponent },
-      { path: 'history', component: HistoryComponent },
-      { path: 'transfer', component: TransferComponent },
-      { path: 'about', component: AboutComponent },
-      { path: 'review', component: ReviewComponent },
-      { path: 'summary', component: SummaryComponent },
-      { path: 'report', component: ReportsComponent },
-      { path: 'plannedtransaction', component: PlannedTransactionComponent },
-      { path: 'filter', component: FilterComponent },
-      { path: 'create', component: CreateComponent },
-      { path: 'notification', component: NotificationComponent }
-    ],
-    canActivate: [AuthGuard]
-  },
-
+    {
+        path: '', component: PublicLayoutComponent,
+        children: [
+            { path: '', component: SigninComponent },
+            // { path: '', redirectTo: 'signin', pathMatch: 'full' },
+            { path: 'signin', component: SigninComponent },
+            { path: 'signup', component: SignupComponent }
+        ],
+        canActivate: [PublicGuard]
+    },
+    {
+        path: '', component: AuthLayoutComponent,
+        children: [
+            { path: '', component: DesktopComponent },
+            // { path: '', redirectTo: 'desktop', pathMatch: 'full' },
+            { path: 'desktop', component: DesktopComponent },
+            { path: 'category', component: CategoryComponent },
+            { path: 'uncategorized', component: UncategorizedComponent },
+            { path: 'template', component: TemplateComponent },
+            { path: 'recurringpayment', component: RecurringPaymentComponent },
+            { path: 'history', component: HistoryComponent },
+            { path: 'transfer', component: TransferComponent },
+            { path: 'about', component: AboutComponent },
+            { path: 'review', component: ReviewComponent },
+            { path: 'summary', component: SummaryComponent },
+            { path: 'report', component: ReportsComponent },
+            { path: 'plannedtransaction', component: PlannedTransactionComponent },
+            { path: 'filter', component: FilterComponent },
+            { path: 'create', component: CreateComponent },
+            { path: 'notification', component: NotificationComponent }
+        ],
+        canActivate: [AuthGuard]
+    },
 ];

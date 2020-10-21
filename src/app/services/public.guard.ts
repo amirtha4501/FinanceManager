@@ -6,13 +6,14 @@ import { AuthService } from './auth.service';
   providedIn: 'root'
 })
 export class PublicGuard implements CanActivate {
- 
   
   constructor(private authService: AuthService, private router: Router) {}
 
   canActivate() {
-    if(!this.authService.isUserLoggedIn()) {
+    if(this.authService.isUserLoggedIn() === false) {
       return true;
+    } else {
+        return false;
     }
   }
   
