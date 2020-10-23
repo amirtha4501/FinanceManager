@@ -13,13 +13,16 @@ export class UserService {
     ) { }
 
     signIn(detail): Observable<Object> {
-        console.log("signin");
-        console.log(this.http.post(`${environment.api}/auth/signin`, {
-            id: detail.id,
-            password: detail.password
-        }));
         return this.http.post(`${environment.api}/auth/signin`, {
-            id: detail.id,
+            email: detail.email,
+            password: detail.password
+        });
+    }
+
+    signUp(detail): Observable<Object> {
+        return this.http.post(`${environment.api}/auth/signup`, {
+            name: detail.name,
+            email: detail.email,
             password: detail.password
         });
     }

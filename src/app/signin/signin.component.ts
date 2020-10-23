@@ -32,16 +32,12 @@ export class SigninComponent implements OnInit {
     }
 
     onSubmit() {
-        // const tok = 'mysecrettoken';
-        // localStorage.setItem('token', JSON.stringify(tok));
-        // console.log("submitted", this.signInForm.value);
-
         this.detail = this.signInForm.value;
         this.userService.signIn(this.detail).subscribe(
             res => {
                 localStorage.setItem('token', JSON.stringify(res));
                 this.signInForm.reset();
-                alert('Hi' + ', you\'re logged in successfully!');
+                alert('Hi' + ', you\'re signed in successfully!');
                 this.router.navigate(['/desktop']);
             },
             err => {

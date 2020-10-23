@@ -12,9 +12,10 @@ export class AuthService {
         // this.token = localStorage.getItem('token');
         if (this.isUserLoggedIn()) {
             router.navigate(['/desktop']);
-        } else {
-            router.navigate(['/signin']);
-        }
+        } 
+        // else {
+        //     router.navigate(['/']);
+        // }
     }
 
     isUserLoggedIn() {
