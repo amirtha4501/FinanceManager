@@ -16,7 +16,9 @@ export class AuthLayoutComponent implements OnInit {
     constructor(
         private fb: FormBuilder,
         private accountService: AccountService
-    ) { }
+    ) { 
+        this.createAccount();
+    }
 
     ngOnInit(): void {
     }
@@ -34,6 +36,7 @@ export class AuthLayoutComponent implements OnInit {
     }
 
     onCreateAccount() {
+        console.log("aib");
         this.createAccountDetail = this.createAccountForm.value;
         this.accountService.createAccount(this.createAccountDetail).subscribe(
             res => {

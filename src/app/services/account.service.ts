@@ -1,7 +1,8 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
+import { AuthService } from './auth.service';
 
 @Injectable({
     providedIn: 'root'
@@ -9,15 +10,28 @@ import { environment } from 'src/environments/environment';
 export class AccountService {
 
     constructor(
-        private http: HttpClient
+        private http: HttpClient,
     ) { }
+
+    getToken() {
+        return localStorage.getItem('token');
+    }
+
+    getHeader() {
+        var header = {
+            headers: new HttpHeaders()
+              .set('Authorization',  `Bearer ${this.getToken()}`)
+          }
+          alert(this.getToken());
+          return header;          
+    }
 
     createAccount(detail): Observable<Object> {
         return this.http.post(`${environment.api}/accounts`, {
             name: detail.name.toLowerCase() || detail.name,
             current_amount: detail.current_amount,
             date: detail.date
-        });
+        }, this.getHeader());
     }
 
     getAccountById(id: number): Observable<Object> {
