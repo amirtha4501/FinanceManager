@@ -34,13 +34,13 @@ export class SigninComponent implements OnInit {
     onSubmit() {
         this.detail = this.signInForm.value;
         this.userService.signIn(this.detail).subscribe(
-            res => {
-                localStorage.setItem('token', JSON.stringify(res));
+            (res) => {
+                localStorage.setItem('token', res["accessToken"]);
                 this.signInForm.reset();
                 alert('Hi' + ', you\'re signed in successfully!');
                 this.router.navigate(['/desktop']);
             },
-            err => {
+            (err) => {
                 if (err.status == 401) {
                     this.error = 'Authentication failed. Try with correct email and password';
                     alert(this.error);

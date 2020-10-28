@@ -35,13 +35,13 @@ export class SignupComponent implements OnInit {
     onSubmit() {
         this.detail = this.signUpForm.value;
         this.userService.signIn(this.detail).subscribe(
-            res => {
+            (res) => {
                 localStorage.setItem('token', JSON.stringify(res));
                 this.signUpForm.reset();
                 alert('Hi' + ', you\'re signed up successfully!');
                 this.router.navigate(['/desktop']);
             },
-            err => {
+            (err) => {
                 if (err.status == 401) {
                     this.error = 'Authentication failed. Try with correct email and password';
                     alert(this.error);

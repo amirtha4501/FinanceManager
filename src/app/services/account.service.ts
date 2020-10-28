@@ -22,7 +22,6 @@ export class AccountService {
             headers: new HttpHeaders()
               .set('Authorization',  `Bearer ${this.getToken()}`)
           }
-          alert(this.getToken());
           return header;          
     }
 
@@ -39,7 +38,7 @@ export class AccountService {
     }
 
     getAccounts() {
-        return this.http.get(`${environment.api}/accounts`);
+        return this.http.get(`${environment.api}/accounts`, this.getHeader());
     }
 
     updateAccount(id: number, detail) {

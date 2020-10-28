@@ -22,12 +22,13 @@ import { CreateComponent } from './create/create.component';
 import { ReportsComponent } from './reports/reports.component';
 import { SigninComponent } from './signin/signin.component';
 import { SignupComponent } from './signup/signup.component';
-import { HomeComponent } from '../home/home.component';
 import { NotificationComponent } from './notification/notification.component';
 import { AuthLayoutComponent } from './auth-layout/auth-layout.component';
 import { PublicLayoutComponent } from './public-layout/public-layout.component';
 import { AuthGuard } from './services/auth.guard';
 import { PublicGuard } from './services/public.guard';
+import { CheckboxGroupComponent } from './checkbox-group.component';
+import { CheckboxComponent } from './checkbox.component';
 
 @NgModule({
   declarations: [
@@ -48,10 +49,11 @@ import { PublicGuard } from './services/public.guard';
     ReportsComponent,
     SigninComponent,
     SignupComponent,
-    HomeComponent,
     NotificationComponent,
     AuthLayoutComponent,
-    PublicLayoutComponent
+    PublicLayoutComponent,
+    CheckboxGroupComponent, 
+    CheckboxComponent
   ],
   imports: [
     BrowserModule,
