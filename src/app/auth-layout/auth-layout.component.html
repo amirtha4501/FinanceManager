@@ -2,15 +2,15 @@
     <router-outlet></router-outlet>
 
     <!-- Sidebar  -->
-    <nav id="sidebar">
-        <div id="dismiss">
+    <nav id="sidebar" [ngClass]="{'active': sidebar == true}">
+        <div id="dismiss" (click)="sidebarToggler()">
             <i class="fas fa-arrow-left"></i>
         </div>
         <br><br>
         <ul class="list-unstyled components">
               
             <li class="nav-item">
-                <a class="nav-link dismiss" data-target="#account-modal" data-toggle="modal">
+                <a class="nav-link" (click)="sidebarToggler()" data-target="#account-modal" data-toggle="modal">
                     <i class="far fa-user"></i>&nbsp;&nbsp;&nbsp;Accounts
                 </a>
             </li>
@@ -18,31 +18,31 @@
             <div class="dropdown-divider"></div>
 
             <li class="">
-                <a class="nav-link dismiss" routerLink='/desktop'><i class="fas fa-desktop"></i>&nbsp;&nbsp;&nbsp;Desktop</a>
+                <a class="nav-link" (click)="sidebarToggler()" routerLink='/desktop'><i class="fas fa-desktop"></i>&nbsp;&nbsp;&nbsp;Desktop</a>
             </li>
             <li class="">
-                <a class="nav-link dismiss" routerLink='/category'><i class="fas fa-clipboard-list"></i>&nbsp;&nbsp;&nbsp;Categories</a>
+                <a class="nav-link" (click)="sidebarToggler()" routerLink='/category'><i class="fas fa-clipboard-list"></i>&nbsp;&nbsp;&nbsp;Categories</a>
             </li>
             <li class="">
-                <a class="nav-link dismiss" routerLink='/template'><i class="far fa-file"></i>&nbsp;&nbsp;&nbsp;Templates</a>
+                <a class="nav-link" (click)="sidebarToggler()" routerLink='/template'><i class="far fa-file"></i>&nbsp;&nbsp;&nbsp;Templates</a>
             </li>
 
             <div class="dropdown-divider"></div>
 
             <li class="">
-                <a class="nav-link dismiss" routerLink='/uncategorized'><i class="fab fa-blackberry"></i>&nbsp;&nbsp;&nbsp;Uncategorized</a>
+                <a class="nav-link" (click)="sidebarToggler()" routerLink='/uncategorized'><i class="fab fa-blackberry"></i>&nbsp;&nbsp;&nbsp;Uncategorized</a>
             </li>
             <li class="">
-                <a class="nav-link dismiss" routerLink='/history'><i class="fas fa-history"></i>&nbsp;&nbsp;&nbsp;History</a>
+                <a class="nav-link" (click)="sidebarToggler()" routerLink='/history'><i class="fas fa-history"></i>&nbsp;&nbsp;&nbsp;History</a>
             </li>
             <li class="">
-                <a class="nav-link dismiss" routerLink='/recurringpayment'><i class="fas fa-sync"></i>&nbsp;&nbsp;&nbsp;Recurring Payment</a>
+                <a class="nav-link" (click)="sidebarToggler()" routerLink='/recurringpayment'><i class="fas fa-sync"></i>&nbsp;&nbsp;&nbsp;Recurring Payment</a>
             </li>
             <li class="">
-                <a class="nav-link dismiss" routerLink='/plannedtransaction'><i class="fas fa-space-shuttle"></i>&nbsp;&nbsp;&nbsp;Planned transactions</a>
+                <a class="nav-link" (click)="sidebarToggler()" routerLink='/plannedtransaction'><i class="fas fa-space-shuttle"></i>&nbsp;&nbsp;&nbsp;Planned transactions</a>
             </li>
             <li class="">
-                <a class="nav-link dismiss" routerLink='/transfer'><i class="fas fa-exchange-alt"></i>&nbsp;&nbsp;&nbsp;Transfers</a>
+                <a class="nav-link" (click)="sidebarToggler()" routerLink='/transfer'><i class="fas fa-exchange-alt"></i>&nbsp;&nbsp;&nbsp;Transfers</a>
             </li>
             <!-- <div class="dropdown-divider"></div>
             <li class="">
@@ -55,13 +55,13 @@
             <div class="dropdown-divider"></div>
 
             <li class="">
-                <a class="nav-link dismiss" href=""><i class="fas fa-cog"></i>&nbsp;&nbsp;&nbsp;Settings</a>
+                <a class="nav-link" (click)="sidebarToggler()" href=""><i class="fas fa-cog"></i>&nbsp;&nbsp;&nbsp;Settings</a>
             </li>
             <li class="">
-                <a class="nav-link dismiss" routerLink='/about'><i class="fas fa-info-circle"></i>&nbsp;&nbsp;&nbsp;About</a>
+                <a class="nav-link" (click)="sidebarToggler()" routerLink='/about'><i class="fas fa-info-circle"></i>&nbsp;&nbsp;&nbsp;About</a>
             </li>
             <li class="">
-                <a class="nav-link dismiss" routerLink='/signin' (click)='signOut()'><i class="fas fa-sign-out-alt"></i>&nbsp;&nbsp;&nbsp;Sign out</a>
+                <a class="nav-link" (click)="sidebarToggler()" routerLink='/signin' (click)='signOut()'><i class="fas fa-sign-out-alt"></i>&nbsp;&nbsp;&nbsp;Sign out</a>
             </li>
         </ul>
 
@@ -70,10 +70,10 @@
     <!-- Page Content  -->
     <div id="content">
 
-        <nav id="collapseButton" class="navbar navbar-expand-lg navbar-light fixed-top w-25">
+        <nav id="collapseButton" [ngClass]="{'fixed-top': collapseButton == true}" class="navbar navbar-expand-lg navbar-light w-25">
             <div class="container-fluid">
 
-                <button type="button" id="sidebarCollapse" class="btn">
+                <button type="button" id="sidebarCollapse" (click)="sidebarToggler()" class="btn">
                     <i class="fas fa-bars"></i>
                 </button>
             </div>
@@ -81,42 +81,31 @@
     </div>
 </div>
 
-<div class="overlay"></div>
+<div class="overlay" (click)="sidebarToggler()" [ngClass]="{'active': overlay == true}"></div>
 
-<form [formGroup]="accountForm" (ngSubmit)="onViewAccount()" novalidate>
+<form [formGroup]="form" (ngSubmit)="submitForm()" novalidate>
     <div class="modal fade" id="account-modal" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header text-white bg-default p-2 pl-3 pr-3">
                     <h5 class="modal-title">Accounts</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <button type="button" class="close" data-dismiss="modal" #closebutton aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
                 <div class="modal-body bg-white">
-                    <label formArrayName="orders" *ngFor="let order of ordersFormArray.controls; let i = index">
-                        <input type="checkbox" [formControlName]="i">
-                        {{ordersData[i].name}}
-                      </label>
-                    <!-- <checkbox-group class="form-check pl-0" *ngFor="let account of accounts" formControlName="account">
-                        <checkbox value="{{ account.name }}"> {{ account.name }}</checkbox>
-                    </checkbox-group> -->
-                    <!-- <div class="form-check">
-                        <input type="checkbox" value="public account" class="form-check-input" formControlName="public">
-                        <label class="form-check-label pl-0">Public Account</label>
+                    <div *ngFor="let data of accounts; let i=index">
+                        <label>
+                            <input type="checkbox" [value]="data.name" />
+                            {{data.name}}
+                        </label>
                     </div>
-                    <div class="form-check">
-                        <input type="checkbox" value="private account" class="form-check-input" formControlName="private">
-                        <label class="form-check-label pl-0">Private Account</label>
-                    </div> -->
                 </div>
                 <div class="modal-footer p-0 pr-2 bg-white">
                     <a class="nav-link" data-target="#new-account" data-toggle="modal" data-dismiss="modal">
                         <i class="fas fa-plus"></i>&nbsp;&nbsp;&nbsp;New Account
                     </a>
-                    <button type="button" (click)="onViewAccount()" class="btn bg-default text-white pt-1 pb-1" data-dismiss="modal">
-                        Ok
-                    </button>
+                    <input type="submit" value="Ok" class="btn bg-default text-white pt-1 pb-1">
                 </div>
             </div>
         </div>
@@ -160,7 +149,7 @@
                     </div>
                 </div>
                 <div class="modal-footer p-0 pr-2 bg-white">
-                    <button type="button" (click)='onCreateAccount()' data-dismiss="modal" class="btn bg-default text-white pt-1 pb-1">
+                    <button type="button" (click)="onCreateAccount()" data-dismiss="modal" class="btn bg-default text-white pt-1 pb-1">
                         Ok
                     </button>
                 </div>

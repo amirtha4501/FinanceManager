@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { AccountService } from '../services/account.service';
 
@@ -10,24 +10,24 @@ import { AccountService } from '../services/account.service';
 export class AuthLayoutComponent implements OnInit {
 
     createAccountForm: FormGroup;
-    accountForm: FormGroup;
     createAccountDetail = {}
-    viewAccountDetail = {}
     error: any;
     accounts: any = [];
-    
-    ordersData = [];
 
-  get ordersFormArray() {
-    return this.accountForm.controls.orders as FormArray;
-  }
+    @ViewChild('closebutton') closebutton;
+    form: FormGroup;
+
+    overlay: boolean = false;
+    sidebar: boolean = false;
+    dismiss: boolean = false;
+    collapseButton: boolean = true;
 
     constructor(
         private fb: FormBuilder,
         private accountService: AccountService
-    ) { 
+    ) {
         this.createAccount();
-        this.viewAccount();
+        this.accountForm();
     }
 
     ngOnInit(): void {
@@ -46,35 +46,6 @@ export class AuthLayoutComponent implements OnInit {
         });
     }
 
-    viewAccount() {
-        this.accountForm = this.fb.group({
-            orders: new FormArray([])
-          });
-      
-          // async orders
-          of(this.getOrders()).subscribe(orders => {
-            this.ordersData = orders;
-            this.addCheckboxes();
-          });
-      
-          // synchronous orders
-          // this.ordersData = this.getOrders();
-          // this.addCheckboxes();
-    }
-
-    private addCheckboxes() {
-        this.ordersData.forEach(() => this.ordersFormArray.push(new FormControl(false)));
-      }
-    
-      getOrders() {
-        return [
-          { id: 100, name: 'order 1' },
-          { id: 200, name: 'order 2' },
-          { id: 300, name: 'order 3' },
-          { id: 400, name: 'order 4' }
-        ];
-      }
-
     onCreateAccount() {
         this.createAccountDetail = this.createAccountForm.value;
         this.accountService.createAccount(this.createAccountDetail).subscribe(
@@ -89,12 +60,31 @@ export class AuthLayoutComponent implements OnInit {
         )
     }
 
-    onViewAccount() {
-        const selectedOrderIds = this.accountForm.value.orders
-      .map((checked, i) => checked ? this.ordersData[i].id : null)
-      .filter(v => v !== null);
+    accountForm() {
+        this.form = this.fb.group({
+            checkArray: this.fb.array([], [Validators.required])
+        })
+    }
 
-    console.log(selectedOrderIds);
+    onCheckboxChange(e) {
+        console.log("Checkbox changing");
+        // const checkArray: FormArray = this.form.get('checkArray') as FormArray;
+        // if (e.target.checked) {
+        //     checkArray.push(new FormControl(e.target.value));
+        // } else {
+        //     let i: number = 0;
+        //     checkArray.controls.forEach((item: FormControl) => {
+        //         if (item.value == e.target.value) {
+        //             checkArray.removeAt(i);
+        //             return;
+        //         }
+        //         i++;
+        //     });
+        // }
+    }
+
+    submitForm() {
+        console.log("submitted");
     }
 
     getAccounts() {
@@ -103,9 +93,15 @@ export class AuthLayoutComponent implements OnInit {
                 this.accounts = accounts;
             },
             (err) => {
-                if (err.status=='404') { alert('Accounts not found') }      
+                if (err.status == '404') { alert('Accounts not found') }
             }
         );
     }
 
+    sidebarToggler() {
+        this.overlay = !this.overlay;
+        this.sidebar = !this.sidebar;
+        this.collapseButton = !this.collapseButton;
+        this.dismiss = !this.dismiss;
+    }
 }
