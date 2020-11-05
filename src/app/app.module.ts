@@ -27,8 +27,6 @@ import { AuthLayoutComponent } from './auth-layout/auth-layout.component';
 import { PublicLayoutComponent } from './public-layout/public-layout.component';
 import { AuthGuard } from './services/auth.guard';
 import { PublicGuard } from './services/public.guard';
-import { CheckboxGroupComponent } from './checkbox-group.component';
-import { CheckboxComponent } from './checkbox.component';
 
 @NgModule({
   declarations: [
@@ -52,8 +50,6 @@ import { CheckboxComponent } from './checkbox.component';
     NotificationComponent,
     AuthLayoutComponent,
     PublicLayoutComponent,
-    CheckboxGroupComponent, 
-    CheckboxComponent
   ],
   imports: [
     BrowserModule,

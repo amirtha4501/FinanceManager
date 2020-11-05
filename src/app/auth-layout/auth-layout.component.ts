@@ -10,12 +10,10 @@ import { AccountService } from '../services/account.service';
 export class AuthLayoutComponent implements OnInit {
 
     createAccountForm: FormGroup;
-    createAccountDetail = {}
+    createAccountDetail = {};
     error: any;
     accounts: any = [];
-
-    @ViewChild('closebutton') closebutton;
-    form: FormGroup;
+    filteredAccounts: any = [];
 
     overlay: boolean = false;
     sidebar: boolean = false;
@@ -27,11 +25,14 @@ export class AuthLayoutComponent implements OnInit {
         private accountService: AccountService
     ) {
         this.createAccount();
-        this.accountForm();
     }
 
     ngOnInit(): void {
         this.getAccounts();
+    }
+
+    filterAccounts() {
+        console.table(this.accounts);
     }
 
     signOut() {
@@ -60,37 +61,13 @@ export class AuthLayoutComponent implements OnInit {
         )
     }
 
-    accountForm() {
-        this.form = this.fb.group({
-            checkArray: this.fb.array([], [Validators.required])
-        })
-    }
-
-    onCheckboxChange(e) {
-        console.log("Checkbox changing");
-        // const checkArray: FormArray = this.form.get('checkArray') as FormArray;
-        // if (e.target.checked) {
-        //     checkArray.push(new FormControl(e.target.value));
-        // } else {
-        //     let i: number = 0;
-        //     checkArray.controls.forEach((item: FormControl) => {
-        //         if (item.value == e.target.value) {
-        //             checkArray.removeAt(i);
-        //             return;
-        //         }
-        //         i++;
-        //     });
-        // }
-    }
-
-    submitForm() {
-        console.log("submitted");
-    }
-
     getAccounts() {
         this.accountService.getAccounts().subscribe(
             (accounts) => {
                 this.accounts = accounts;
+                this.accounts.forEach(element => {
+                    element.isChecked = false;
+                });
             },
             (err) => {
                 if (err.status == '404') { alert('Accounts not found') }
