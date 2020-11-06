@@ -104,3 +104,29 @@
 .close {
     color: #c3b8d9;
 }
+
+#account-options {
+    background-color: white;
+    box-shadow: 0px 6px 10px 0px #b4a4d4;
+}
+
+.ellipsis:hover {
+    cursor: pointer;
+}
+
+/* dropdown corner */
+/* #account-options:after {
+    content:"";
+    position:absolute;
+    right:-6px;
+    top:0px;
+    border-right:13px solid transparent;
+    border-left:13px solid transparent;
+    border-top:13px solid white;
+    transform: rotate(90deg);
+} */
+
+.option a:hover {
+    background-color: #b4a4d4;
+    color: white !important;
+}

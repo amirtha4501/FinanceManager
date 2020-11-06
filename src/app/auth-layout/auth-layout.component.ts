@@ -14,6 +14,8 @@ export class AuthLayoutComponent implements OnInit {
     error: any;
     accounts: any = [];
     filteredAccounts: any = [];
+    val: number = -1;
+    show: boolean = false;
 
     overlay: boolean = false;
     sidebar: boolean = false;
@@ -80,5 +82,10 @@ export class AuthLayoutComponent implements OnInit {
         this.sidebar = !this.sidebar;
         this.collapseButton = !this.collapseButton;
         this.dismiss = !this.dismiss;
+    }
+
+    toggleOption(i: number) {
+        this.val = i;
+        this.show = !this.show;
     }
 }
