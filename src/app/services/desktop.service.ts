@@ -27,4 +27,8 @@ export class DesktopService {
         return this.http.get(`${environment.api}/transactions`, this.getHeader());
     }
 
+    deleteTransaction(id: number) {
+        return this.http.delete(`${environment.api}/transactions/` + id, this.getHeader());
+    }
+
 }

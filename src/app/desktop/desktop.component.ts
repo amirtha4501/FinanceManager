@@ -12,23 +12,8 @@ export class DesktopComponent implements OnInit {
 
     val: number = 1;
     transactions: any = [];
-    //  = [
-    //     {
-    //         "title": "car",
-    //         "category": "accessories",
-    //         "amount": "45000",
-    //     },
-    //     {
-    //         "title": "car",
-    //         "category": "accessories",
-    //         "amount": "45000"
-    //     },
-    //     {
-    //         "title": "car",
-    //         "category": "accessories",
-    //         "amount": "45000"
-    //     }
-    // ];
+    value: number = -1;
+    show: boolean = false;
 
     constructor(
         private createService: CreateService,
@@ -67,4 +52,21 @@ export class DesktopComponent implements OnInit {
         );
     }
 
+    toggleOption(i: number) {
+        this.value = i;
+        this.show = !this.show;
+    }
+
+    deleteTransaction(id: number) {
+        console.log(id, "id");
+        this.desktopService.deleteTransaction(id).subscribe(
+            (res) => {
+                alert("Transaction deleted");
+                this.getTransactions();
+            },
+            (err) => {
+                alert("Deletion failed");
+            }
+        );
+    }
 }

@@ -26,24 +26,27 @@ export class SignupComponent implements OnInit {
 
     signUp() {
         this.signUpForm = this.fb.group({
-            name: ['', [Validators.name]],
-            email: ['', [Validators.email]],
+            // name: [''],
+            // email: [''],
+            // password: ['']
+            name: ['', [Validators.required]],
+            email: ['', [Validators.required]],
             password: ['', [Validators.required, Validators.minLength(6), Validators.maxLength(20)]]
         });
     }
 
     onSubmit() {
         this.detail = this.signUpForm.value;
-        this.userService.signIn(this.detail).subscribe(
+        this.userService.signUp(this.detail).subscribe(
             (res) => {
-                localStorage.setItem('token', JSON.stringify(res));
+                localStorage.setItem('token', res["accessToken"]);
                 this.signUpForm.reset();
                 alert('Hi' + ', you\'re signed up successfully!');
                 this.router.navigate(['/desktop']);
             },
             (err) => {
                 if (err.status == 401) {
-                    this.error = 'Authentication failed. Try with correct email and password';
+                    this.error = 'Sign up failed. Try with correct email and password';
                     alert(this.error);
                     this.signUpForm.reset();
                 }

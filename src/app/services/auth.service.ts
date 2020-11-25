@@ -20,7 +20,7 @@ export class AuthService {
 
     isUserLoggedIn() {
         this.token = localStorage.getItem('token');
-        console.log(this.token + "token auth service");
+        // console.log(this.token + "token auth service");
 
         if (this.token !== null) {
             return true;

@@ -1,7 +1,8 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Location } from '@angular/common';
 import { CreateService } from '../services/create.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AccountService } from '../services/account.service';
 import { Router } from '@angular/router';
 
 @Component({
@@ -26,19 +27,38 @@ export class CreateComponent implements OnInit {
     detail = {}
     error: any;
 
+    accounts: any = [];
+
     constructor(
         private router: Router,
         private fb: FormBuilder,
         private location: Location,
-        private createService: CreateService
+        private createService: CreateService,
+        private accountService: AccountService
     ) {
         this.createMainForm();
-     }
+    }
 
-    ngOnInit(): void { }
+    ngOnInit(): void {
+        this.getAccounts();
+    }
 
     navigateBack() {
         this.location.back();
+    }
+
+    getAccounts() {
+        this.accountService.getAccounts().subscribe(
+            (accounts) => {
+                this.accounts = accounts;
+                this.accounts.forEach(element => {
+                    element.isChecked = false;
+                });
+            },
+            (err) => {
+                if (err.status == '404') { alert('Accounts not found') }
+            }
+        );
     }
 
     createMainForm() {
@@ -46,16 +66,35 @@ export class CreateComponent implements OnInit {
             amount: ['', Validators.required],
             type: ['', Validators.required],
             category: [''],
-            title: [''],
+            title: ['', Validators.required],
             tag: [''],
             note: [''],
-            account: ['']
+            account: [''],
+            date: ['', Validators.required]
         });
     }
 
     onMainFormSubmit() {
         this.detail = this.mainForm.value;
-        console.log(this.detail);
+        let isAccountExist = false;
+        this.accounts.forEach(account => {
+            if(account.name === this.detail['account']) {
+                isAccountExist = true;
+                this.detail['account'] = account.id;
+                this.createService.createTransaction(this.detail).subscribe(
+                    (transaction) => {
+                        alert("Transaction created");
+                        this.router.navigate(['/desktop']);
+                    },
+                    (err) => {
+                        alert(err.status + " " + err.message);
+                    }
+                );
+            } 
+        });
+        if(isAccountExist === false) {
+            alert("Account doesn't exist.");
+        }
     }
 
 }

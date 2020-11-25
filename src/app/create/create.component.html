@@ -105,7 +105,12 @@
                         </td>
                         <td class="p-0">
                             <div class="form-group">
-                                <input formControlName="account" type="text" class="form-control border-top-0 border-right-0 border-left-0" placeholder="Account">
+                                <input type="text" formControlName="account" class="form-control border-top-0 border-right-0 border-left-0" placeholder="Account" list="accounts">
+                                <datalist id="accounts">
+                                    <option value="{{ account.name }}" *ngFor="let account of accounts">
+                                        {{ account.name }}
+                                    </option> 
+                                </datalist>
                             </div>
                         </td>
                     </tr>
@@ -115,7 +120,7 @@
                         </td>
                         <td class="p-0">
                             <div class="form-group">
-                                <input type="date" class="form-control col-11 p-1 border-top-0 border-right-0 border-left-0">
+                                <input type="date" formControlName="date" class="form-control col-11 p-1 border-top-0 border-right-0 border-left-0">
                             </div>
                         </td>
                     </tr>

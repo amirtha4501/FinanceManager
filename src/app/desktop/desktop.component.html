@@ -47,7 +47,7 @@
 <div class="row justify-content-center">
     <div id="main" class="container mt-5 pl-1 pt-5 mx-auto">
         <ul class="list-unstyled mb-0 col mt-3">
-            <li class="p-2 row" *ngFor="let transaction of transactions">
+            <li class="p-2 row" *ngFor="let transaction of transactions; let i=index" (click)="toggleOption(i)">
                 <div>
                     <img src="assets/images/icons/a1.png" class="img rounded-circle" width="50px" alt="">
                 </div>
@@ -58,7 +58,14 @@
                     </a>   
                 </div>
                 <div class="main-content my-auto">
-                    <p class="mb-0">₹{{ transaction.amount }}</p>
+                    <p class="mb-0 text-success" *ngIf="transaction.type === 'income'">₹{{ transaction.amount }}</p>
+                    <p class="mb-0 text-danger" *ngIf="transaction.type === 'expense'">- ₹{{ transaction.amount }}</p>
+                </div>
+                <div class="option row justify-content-end mr-2 my-auto" *ngIf="value === i && show">
+                    <div class="mt-3 ml-auto rounded position-absolute bg-white border" id="account-options">
+                        <a class="text-dark nav-link ml-3 mr-3">Edit</a>
+                        <a class="text-dark nav-link ml-3 mr-3" (click)="deleteTransaction(transaction.id)">Delete</a>
+                    </div>
                 </div>
             </li>    
         </ul>
