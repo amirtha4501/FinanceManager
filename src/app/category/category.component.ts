@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { CategoryService } from '../services/category.service';
 import { CreateService } from '../services/create.service';
 
 @Component({
@@ -11,6 +12,7 @@ export class CategoryComponent implements OnInit {
   val: number = 1;
   searchToggler: boolean = false;
   isStarred: boolean;
+  categories:any = [];
 
   historyCategories: any = [
     {
@@ -436,12 +438,14 @@ export class CategoryComponent implements OnInit {
   ];
 
   constructor(
-    private createService: CreateService
+    private createService: CreateService,
+    private categoryService: CategoryService
   ) { 
     
   }
 
   ngOnInit(): void {
+    this.getCategories();
   }
 
   searchToggle() {
@@ -468,6 +472,17 @@ export class CategoryComponent implements OnInit {
     this.createService.isPlannedTransaction = false;
     this.createService.isTransfer = false;
     this.createService.createName = "New category";
+  }
+
+  getCategories() {
+    this.categoryService.getCategories().subscribe(
+      (categories) => {
+        this.categories = categories;
+      },
+      (err) => {
+        console.log(err + "error");
+      }
+    )
   }
   
 }

@@ -1,0 +1,34 @@
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Injectable } from '@angular/core';
+import { environment } from 'src/environments/environment';
+
+@Injectable({
+  providedIn: 'root'
+})
+export class CategoryService {
+
+  constructor(
+    private http: HttpClient,
+  ) { }
+
+  private getToken() {
+    return localStorage.getItem('token');
+  }
+
+  private getHeader() {
+    var header = {
+      headers: new HttpHeaders()
+        .set('Authorization', `Bearer ${this.getToken()}`)
+    }
+    return header;
+  }
+
+  getCategories() {
+    return this.http.get(`${environment.api}/categories`, this.getHeader());
+  }
+
+  deleteCategory(id: number) {
+    return this.http.delete(`${environment.api}/categories/` + id, this.getHeader());
+  }
+
+}

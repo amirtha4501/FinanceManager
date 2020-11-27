@@ -66,19 +66,48 @@
 </div>
 
 <div class="row justify-content-center">
+
     <!-- Basic categories -->
     <div *ngIf="val == 1" id="basic" class="container rounded mt-5 p-0 pt-5 main basic">
+        <div *ngFor="let category of categories">
+            {{category.id}} - {{category.name}} - {{category.parent_id}}
+        </div>
+
         <div id="accordion" class="mt-5 mb-5">
-            <div class="card" *ngFor="let category of basicCategories">
-                <a class="card-link" data-toggle="collapse" data-parent="#accordion" href="#{{category.parentCategory[0]}}">
+            <div class="card" *ngFor="let category of categories">
+                <a *ngIf="category.parent_id === null" class="card-link" data-toggle="collapse" data-parent="#accordion" href="#{{category.name}}">
                     <div class="card-header bg-white">
                         <div class="row h-100 pl-2 pr-2">
                             <img src="assets/images/icons/a1.png" class="img rounded-circle" width="50px" alt="">
-                            <span class="ml-3 my-auto category-title">{{ category.parentCategory[0] | titlecase }}</span>
+                            <span class="ml-3 my-auto category-title">{{ category.name | titlecase }}</span>
                         </div>
                     </div> 
                 </a>
-                <div id="{{category.parentCategory[0]}}" class="collapse">
+                <div id="{{category.name}}" class="collapse">
+                    <div class="card-body pt-0"> 
+                        <ul class="list-unstyled mb-0 col">
+                            <li class="p-2 row text-center">
+                                <div *ngIf="category.parent_id !== null">
+                                    <img src="assets/images/icons/a1.png" class="img rounded-circle" width="50px" alt="">
+                                </div>
+                                <div class="main-content w-50 m-0 my-auto mr-auto" *ngIf="category.parent_id !== null">
+                                    <a data-toggle="collapse" href="" role="button" aria-expanded="false">
+                                        <p class="mb-0 text-dark text-left pl-4 text-nowrap">{{ category.name | titlecase }}</p>
+                                    </a>  
+                                </div>
+                                <div class="main-content my-auto" *ngIf="category.parent_id !== null">
+                                    <a>
+                                        <p class="mb-0">
+                                            <i *ngIf="isStarred" class="fas fa-star text-warning"></i>
+                                            <i *ngIf="!isStarred" class="far fa-star text-dark"></i>
+                                        </p>
+                                    </a>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <!-- <div id="{{category.parentCategory[0]}}" class="collapse">
                     <div class="card-body pt-0"> 
                         <ul class="list-unstyled mb-0 col">
                             <li class="p-2 row text-center" *ngFor="let child of category.parentCategory;">
@@ -101,7 +130,7 @@
                             </li>
                         </ul>
                     </div>
-                </div>
+                </div> -->
             </div>
         </div>
     </div>
