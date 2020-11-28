@@ -457,9 +457,17 @@ export class CategoryComponent implements OnInit {
     return this.val;
   }
 
-  modifyStar() {
-    this.isStarred = !this.isStarred;
-    console.log(this.isStarred);
+  modifyStar(id: number, starred: boolean) {
+    
+    let detail = { starred: !starred};
+    this.categoryService.updateCategory(id, detail).subscribe(
+      (res) => {
+        console.log(res);
+        this.getCategories();
+      },
+      (err) => {
+        alert("Oops! You cannot add it to favorites");
+      });
   }
 
   enableComponent() {

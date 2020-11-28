@@ -27,6 +27,16 @@ export class CategoryService {
     return this.http.get(`${environment.api}/categories`, this.getHeader());
   }
 
+  updateCategory(id: number, detail) {
+    return this.http.patch(`${environment.api}/categories/` + id, {
+      name: detail.name,
+      parent_name: detail.parent_name,
+      starred: detail.starred,
+      type: detail.type,
+      color: detail.color
+    }, this.getHeader());
+  }
+
   deleteCategory(id: number) {
     return this.http.delete(`${environment.api}/categories/` + id, this.getHeader());
   }
