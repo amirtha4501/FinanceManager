@@ -184,7 +184,7 @@
     </div>
 
     <div id="category" *ngIf="isCategory" class="container-fluid rounded mt-5 pt-5">
-        <form>
+        <form [formGroup]="mainForm" (ngSubmit)="submit()" novalidate>
             <br>
             <table class="table table-borderless">
                 <tbody>
@@ -194,7 +194,7 @@
                         </td>
                         <td class="p-0">
                             <div class="form-group">
-                                <input type="text" class="form-control border-top-0 border-right-0 border-left-0" placeholder="Enter the name">
+                                <input type="text" formControlName="categoryName" class="form-control border-top-0 border-right-0 border-left-0" placeholder="Enter the name">
                             </div>
                         </td>
                     </tr>
@@ -204,7 +204,7 @@
                         </td>
                         <td class="p-0">
                             <div class="form-group">
-                                <input type="text" class="form-control border-top-0 border-right-0 border-left-0" placeholder="Parent category">
+                                <input type="text" formControlName="parentName" class="form-control border-top-0 border-right-0 border-left-0" placeholder="Parent category">
                             </div>
                         </td>
                     </tr>
@@ -214,11 +214,11 @@
                         </td>
                         <td class="p-0">
                             <div class="form-group">
-                                <input type="text" class="form-control border-top-0 border-right-0 border-left-0" placeholder="Choose a color">
+                                <input type="text" formControlName="color" class="form-control border-top-0 border-right-0 border-left-0" placeholder="Choose a color">
                             </div>
                         </td>
                     </tr>
-                    <tr>
+                    <!-- <tr>
                         <td class="p-0 pr-4">
                             <i class="fas fa-percentage bg-icon" style="font-size: 23px;"></i>
                         </td>
@@ -227,17 +227,17 @@
                                 <input type="text" class="form-control border-top-0 border-right-0 border-left-0" placeholder="Default operation type">
                             </div>
                         </td>
-                    </tr>
+                    </tr> -->
                     <tr>
                         <td class="p-0">
                             <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="income-expense" id="income-expense" value="expense">
+                                <input class="form-check-input" type="radio" formControlName="categoryType" value="expense">
                                 <label class="form-check-label" for="expense">Expense</label>
                             </div>
                         </td>
                         <td class="p-0">
                             <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="income-expense" id="income-expense" value="income">
+                                <input class="form-check-input" type="radio" formControlName="categoryType" value="income">
                                 <label class="form-check-label" for="income">Income</label>
                             </div>
                         </td>

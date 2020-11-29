@@ -37,7 +37,7 @@ export class CreateService {
           return header;          
     }
 
-    createTransaction(detail): Observable<Object> {
+    createTransaction(detail: any): Observable<Object> {
         for (let key in detail){
             console.log( key + ": " + detail[key] + " type " + typeof detail[key]);
         }
@@ -52,5 +52,11 @@ export class CreateService {
             account_id: detail.account,
             date: detail.date
         }, this.getHeader());
+    }
+
+    createCategory(detail: any): Observable<Object> {
+        return this.http.post(`${environment.api}/categories`, {
+            
+        });
     }
 }

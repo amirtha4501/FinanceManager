@@ -70,12 +70,28 @@ export class CreateComponent implements OnInit {
             tag: [''],
             note: [''],
             account: [''],
-            date: ['', Validators.required]
+            date: ['', Validators.required],
+            // category
+            categoryName: ['', Validators.required],
+            parentName: [''],
+            color: [''],
+            categoryType: ['', Validators.required]
         });
     }
 
     onMainFormSubmit() {
         this.detail = this.mainForm.value;
+
+        if(this.isDesktop) {
+            this.onCreateTransaction();
+        }
+        // if(this.isCategory) {
+        //     this.onCreateCategory();
+        // }
+
+    }
+
+    onCreateTransaction() {
         let isAccountExist = false;
         this.accounts.forEach(account => {
             if(account.name === this.detail['account']) {
@@ -95,6 +111,10 @@ export class CreateComponent implements OnInit {
         if(isAccountExist === false) {
             alert("Account doesn't exist.");
         }
+    }
+
+    onCreateCategory() {
+        
     }
 
 }
