@@ -115,3 +115,10 @@ li.category-search input.category-input-active {
 li.category-search input::placeholder {
     color: #c3b8d9;
 }
+
+.category-icon {
+    background-color: blue;
+    font-size: 1.3em;
+    color: white;
+    font-weight: 585;
+}

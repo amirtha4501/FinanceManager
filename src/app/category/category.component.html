@@ -74,7 +74,7 @@
                 <a class="card-link" data-toggle="collapse" data-parent="#accordion" href="#{{category.name}}">
                     <div class="card-header bg-white">
                         <div class="row h-100 pl-2 pr-2">
-                            <img src="assets/images/icons/a1.png" class="img rounded-circle" width="50px" alt="">
+                            <span [style.background-color]="category.color" class="category-icon rounded-circle p-2 pl-3 pr-3">{{ category.name | slice:0:1 | uppercase }}</span>
                             <span class="ml-3 my-auto category-title">{{ category.name | titlecase }}</span>
                         </div>
                     </div> 
@@ -84,11 +84,11 @@
                         <ul class="list-unstyled mb-0 col">
                             <li class="p-2 row text-center" *ngFor="let subCategory of category.subCategories; let i=index">
                                 <div>
-                                    <img src="assets/images/icons/a1.png" class="img rounded-circle" width="50px" alt="">
+                                    <span [style.background-color]="subCategory.color" class="category-icon rounded-circle p-2 pl-3 pr-3">{{ subCategory.name | slice:0:1 | uppercase }}</span>
                                 </div>
                                 <div class="main-content w-50 m-0 my-auto mr-auto">
                                     <a data-toggle="collapse" href="" role="button" aria-expanded="false">
-                                        <p class="mb-0 text-dark text-left pl-4 text-nowrap">{{ subCategory.name | titlecase }}</p>
+                                        <!-- <p class="mb-0 text-dark text-left pl-4 text-nowrap">{{ subCategory.name | titlecase }}</p> -->
                                     </a>  
                                 </div>
                                 <div class="main-content my-auto">
@@ -131,23 +131,20 @@
     <div *ngIf="val == 3" id="starred" class="container rounded mt-5 pl-1 pt-5 mb-5 main">
     
         <ul class="list-unstyled mb-0 col mt-5 border rounded">
-            <li class="p-2 pr-4 row" *ngFor="let category of starredCategories">
+            <li class="p-2 pr-4 row" *ngFor="let category of categories">
                 <div>
                     <img src="assets/images/icons/a1.png" class="img rounded-circle" width="50px" alt="">
                 </div>
                 <div class="main-content w-50 m-0 my-auto mr-auto">
                     <a data-toggle="collapse" href="" role="button" aria-expanded="false" aria-controls="collapseExample">
-                        <p class="mb-0 pl-4 text-dark">{{ category.title | titlecase}}</p>
-                        <p class="mb-0 pl-4 category-title">{{ category.category | titlecase }}</p>
-                    </a>
-                    
+                        <p class="mb-0 pl-4 text-dark">{{ category.name | titlecase}}</p>
+                    </a>                    
                 </div>
                 <div class="main-content my-auto">
                     <a routerLink='/about'><p class="mb-0"><i class="fas fa-star text-warning"></i></p></a>
                 </div>
             </li>
         </ul>
-
     </div>
 
     <!-- History -->

@@ -482,10 +482,28 @@ export class CategoryComponent implements OnInit {
     this.createService.createName = "New category";
   }
 
+  // sortSubCategories(i: number) {
+  //   this.categories[i].subCategories.sort(function(a, b) {
+  //     var textA = a.name;
+  //     var textB = b.name;
+  //     return (textA < textB) ? -1 : (textA > textB) ? 1 : 0;
+  //   });
+  // }
+
   getCategories() {
     this.categoryService.getCategories().subscribe(
       (categories) => {
         this.categories = categories;
+
+        // this.categories.sort(function(a, b) {
+        //   var textA = a.name;
+        //   var textB = b.name;
+        //   return (textA < textB) ? -1 : (textA > textB) ? 1 : 0;
+        // });
+
+        // for (let i = 0; i < this.categories.length; i++) {
+        //   this.sortSubCategories(i);
+        // }
       },
       (err) => {
         console.log(err + "error");

@@ -24,6 +24,7 @@ export class CreateComponent implements OnInit {
     createName: string = this.createService.createName;
 
     mainForm: FormGroup;
+    categoryForm: FormGroup;
     detail = {}
     error: any;
 
@@ -37,6 +38,7 @@ export class CreateComponent implements OnInit {
         private accountService: AccountService
     ) {
         this.createMainForm();
+        this.createCategoryForm();
     }
 
     ngOnInit(): void {
@@ -71,24 +73,17 @@ export class CreateComponent implements OnInit {
             note: [''],
             account: [''],
             date: ['', Validators.required],
-            // category
-            categoryName: ['', Validators.required],
-            parentName: [''],
-            color: [''],
-            categoryType: ['', Validators.required]
         });
     }
 
-    onMainFormSubmit() {
-        this.detail = this.mainForm.value;
-
-        if(this.isDesktop) {
-            this.onCreateTransaction();
-        }
-        // if(this.isCategory) {
-        //     this.onCreateCategory();
-        // }
-
+    createCategoryForm() {
+        this.categoryForm = this.fb.group({
+            // category
+            name: ['', Validators.required],
+            parentName: [''],
+            color: [''],
+            type: ['', Validators.required]            
+        });
     }
 
     onCreateTransaction() {
@@ -114,7 +109,18 @@ export class CreateComponent implements OnInit {
     }
 
     onCreateCategory() {
-        
-    }
+        this.detail = this.categoryForm.value;
+
+        console.log("comp .ts");
+        this.createService.createCategory(this.detail).subscribe(
+            (category) => {
+                alert("Category created");
+                this.router.navigate(['/category']);
+            },
+            (err) => {
+                alert(err.status + " " + err.message);
+            }
+        );
+     }
 
 }

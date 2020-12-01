@@ -55,8 +55,12 @@ export class CreateService {
     }
 
     createCategory(detail: any): Observable<Object> {
+        console.log("reached service.ts");
         return this.http.post(`${environment.api}/categories`, {
-            
-        });
+            name: detail.name,
+            parent_name: detail.parentName,
+            type: detail.type,
+            color: detail.color
+        }, this.getHeader());
     }
 }
