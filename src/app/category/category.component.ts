@@ -13,6 +13,8 @@ export class CategoryComponent implements OnInit {
   searchToggler: boolean = false;
   isStarred: boolean;
   categories:any = [];
+  rawCategories:any = [];
+  reverseCategories:any = [];
 
   historyCategories: any = [
     {
@@ -440,9 +442,7 @@ export class CategoryComponent implements OnInit {
   constructor(
     private createService: CreateService,
     private categoryService: CategoryService
-  ) { 
-    
-  }
+  ) { }
 
   ngOnInit(): void {
     this.getCategories();
@@ -454,6 +454,17 @@ export class CategoryComponent implements OnInit {
 
   expContent(val: number) {
     this.val = val;
+    
+    if(this.val == 1) {
+      this.categories = this.rawCategories;
+    } else if(this.val == 2 || this.val == 3) {
+      console.log(this.val);
+      this.sortCategories();
+      this.sortSubCategories();
+    } else if(this.val == 4) {
+      this.categories = this.reverseCategories.reverse(); // check
+    }
+
     return this.val;
   }
 
@@ -482,28 +493,30 @@ export class CategoryComponent implements OnInit {
     this.createService.createName = "New category";
   }
 
-  // sortSubCategories(i: number) {
-  //   this.categories[i].subCategories.sort(function(a, b) {
-  //     var textA = a.name;
-  //     var textB = b.name;
-  //     return (textA < textB) ? -1 : (textA > textB) ? 1 : 0;
-  //   });
-  // }
+  sortCategories() {
+    this.categories.sort(function(a, b) {
+      var textA = a.name;
+      var textB = b.name;
+      return (textA < textB) ? -1 : (textA > textB) ? 1 : 0;
+    });
+  }
+
+  sortSubCategories() {
+    for (let i = 0; i < this.categories.length; i++) {
+      this.categories[i].subCategories.sort(function(a, b) {
+        var textA = a.name;
+        var textB = b.name;
+        return (textA < textB) ? -1 : (textA > textB) ? 1 : 0;
+      });
+    }
+  }
 
   getCategories() {
     this.categoryService.getCategories().subscribe(
       (categories) => {
         this.categories = categories;
-
-        // this.categories.sort(function(a, b) {
-        //   var textA = a.name;
-        //   var textB = b.name;
-        //   return (textA < textB) ? -1 : (textA > textB) ? 1 : 0;
-        // });
-
-        // for (let i = 0; i < this.categories.length; i++) {
-        //   this.sortSubCategories(i);
-        // }
+        this.rawCategories = Array.from(this.categories);
+        this.reverseCategories = Array.from(this.categories);
       },
       (err) => {
         console.log(err + "error");

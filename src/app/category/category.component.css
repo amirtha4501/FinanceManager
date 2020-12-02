@@ -29,7 +29,7 @@
     display: inline-block;
 }
 
-.main ul li:after {
+.main ul li:after, .main ul li .sub-cat:after, .main ul li .sub-cat div:after {
     content: ""; 
     display: block;
     margin: 0 auto;
@@ -38,7 +38,7 @@
     border-bottom: 1px solid #cebce0ef; 
 }
 
-.main ul li:last-child::after {
+.main ul li:last-child::after, .main ul li .sub-cat:last-child::after, .main ul li .sub-cat div:last-child::after {
     border-bottom: none !important;
 }
 
