@@ -68,7 +68,7 @@
 <div class="row justify-content-center">
 
     <!-- Basic categories -->
-    <div *ngIf="val == 1" id="basic" class="container rounded mt-5 p-0 pt-5 main basic">
+    <div *ngIf="val == 1" id="basic" class="container rounded mt-5 p-0 pt-5 main line-border">
         <div id="accordion" class="mt-5 mb-5">
             <div class="card" *ngFor="let category of categories">
                 <a class="card-link" data-toggle="collapse" data-parent="#accordion" href="#{{category.name}}">
@@ -108,11 +108,11 @@
     </div>
 
     <!-- All categories -->
-    <div *ngIf="val == 2" id="all" class="container mt-5 pl-1 pt-5 mb-5 main">
-        <ul class="list-unstyled mb-0 col mt-5 border rounded">
+    <div *ngIf="val == 2" id="all" class="container mt-5 pl-1 pt-5 mb-5 main line-border">
+        <ul class="list-unstyled mb-0 col mt-5 border rounded pt-3 pb-4">
             <li *ngFor="let category of categories">
                 <div class="p-2 pr-4 row sub-cat" *ngFor="let subCategory of category.subCategories">
-                    <div>
+                    <div class="my-auto">
                         <span [style.background-color]="subCategory.color" class="category-icon rounded-circle p-2 pl-3 pr-3">{{ subCategory.name | uppercase | slice:0:1 }}</span>
                     </div>
                     <div class="main-content w-50 m-0 my-auto mr-auto">
@@ -137,12 +137,11 @@
     <!-- Starred categories -->
     <div *ngIf="val == 3" id="starred" class="container rounded mt-5 pl-1 pt-5 mb-5 main">
     
-        <ul class="list-unstyled mb-0 col mt-5 border rounded">
+        <ul class="list-unstyled mb-0 col mt-5 border rounded pt-3 pb-4">
             <li *ngFor="let category of categories">
-                <!-- *ngIf="subCategory.starred" -->
-                <div *ngFor="let subCategory of category.subCategories">
+                <div *ngFor="let subCategory of category.subCategories" [ngClass]="{'starred-line': subCategory.starred === true}">
                     <div class="p-2 pr-4 row" *ngIf="subCategory.starred">
-                        <div>
+                        <div class="my-auto">
                             <span [style.background-color]="subCategory.color" class="category-icon rounded-circle p-2 pl-3 pr-3">{{ subCategory.name | uppercase | slice:0:1 }}</span>
                         </div>
                         <div class="main-content w-50 m-0 my-auto mr-auto">
@@ -152,7 +151,6 @@
                             </a>                    
                         </div>
                         <div class="main-content my-auto">
-                            <!-- <a routerLink='/about'><p class="mb-0"><i class="fas fa-star text-warning"></i></p></a> -->
                             <a>
                                 <p class="mb-0" (click)="modifyStar(subCategory.id, subCategory.starred)">
                                     <i *ngIf="subCategory.starred" class="fas fa-star text-warning"></i>
@@ -182,7 +180,6 @@
                         </a>              
                     </div>
                     <div class="main-content my-auto">
-                        <!-- <a routerLink='/about'><p class="mb-0"><i class="far fa-star"></i></p></a> -->
                         <a>
                             <p class="mb-0" (click)="modifyStar(subCategory.id, subCategory.starred)">
                                 <i *ngIf="subCategory.starred" class="fas fa-star text-warning"></i>

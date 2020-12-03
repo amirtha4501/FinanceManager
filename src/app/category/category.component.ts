@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CategoryService } from '../services/category.service';
 import { CreateService } from '../services/create.service';
+import { DesktopService } from '../services/desktop.service';
 
 @Component({
   selector: 'app-category',
@@ -12,9 +13,10 @@ export class CategoryComponent implements OnInit {
   val: number = 1;
   searchToggler: boolean = false;
   isStarred: boolean;
-  categories:any = [];
-  rawCategories:any = [];
-  reverseCategories:any = [];
+  categories: any = [];
+  rawCategories: any = [];
+  reverseCategories: any = [];
+  transactedCategories: any = [];
 
   historyCategories: any = [
     {
@@ -441,11 +443,13 @@ export class CategoryComponent implements OnInit {
 
   constructor(
     private createService: CreateService,
+    private desktopService: DesktopService,
     private categoryService: CategoryService
   ) { }
 
   ngOnInit(): void {
     this.getCategories();
+    this.getTransactions();
   }
 
   searchToggle() {
@@ -523,5 +527,35 @@ export class CategoryComponent implements OnInit {
       }
     )
   }
-  
+
+  getTransactions() {
+    this.desktopService.getTransactions().subscribe(
+        (transactions) => {
+          let transactionsData: any = [];
+          transactionsData = transactions;
+
+          console.log(transactionsData);
+          for (let i = 0; i < transactionsData.length; i++) {
+            
+            let transactedCategory = {
+              categoryId: transactionsData[i].categoryId, // problem
+              date: transactionsData[i].date
+            }
+
+            this.transactedCategories.push(transactedCategory);     
+            
+            this.transactedCategories.sort(function(a, b) {
+              var c = new Date(a.date);
+              var d = new Date(b.date);
+              return c.valueOf() - d.valueOf();
+            });
+          }
+
+          console.log(this.transactedCategories);
+        },
+        (err) => {
+            if (err.status == '404') { alert('Transactions not found') }
+        }
+    );
+  } 
 }

@@ -4,6 +4,7 @@ import { CreateService } from '../services/create.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AccountService } from '../services/account.service';
 import { Router } from '@angular/router';
+import { CategoryService } from '../services/category.service';
 
 @Component({
     selector: 'app-create',
@@ -29,12 +30,17 @@ export class CreateComponent implements OnInit {
     error: any;
 
     accounts: any = [];
+    categories: any = [];
+    subCategories: any = [];
+    isAccountExist: boolean = false;
+    isCategoryExist: boolean = false;
 
     constructor(
         private router: Router,
         private fb: FormBuilder,
         private location: Location,
         private createService: CreateService,
+        private categoryService: CategoryService,
         private accountService: AccountService
     ) {
         this.createMainForm();
@@ -43,6 +49,7 @@ export class CreateComponent implements OnInit {
 
     ngOnInit(): void {
         this.getAccounts();
+        this.getCategories();
     }
 
     navigateBack() {
@@ -61,6 +68,24 @@ export class CreateComponent implements OnInit {
                 if (err.status == '404') { alert('Accounts not found') }
             }
         );
+    }
+
+    getCategories() {
+        this.categoryService.getCategories().subscribe(
+            (categories) => {
+                this.categories = categories;
+                this.categories.forEach(category => {
+                    category.subCategories.forEach(subCategory => {
+                        console.log('subCategory');
+                        console.log(subCategory);
+                        this.subCategories.push(subCategory);
+                    });
+                });
+            },
+            (err) => {
+                console.log(err + "error");
+            }
+        )
     }
 
     createMainForm() {
@@ -82,36 +107,49 @@ export class CreateComponent implements OnInit {
             name: ['', Validators.required],
             parentName: [''],
             color: [''],
-            type: ['', Validators.required]            
+            type: ['', Validators.required]
         });
     }
 
     onCreateTransaction() {
-        let isAccountExist = false;
+        this.detail = this.mainForm.value;
+
         this.accounts.forEach(account => {
-            if(account.name === this.detail['account']) {
-                isAccountExist = true;
+            if (account.name === this.detail['account']) {
+                this.isAccountExist = true;
                 this.detail['account'] = account.id;
-                this.createService.createTransaction(this.detail).subscribe(
-                    (transaction) => {
-                        alert("Transaction created");
-                        this.router.navigate(['/desktop']);
-                    },
-                    (err) => {
-                        alert(err.status + " " + err.message);
-                    }
-                );
-            } 
+            }
         });
-        if(isAccountExist === false) {
-            alert("Account doesn't exist.");
+
+        this.categories.forEach(category => {
+            category.subCategories.forEach(subCategory => {
+                if (subCategory.name === this.detail['category']) {
+                    this.isCategoryExist = true;
+                    this.detail['category'] = category.id;
+                }
+            })
+        });
+
+        if (this.isAccountExist === true && this.isCategoryExist === true) {
+            this.createService.createTransaction(this.detail).subscribe(
+                (transaction) => {
+                    alert("Transaction created");
+                    this.router.navigate(['/desktop']);
+                },
+                (err) => {
+                    alert(err.status + " " + err.message);
+                }
+            );
+        } else if (this.isAccountExist === false) {
+            alert("Account doesn't exist");
+        } else {
+            alert("Category doesn't exist");
         }
     }
 
     onCreateCategory() {
         this.detail = this.categoryForm.value;
 
-        console.log("comp .ts");
         this.createService.createCategory(this.detail).subscribe(
             (category) => {
                 alert("Category created");
@@ -121,6 +159,6 @@ export class CreateComponent implements OnInit {
                 alert(err.status + " " + err.message);
             }
         );
-     }
+    }
 
 }

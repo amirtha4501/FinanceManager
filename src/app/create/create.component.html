@@ -65,7 +65,12 @@
                         </td>
                         <td class="p-0">
                             <div class="form-group">
-                                <input formControlName="category" type="text" class="form-control border-top-0 border-right-0 border-left-0" placeholder="Select category">
+                                <input formControlName="category" type="text" class="form-control border-top-0 border-right-0 border-left-0" placeholder="Select category" list="categories">
+                                <datalist id="categories">
+                                    <option value="{{ subCategory.name }}" *ngFor="let subCategory of subCategories">
+                                        {{ subCategory.name }}
+                                    </option> 
+                                </datalist>
                             </div>
                         </td>
                     </tr>
@@ -105,7 +110,7 @@
                         </td>
                         <td class="p-0">
                             <div class="form-group">
-                                <input type="text" formControlName="account" class="form-control border-top-0 border-right-0 border-left-0" placeholder="Account" list="accounts">
+                                <input type="text" formControlName="account" class="form-control border-top-0 border-right-0 border-left-0" placeholder="Select Account" list="accounts">
                                 <datalist id="accounts">
                                     <option value="{{ account.name }}" *ngFor="let account of accounts">
                                         {{ account.name }}

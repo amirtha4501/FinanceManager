@@ -29,7 +29,10 @@
     display: inline-block;
 }
 
-.main ul li:after, .main ul li .sub-cat:after, .main ul li .sub-cat div:after {
+.line-border ul li:after
+, .line-border ul li .sub-cat:after
+, .starred-line:after 
+{
     content: ""; 
     display: block;
     margin: 0 auto;
@@ -38,8 +41,12 @@
     border-bottom: 1px solid #cebce0ef; 
 }
 
-.main ul li:last-child::after, .main ul li .sub-cat:last-child::after, .main ul li .sub-cat div:last-child::after {
-    border-bottom: none !important;
+.line-border ul li:last-child::after
+, .line-border ul li .sub-cat:last-child::after
+, .starred-line:last-child::after 
+{
+    display: none;
+    /* border-bottom: none !important; */
 }
 
 a {
