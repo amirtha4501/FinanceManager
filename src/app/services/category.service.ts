@@ -27,6 +27,10 @@ export class CategoryService {
     return this.http.get(`${environment.api}/categories`, this.getHeader());
   }
 
+  getCategoryById(id: number) {
+    return this.http.get(`${environment.api}/categories/` + id, this.getHeader());
+  }
+
   updateCategory(id: number, detail) {
     return this.http.patch(`${environment.api}/categories/` + id, {
       name: detail.name,

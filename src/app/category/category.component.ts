@@ -534,24 +534,38 @@ export class CategoryComponent implements OnInit {
           let transactionsData: any = [];
           transactionsData = transactions;
 
-          console.log(transactionsData);
           for (let i = 0; i < transactionsData.length; i++) {
+            let parentName;
+            
+            // this.categoryService.getCategoryById(transactionsData[i].category['parent_id']).subscribe(
+            //   (category) => {
+            //     parentName = category['name']
+            //   },
+            //   (err) => { alert(transactionsData[i].category['parent_id']);}
+            // );
+
+            console.log("transactionsData[i].category");
+            console.log(transactionsData[i].category);
             
             let transactedCategory = {
-              categoryId: transactionsData[i].categoryId, // problem
+              name: transactionsData[i].category['name'],
+              parent: parentName,
+              type: transactionsData[i].category['type'],
+              starred: transactionsData[i].category['starred'],
+              color: transactionsData[i].category['color'],
               date: transactionsData[i].date
             }
+            console.log(transactedCategory);
 
             this.transactedCategories.push(transactedCategory);     
             
-            this.transactedCategories.sort(function(a, b) {
-              var c = new Date(a.date);
-              var d = new Date(b.date);
-              return c.valueOf() - d.valueOf();
-            });
+            // this.transactedCategories.sort(function(a, b) {
+            //   var c = new Date(a.date);
+            //   var d = new Date(b.date);
+            //   return c.valueOf() - d.valueOf();
+            // });
           }
 
-          console.log(this.transactedCategories);
         },
         (err) => {
             if (err.status == '404') { alert('Transactions not found') }

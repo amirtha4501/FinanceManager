@@ -54,7 +54,7 @@
                 <div class="main-content w-50 m-0 my-auto mr-auto">
                     <a data-toggle="collapse" href="" role="button" aria-expanded="false" aria-controls="collapseExample">
                         <p class="mb-0 pl-4 text-secondary">{{ transaction.title | titlecase }}</p>
-                        <p class="mb-0 pl-4 category-title">{{ transaction.category | titlecase }}</p>
+                        <p class="mb-0 pl-4 category-title">{{ transaction.category['name'] | titlecase }}</p>
                     </a>   
                 </div>
                 <div class="main-content my-auto">

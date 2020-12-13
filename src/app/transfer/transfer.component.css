@@ -54,3 +54,10 @@ a {
     font-size: 1.1em;
     color: black ;
 }
+
+.transfer-icon {
+    background-color: blue;
+    font-size: 1.3em;
+    color: white;
+    font-weight: 585;
+}

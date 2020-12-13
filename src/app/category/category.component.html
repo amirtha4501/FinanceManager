@@ -167,23 +167,22 @@
     <!-- History -->
     <div *ngIf="val == 4" id="all" class="container mt-5 pl-1 pt-5 main">
         <ul class="list-unstyled mb-0 col border rounded mt-5">
-            <li *ngFor="let category of categories">
-                <div class="p-2 pr-4 row" *ngFor="let subCategory of category.subCategories">
-
+            <li *ngFor="let category of transactedCategories">
+                <div class="p-2 pr-4 row">
                     <div>
-                        <span [style.background-color]="subCategory.color" class="category-icon rounded-circle p-2 pl-3 pr-3">{{ subCategory.name | uppercase | slice:0:1 }}</span>
+                        <span [style.background-color]="category.color" class="category-icon rounded-circle p-2 pl-3 pr-3">{{ category.name | uppercase | slice:0:1 }}</span>
                     </div>
                     <div class="main-content w-50 m-0 my-auto mr-auto">
                         <a data-toggle="collapse" href="" role="button" aria-expanded="false" aria-controls="collapseExample">
-                            <p class="mb-0 pl-4 text-dark">{{ category.name | titlecase}}</p>
-                            <p class="mb-0 pl-4 category-title">{{ subCategory.name | titlecase }}</p>
+                            <p class="mb-0 pl-4 text-dark">{{ category.parent | titlecase}}</p>
+                            <p class="mb-0 pl-4 category-title">{{ category.name | titlecase }}</p>
                         </a>              
                     </div>
                     <div class="main-content my-auto">
                         <a>
-                            <p class="mb-0" (click)="modifyStar(subCategory.id, subCategory.starred)">
-                                <i *ngIf="subCategory.starred" class="fas fa-star text-warning"></i>
-                                <i *ngIf="!subCategory.starred" class="far fa-star text-dark"></i>
+                            <p class="mb-0" (click)="modifyStar(category.id, category.starred)">
+                                <i *ngIf="category.starred" class="fas fa-star text-warning"></i>
+                                <i *ngIf="!category.starred" class="far fa-star text-dark"></i>
                             </p>
                         </a>
                     </div>

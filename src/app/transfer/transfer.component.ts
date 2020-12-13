@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CreateService } from '../services/create.service';
+import { TransferService } from '../transfer.service';
 
 @Component({
   selector: 'app-transfer',
@@ -8,35 +9,37 @@ import { CreateService } from '../services/create.service';
 })
 export class TransferComponent implements OnInit {
 
-  transfers: any = [
-    {
-      "date": "Aug 13, 2020",
-      "fromAccount": "personal account",
-      "toAccount": "public account",
-      "amount": "45000"
-    },
-    {
-      "date": "Aug 13, 2020",
-      "fromAccount": "personal account",
-      "toAccount": "public account",
-      "amount": "45000"
-    },
-    {
-      "date": "Aug 13, 2020",
-      "fromAccount": "personal account",
-      "toAccount": "public account",
-      "amount": "45000"
-    },
-    {
-      "date": "Aug 13, 2020",
-      "fromAccount": "personal account",
-      "toAccount": "public account",
-      "amount": "45000"
-    },
-  ];
+  transfers: any = [];
+  // [
+  //   {
+  //     "date": "Aug 13, 2020",
+  //     "fromAccount": "personal account",
+  //     "toAccount": "public account",
+  //     "amount": "45000"
+  //   },
+  //   {
+  //     "date": "Aug 13, 2020",
+  //     "fromAccount": "personal account",
+  //     "toAccount": "public account",
+  //     "amount": "45000"
+  //   },
+  //   {
+  //     "date": "Aug 13, 2020",
+  //     "fromAccount": "personal account",
+  //     "toAccount": "public account",
+  //     "amount": "45000"
+  //   },
+  //   {
+  //     "date": "Aug 13, 2020",
+  //     "fromAccount": "personal account",
+  //     "toAccount": "public account",
+  //     "amount": "45000"
+  //   },
+  // ];
 
   constructor(
-    private createService: CreateService
+    private createService: CreateService,
+    private transferService: TransferService
   ) { }
 
   ngOnInit(): void {
@@ -54,4 +57,11 @@ export class TransferComponent implements OnInit {
     this.createService.createName = "New transfer";
   }
 
+  getTransfers() {
+    this.transferService.getTransfers().subscribe(
+      (transfers) => {
+        this.transfers = transfers;
+      }
+    )
+  }
 }
