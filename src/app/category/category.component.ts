@@ -2,11 +2,14 @@ import { Component, OnInit } from '@angular/core';
 import { CategoryService } from '../services/category.service';
 import { CreateService } from '../services/create.service';
 import { DesktopService } from '../services/desktop.service';
+import { DatePipe } from '@angular/common'
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-category',
   templateUrl: './category.component.html',
-  styleUrls: ['./category.component.css']
+  styleUrls: ['./category.component.css'],
+  // providers: [DatePipe]
 })
 export class CategoryComponent implements OnInit {
 
@@ -17,33 +20,8 @@ export class CategoryComponent implements OnInit {
   rawCategories: any = [];
   reverseCategories: any = [];
   transactedCategories: any = [];
+  parentName: string = null;
 
-  historyCategories: any = [
-    {
-      "category": "Entertainment"
-    }, 
-    {
-      "category": "Food"
-    }, 
-    {
-      "category": "Work"
-    } 
-  ];
-
-  starredCategories: any = [
-    {
-      "title": "car",
-      "category": "accessories"
-    },
-    {
-      "title": "electronics",
-      "category": "accessories"
-    },
-    {
-      "title": "food",
-      "category": "restaurant"
-    }
-  ];
 
   allCategories: any = [
     {
@@ -328,7 +306,7 @@ export class CategoryComponent implements OnInit {
     {
       "parentCategory": [
         "food",
-        "food general", 
+        "food general",
         "supermarket",
         "restaurant",
         "every day"
@@ -337,7 +315,7 @@ export class CategoryComponent implements OnInit {
     {
       "parentCategory": [
         "entertainment",
-        "entertainment general", 
+        "entertainment general",
         "cinema and theatre",
         "disco",
         "bar",
@@ -350,7 +328,7 @@ export class CategoryComponent implements OnInit {
     {
       "parentCategory": [
         "car",
-        "car general", 
+        "car general",
         "fuel",
         "repairs",
         "amortization",
@@ -363,7 +341,7 @@ export class CategoryComponent implements OnInit {
     {
       "parentCategory": [
         "home",
-        "home general", 
+        "home general",
         "electricity",
         "water",
         "gas",
@@ -382,7 +360,7 @@ export class CategoryComponent implements OnInit {
     {
       "parentCategory": [
         "clothing",
-        "clothing general", 
+        "clothing general",
         "trousers",
         "shoes",
         "sweaters",
@@ -396,7 +374,7 @@ export class CategoryComponent implements OnInit {
     {
       "parentCategory": [
         "electronics",
-        "electronics general", 
+        "electronics general",
         "computer",
         "tablet",
         "telephone",
@@ -410,7 +388,7 @@ export class CategoryComponent implements OnInit {
     {
       "parentCategory": [
         "health",
-        "health & beauty general", 
+        "health & beauty general",
         "cosmetics",
         "perfume",
         "hairdresser",
@@ -423,7 +401,7 @@ export class CategoryComponent implements OnInit {
     {
       "parentCategory": [
         "children",
-        "children general", 
+        "children general",
         "toys",
         "clothing",
         "school",
@@ -433,7 +411,7 @@ export class CategoryComponent implements OnInit {
     {
       "parentCategory": [
         "work",
-        "work general", 
+        "work general",
         "salary",
         "bonus",
         "other"
@@ -444,7 +422,9 @@ export class CategoryComponent implements OnInit {
   constructor(
     private createService: CreateService,
     private desktopService: DesktopService,
-    private categoryService: CategoryService
+    private categoryService: CategoryService,
+    // public datepipe: DatePipe,
+    private router: Router
   ) { }
 
   ngOnInit(): void {
@@ -458,14 +438,14 @@ export class CategoryComponent implements OnInit {
 
   expContent(val: number) {
     this.val = val;
-    
-    if(this.val == 1) {
+
+    if (this.val == 1) {
       this.categories = this.rawCategories;
-    } else if(this.val == 2 || this.val == 3) {
-      console.log(this.val);
+    } else if (this.val == 2 || this.val == 3) {
+      // console.log(this.val);
       this.sortCategories();
       this.sortSubCategories();
-    } else if(this.val == 4) {
+    } else if (this.val == 4) {
       this.categories = this.reverseCategories.reverse(); // check
     }
 
@@ -473,12 +453,18 @@ export class CategoryComponent implements OnInit {
   }
 
   modifyStar(id: number, starred: boolean) {
-    
-    let detail = { starred: !starred};
+
+    // let setupVal = this.val;
+    // console.log(id);
+    let detail = { starred: !starred };
     this.categoryService.updateCategory(id, detail).subscribe(
       (res) => {
-        console.log(res);
         this.getCategories();
+
+        this.router.navigateByUrl('/about', { skipLocationChange: false }).then(() => {
+          this.router.navigate(['category']);;
+        });
+
       },
       (err) => {
         alert("Oops! You cannot add it to favorites");
@@ -498,7 +484,7 @@ export class CategoryComponent implements OnInit {
   }
 
   sortCategories() {
-    this.categories.sort(function(a, b) {
+    this.categories.sort(function (a, b) {
       var textA = a.name;
       var textB = b.name;
       return (textA < textB) ? -1 : (textA > textB) ? 1 : 0;
@@ -507,7 +493,7 @@ export class CategoryComponent implements OnInit {
 
   sortSubCategories() {
     for (let i = 0; i < this.categories.length; i++) {
-      this.categories[i].subCategories.sort(function(a, b) {
+      this.categories[i].subCategories.sort(function (a, b) {
         var textA = a.name;
         var textB = b.name;
         return (textA < textB) ? -1 : (textA > textB) ? 1 : 0;
@@ -523,53 +509,64 @@ export class CategoryComponent implements OnInit {
         this.reverseCategories = Array.from(this.categories);
       },
       (err) => {
-        console.log(err + "error");
+        alert(err + "error");
       }
     )
   }
 
   getTransactions() {
     this.desktopService.getTransactions().subscribe(
-        (transactions) => {
-          let transactionsData: any = [];
-          transactionsData = transactions;
+      (transactions) => {
+        let transactionsData: any = transactions;
+        this.setData(transactionsData);
+      },
+      (err) => {
+        if (err.status == '404') { alert('Transactions not found') }
+      }
+    );
+  }
 
-          for (let i = 0; i < transactionsData.length; i++) {
-            let parentName;
-            
-            // this.categoryService.getCategoryById(transactionsData[i].category['parent_id']).subscribe(
-            //   (category) => {
-            //     parentName = category['name']
-            //   },
-            //   (err) => { alert(transactionsData[i].category['parent_id']);}
-            // );
+  setData(transactionsData: any[]) {
+    for (let i = 0; i < transactionsData.length; i++) {
+      let categoryParentId = transactionsData[i].category['parent_id'];
 
-            console.log("transactionsData[i].category");
-            console.log(transactionsData[i].category);
-            
+      if (categoryParentId !== null) {
+        this.categoryService.getCategoryById(categoryParentId).subscribe(
+          (category) => {
+            this.parentName = category['name']
+
             let transactedCategory = {
+              id: transactionsData[i].category['id'],
               name: transactionsData[i].category['name'],
-              parent: parentName,
+              parent: this.parentName,
               type: transactionsData[i].category['type'],
               starred: transactionsData[i].category['starred'],
               color: transactionsData[i].category['color'],
               date: transactionsData[i].date
             }
-            console.log(transactedCategory);
-
-            this.transactedCategories.push(transactedCategory);     
-            
-            // this.transactedCategories.sort(function(a, b) {
-            //   var c = new Date(a.date);
-            //   var d = new Date(b.date);
-            //   return c.valueOf() - d.valueOf();
-            // });
-          }
-
-        },
-        (err) => {
-            if (err.status == '404') { alert('Transactions not found') }
+            this.transactedCategories.push(transactedCategory);
+          },
+          (err) => { alert(categoryParentId); }
+        );
+      } else {
+        let transactedCategory = {
+          id: transactionsData[i].category['id'],
+          name: transactionsData[i].category['name'],
+          parent: null,
+          type: transactionsData[i].category['type'],
+          starred: transactionsData[i].category['starred'],
+          color: transactionsData[i].category['color'],
+          date: transactionsData[i].date
         }
-    );
-  } 
+        this.transactedCategories.push(transactedCategory);
+
+      }
+    }
+  }
+
+  get sortData() {
+    return this.transactedCategories.sort((a, b) => {
+      return <any>new Date(b.date) - <any>new Date(a.date);
+    });
+  }
 }

@@ -27,6 +27,7 @@ import { AuthLayoutComponent } from './auth-layout/auth-layout.component';
 import { PublicLayoutComponent } from './public-layout/public-layout.component';
 import { AuthGuard } from './services/auth.guard';
 import { PublicGuard } from './services/public.guard';
+import { DatePipe } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -59,6 +60,7 @@ import { PublicGuard } from './services/public.guard';
     HttpClientModule
   ],
   providers: [AuthGuard, PublicGuard],
+  // DatePipe
   bootstrap: [AppComponent]
 })
 export class AppModule { 

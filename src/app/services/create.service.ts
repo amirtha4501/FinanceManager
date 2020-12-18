@@ -38,9 +38,6 @@ export class CreateService {
     }
 
     createTransaction(detail: any): Observable<Object> {
-        for (let key in detail){
-            console.log( key + ": " + detail[key] + " type " + typeof detail[key]);
-        }
 
         return this.http.post(`${environment.api}/transactions`, {
             amount: detail.amount,
@@ -55,7 +52,6 @@ export class CreateService {
     }
 
     createCategory(detail: any): Observable<Object> {
-        console.log("reached service.ts");
         return this.http.post(`${environment.api}/categories`, {
             name: detail.name,
             parent_name: detail.parentName,

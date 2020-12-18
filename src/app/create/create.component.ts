@@ -76,14 +76,12 @@ export class CreateComponent implements OnInit {
                 this.categories = categories;
                 this.categories.forEach(category => {
                     category.subCategories.forEach(subCategory => {
-                        console.log('subCategory');
-                        console.log(subCategory);
                         this.subCategories.push(subCategory);
                     });
                 });
             },
             (err) => {
-                console.log(err + "error");
+                alert(err + "error");
             }
         )
     }
@@ -125,7 +123,7 @@ export class CreateComponent implements OnInit {
             category.subCategories.forEach(subCategory => {
                 if (subCategory.name === this.detail['category']) {
                     this.isCategoryExist = true;
-                    this.detail['category'] = category.id;
+                    this.detail['category'] = subCategory.id;
                 }
             })
         });

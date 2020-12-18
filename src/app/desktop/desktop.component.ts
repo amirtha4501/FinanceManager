@@ -58,7 +58,6 @@ export class DesktopComponent implements OnInit {
     }
 
     deleteTransaction(id: number) {
-        console.log(id, "id");
         this.desktopService.deleteTransaction(id).subscribe(
             (res) => {
                 alert("Transaction deleted");
