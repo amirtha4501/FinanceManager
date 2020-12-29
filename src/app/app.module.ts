@@ -27,7 +27,8 @@ import { AuthLayoutComponent } from './auth-layout/auth-layout.component';
 import { PublicLayoutComponent } from './public-layout/public-layout.component';
 import { AuthGuard } from './services/auth.guard';
 import { PublicGuard } from './services/public.guard';
-import { DatePipe } from '@angular/common';
+import { ToastrModule } from 'ngx-toastr';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -57,7 +58,9 @@ import { DatePipe } from '@angular/common';
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    BrowserAnimationsModule,
+    ToastrModule.forRoot()
   ],
   providers: [AuthGuard, PublicGuard],
   // DatePipe

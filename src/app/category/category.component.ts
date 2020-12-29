@@ -4,6 +4,7 @@ import { CreateService } from '../services/create.service';
 import { DesktopService } from '../services/desktop.service';
 import { DatePipe } from '@angular/common'
 import { Router } from '@angular/router';
+import { ToastService } from '../services/toast.service';
 
 @Component({
   selector: 'app-category',
@@ -423,6 +424,7 @@ export class CategoryComponent implements OnInit {
     private createService: CreateService,
     private desktopService: DesktopService,
     private categoryService: CategoryService,
+    private toastService: ToastService,
     // public datepipe: DatePipe,
     private router: Router
   ) { }
@@ -442,7 +444,6 @@ export class CategoryComponent implements OnInit {
     if (this.val == 1) {
       this.categories = this.rawCategories;
     } else if (this.val == 2 || this.val == 3) {
-      // console.log(this.val);
       this.sortCategories();
       this.sortSubCategories();
     } else if (this.val == 4) {
@@ -460,14 +461,14 @@ export class CategoryComponent implements OnInit {
     this.categoryService.updateCategory(id, detail).subscribe(
       (res) => {
         this.getCategories();
-
         this.router.navigateByUrl('/about', { skipLocationChange: false }).then(() => {
           this.router.navigate(['category']);;
         });
 
       },
       (err) => {
-        alert("Oops! You cannot add it to favorites");
+        // this.toastService.error('Oops! You cannot add it to favorites');
+        // alert("Oops! You cannot add it to favorites");
       });
   }
 
@@ -507,9 +508,12 @@ export class CategoryComponent implements OnInit {
         this.categories = categories;
         this.rawCategories = Array.from(this.categories);
         this.reverseCategories = Array.from(this.categories);
+        // this.toastService.success("Categories found");
+
       },
       (err) => {
-        alert(err + "error");
+        // alert(err + "error");
+        this.toastService.error("Categories not found");
       }
     )
   }
@@ -521,7 +525,7 @@ export class CategoryComponent implements OnInit {
         this.setData(transactionsData);
       },
       (err) => {
-        if (err.status == '404') { alert('Transactions not found') }
+        // if (err.status == '404') { this.toastService.error("Transactions not found") }
       }
     );
   }

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormBuilder, Validators, FormGroup, FormControl } from '@angular/forms';
 import { UserService } from '../services/user.service';
+import Swal from 'sweetalert2';
 
 @Component({
     selector: 'app-signin',
@@ -37,18 +38,37 @@ export class SigninComponent implements OnInit {
             (res) => {
                 localStorage.setItem('token', res["accessToken"]);
                 this.signInForm.reset();
-                alert('Hi' + ', you\'re signed in successfully!');
+
+                Swal.fire({
+                    icon: 'success',
+                    text: 'You\'re signed in successfully!',
+                    showClass: { popup: 'animate__animated animate__fadeInDown' },
+                    hideClass: { popup: 'animate__animated animate__fadeOutUp' },
+                    timer: 1500,
+                    confirmButtonColor: '#593481'
+                })
                 this.router.navigate(['/desktop']);
             },
             (err) => {
                 if (err.status == 401) {
-                    this.error = 'Authentication failed. Try with correct email and password';
-                    alert(this.error);
+                    Swal.fire({
+                        icon: 'warning',
+                        title: 'Authentication failed!',
+                        text: 'Try with correct email and password',
+                        showClass: { popup: 'animate__animated animate__fadeInDown' },
+                        hideClass: { popup: 'animate__animated animate__fadeOutUp'},
+                        confirmButtonColor: '#593481'
+                    })
                     this.signInForm.reset();
-                }
-                else {
-                    this.error = 'Something went wrong, please try again!';
-                    alert(this.error);
+                } else {
+                    Swal.fire({
+                        icon: 'error',
+                        text: 'Something went wrong, please try again!',
+                        timer: 1500,
+                        showClass: { popup: 'animate__animated animate__fadeInDown' },
+                        hideClass: { popup: 'animate__animated animate__fadeOutUp'},
+                        confirmButtonColor: '#593481'
+                    })
                     this.signInForm.reset();
                 }
             }

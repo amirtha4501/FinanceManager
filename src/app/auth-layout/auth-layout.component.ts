@@ -1,6 +1,9 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import Swal from 'sweetalert2';
 import { AccountService } from '../services/account.service';
+import { ToastService } from '../services/toast.service';
 
 @Component({
     selector: 'app-auth-layout',
@@ -24,6 +27,8 @@ export class AuthLayoutComponent implements OnInit {
 
     constructor(
         private fb: FormBuilder,
+        private router: Router,
+        private toastService: ToastService,
         private accountService: AccountService
     ) {
         this.createAccount();
@@ -38,9 +43,29 @@ export class AuthLayoutComponent implements OnInit {
     }
 
     signOut() {
-        localStorage.removeItem('token');
+        Swal.fire({
+            title: 'Are you sure to sign out?',
+            icon: 'question',
+            showCancelButton: true,
+            confirmButtonColor: '#593481',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, sign out!'
+        }).then(async (result) => {
+            if (result.isConfirmed) {
+                await Swal.fire({
+                    icon: 'success',
+                    text: 'Signed out successfully',
+                    showClass: { popup: 'animate__animated animate__fadeInDown' },
+                    hideClass: { popup: 'animate__animated animate__fadeOutUp' },
+                    timer: 1500,
+                    confirmButtonColor: '#593481'
+                });
+                localStorage.removeItem('token');
+                this.router.navigate(['/']);
+            }
+        });
     }
-
+ 
     createAccount() {
         this.createAccountForm = this.fb.group({
             name: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(20)]],
@@ -52,13 +77,15 @@ export class AuthLayoutComponent implements OnInit {
     onCreateAccount() {
         this.createAccountDetail = this.createAccountForm.value;
         this.accountService.createAccount(this.createAccountDetail).subscribe(
-            (res) => {
+            () => {
                 this.createAccountForm.reset();
-                alert('Account created!');
+                // alert('Account created!');
+                // this.toastService.success('Account created!');
             },
-            (err) => {
-                this.error = 'Something went wrong. Please try again';
-                alert(this.error);
+            () => {
+                // this.error = 'Something went wrong. Please try again';
+                // alert(this.error);
+                // this.toastService.error('Account creation failed');
             }
         )
     }
@@ -70,9 +97,10 @@ export class AuthLayoutComponent implements OnInit {
                 this.accounts.forEach(element => {
                     element.isChecked = false;
                 });
+                this.toastService.info("accounts obtained")
             },
             (err) => {
-                if (err.status == '404') { alert('Accounts not found') }
+                if (err.status == '404') { this.toastService.error('Account creation failed'); }
             }
         );
     }
