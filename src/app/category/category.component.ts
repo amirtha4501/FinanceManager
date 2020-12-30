@@ -508,8 +508,6 @@ export class CategoryComponent implements OnInit {
         this.categories = categories;
         this.rawCategories = Array.from(this.categories);
         this.reverseCategories = Array.from(this.categories);
-        // this.toastService.success("Categories found");
-
       },
       (err) => {
         // alert(err + "error");

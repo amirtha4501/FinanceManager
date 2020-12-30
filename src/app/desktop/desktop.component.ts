@@ -1,6 +1,8 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import Swal from 'sweetalert2';
 import { CreateService } from '../services/create.service';
 import { DesktopService } from '../services/desktop.service';
+import { ToastService } from '../services/toast.service';
 
 @Component({
     selector: 'app-desktop',
@@ -17,6 +19,7 @@ export class DesktopComponent implements OnInit {
 
     constructor(
         private createService: CreateService,
+        private toastService: ToastService,
         private desktopService: DesktopService
     ) { }
 
@@ -47,7 +50,10 @@ export class DesktopComponent implements OnInit {
                 this.transactions = transactions;
             },
             (err) => {
-                if (err.status == '404') { alert('Transactions not found') }
+                if (err.status == '404') { 
+                    this.toastService.error("Transactions not found");
+                    // alert('Transactions not found');
+                }
             }
         );
     }
@@ -60,11 +66,31 @@ export class DesktopComponent implements OnInit {
     deleteTransaction(id: number) {
         this.desktopService.deleteTransaction(id).subscribe(
             (res) => {
-                alert("Transaction deleted");
+                // alert("Transaction deleted");
+                Swal.fire({
+                    title: 'Are you sure to delete the transaction?',
+                    icon: 'question',
+                    showCancelButton: true,
+                    confirmButtonColor: '#593481',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Delete!'
+                }).then(async (result) => {
+                    if (result.isConfirmed) {
+                        await Swal.fire({
+                            icon: 'success',
+                            text: 'Deleted successfully',
+                            showClass: { popup: 'animate__animated animate__fadeInDown' },
+                            hideClass: { popup: 'animate__animated animate__fadeOutUp' },
+                            timer: 1500,
+                            confirmButtonColor: '#593481'
+                        });
+                    }
+                });        
                 this.getTransactions();
             },
             (err) => {
-                alert("Deletion failed");
+                // alert("Deletion failed");
+                this.toastService.error("Transaction deletion failed");
             }
         );
     }

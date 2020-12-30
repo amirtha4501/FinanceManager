@@ -5,6 +5,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AccountService } from '../services/account.service';
 import { Router } from '@angular/router';
 import { CategoryService } from '../services/category.service';
+import { ToastService } from '../services/toast.service';
 
 @Component({
     selector: 'app-create',
@@ -41,7 +42,8 @@ export class CreateComponent implements OnInit {
         private location: Location,
         private createService: CreateService,
         private categoryService: CategoryService,
-        private accountService: AccountService
+        private accountService: AccountService,
+        private toastService: ToastService
     ) {
         this.createMainForm();
         this.createCategoryForm();
@@ -65,7 +67,10 @@ export class CreateComponent implements OnInit {
                 });
             },
             (err) => {
-                if (err.status == '404') { alert('Accounts not found') }
+                if (err.status == '404') { 
+                    // alert('Accounts not found') 
+                    this.toastService.error('Accounts not found');
+                }
             }
         );
     }
@@ -130,18 +135,22 @@ export class CreateComponent implements OnInit {
 
         if (this.isAccountExist === true && this.isCategoryExist === true) {
             this.createService.createTransaction(this.detail).subscribe(
-                (transaction) => {
-                    alert("Transaction created");
+                () => {
+                    // alert("Transaction created");
+                    this.toastService.success("Transaction created");
                     this.router.navigate(['/desktop']);
                 },
                 (err) => {
+                    this.toastService.error("Transaction creation failed");
                     alert(err.status + " " + err.message);
                 }
             );
         } else if (this.isAccountExist === false) {
-            alert("Account doesn't exist");
+            this.toastService.error("Account doesn't exist");
+            // alert("Account doesn't exist");
         } else {
-            alert("Category doesn't exist");
+            this.toastService.error("Category doesn't exist");
+            // alert("Category doesn't exist");
         }
     }
 
@@ -149,12 +158,14 @@ export class CreateComponent implements OnInit {
         this.detail = this.categoryForm.value;
 
         this.createService.createCategory(this.detail).subscribe(
-            (category) => {
-                alert("Category created");
+            () => {
+                this.toastService.success("Category created");
+                // alert("Category created");
                 this.router.navigate(['/category']);
             },
-            (err) => {
-                alert(err.status + " " + err.message);
+            () => {
+                this.toastService.success("Category creation failed");
+                // alert(err.status + " " + err.message);
             }
         );
     }
