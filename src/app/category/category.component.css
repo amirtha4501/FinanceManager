@@ -64,6 +64,19 @@ a {
     color: black ;
 }
 
+.history-border li::after {
+    content: ""; 
+    display: block;
+    margin: 0 auto;
+    width: 90%; 
+    padding-top: 1%;
+    border-bottom: 1px solid #cebce0ef; 
+}
+
+.history-border li:last-of-type::after {
+    border-bottom: none;
+}
+
 /* search box */
 
 #tools-nav .category-search a {

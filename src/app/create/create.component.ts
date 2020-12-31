@@ -27,6 +27,7 @@ export class CreateComponent implements OnInit {
 
     mainForm: FormGroup;
     categoryForm: FormGroup;
+    transferForm: FormGroup;
     detail = {}
     error: any;
 
@@ -47,6 +48,7 @@ export class CreateComponent implements OnInit {
     ) {
         this.createMainForm();
         this.createCategoryForm();
+        this.createTransferForm();
     }
 
     ngOnInit(): void {
@@ -114,6 +116,16 @@ export class CreateComponent implements OnInit {
         });
     }
 
+    createTransferForm() {
+        this.transferForm = this.fb.group({
+            amount: ['', Validators.required],
+            fromAccount: ['', Validators.required],
+            toAccount: ['', Validators.required],
+            title: ['', Validators.required],
+            date: ['', Validators.required]
+        })
+    }
+
     onCreateTransaction() {
         this.detail = this.mainForm.value;
 
@@ -170,4 +182,32 @@ export class CreateComponent implements OnInit {
         );
     }
 
+    onCreateTransfer() {
+        console.log(this.transferForm);
+        this.detail = this.transferForm.value;
+
+        if (this.detail['fromAccount'] === this.detail['toAccount']) {
+            this.toastService.warning("From and to account should not be same");
+            return;
+        }
+
+        this.accounts.forEach(account => {
+            if (account.name === this.detail['fromAccount']) {
+                this.isAccountExist = true;
+                this.detail['fromAccount'] = account.id;
+            } else if (account.name === this.detail['toAccount']) {
+                this.detail['toAccount'] = account.id;
+            }
+        });
+
+        this.createService.createTransfer(this.detail).subscribe(
+            () => {
+                this.toastService.success("Transfer created");
+                this.router.navigate(['/transfer']);
+            }, 
+            () => {
+                this.toastService.error("Tranfer creation failed");
+            }
+        )
+    }
 }

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CreateService } from '../services/create.service';
-import { TransferService } from '../transfer.service';
+import { TransferService } from '../services/transfer.service';
 
 @Component({
   selector: 'app-transfer',
@@ -43,6 +43,7 @@ export class TransferComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    this.getTransfers();
   }
 
   enableComponent() {
@@ -60,6 +61,7 @@ export class TransferComponent implements OnInit {
   getTransfers() {
     this.transferService.getTransfers().subscribe(
       (transfers) => {
+        console.log(transfers);
         this.transfers = transfers;
       }
     )

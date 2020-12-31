@@ -38,7 +38,6 @@ export class CreateService {
     }
 
     createTransaction(detail: any): Observable<Object> {
-
         return this.http.post(`${environment.api}/transactions`, {
             amount: detail.amount,
             type: detail.type,
@@ -57,6 +56,16 @@ export class CreateService {
             parent_name: detail.parentName,
             type: detail.type,
             color: detail.color
+        }, this.getHeader());
+    }
+
+    createTransfer(detail: any): Observable<Object> {
+        return this.http.post(`${environment.api}/transfers`, {
+            amount: detail.amount,
+            title: detail.title,
+            from_account_id: detail.fromAccount,
+            to_account_id: detail.toAccount,
+            date: detail.date
         }, this.getHeader());
     }
 }

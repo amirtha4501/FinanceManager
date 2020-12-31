@@ -260,47 +260,65 @@
     </div>
 
     <div id="transfer" *ngIf="isTransfer" class="container-fluid rounded mt-5 pt-5">
-        <form>
+        <form [formGroup]="transferForm" (ngSubmit)="onCreateTransfer()" novalidate>
             <br>
             <table class="table table-borderless">
                 <tbody>
                     <tr>
                         <td class="p-0 pr-4">
-                            <i class="fas fa-upload bg-icon" style="font-size: 23px;"></i>
+                            <i class="fas fa-rupee-sign bg-icon" style="font-size: 23px;"></i>
                         </td>
                         <td class="p-0">
                             <div class="form-group">
-                                <input type="text" class="form-control border-top-0 border-right-0 border-left-0" placeholder="Select source account">
+                                <input type="number" formControlName="amount" class="form-control border-top-0 border-right-0 border-left-0" placeholder="0.00">
                             </div>
                         </td>
                     </tr>
                     <tr>
                         <td class="p-0 pr-4">
-                            <i class="fas fa-download bg-icon" style="font-size: 23px;"></i>
+                            <i class="fas fa-upload bg-icon mt-1" style="font-size: 23px;"></i>
                         </td>
                         <td class="p-0">
                             <div class="form-group">
-                                <input type="text" class="form-control border-top-0 border-right-0 border-left-0" placeholder="Select target account">
+                                <input type="text" formControlName="fromAccount" class="form-control border-top-0 border-right-0 border-left-0" placeholder="Select source account" list="accounts">
+                                <datalist id="accounts">
+                                    <option value="{{ account.name }}" *ngFor="let account of accounts">
+                                        {{ account.name }}
+                                    </option> 
+                                </datalist>
                             </div>
                         </td>
                     </tr>
                     <tr>
                         <td class="p-0 pr-4">
-                            <i class="fas fa-pencil-alt bg-icon" style="font-size: 23px;"></i>
+                            <i class="fas fa-download bg-icon mt-1" style="font-size: 23px;"></i>
+                        </td>
+                        <td class="p-0">
+                            <input type="text" formControlName="toAccount" class="form-control border-top-0 border-right-0 border-left-0" placeholder="Select target account" list="accounts">
+                            <datalist id="accounts">
+                                <option value="{{ account.name }}" *ngFor="let account of accounts">
+                                    {{ account.name }}
+                                </option> 
+                            </datalist>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="p-0 pr-4">
+                            <i class="fas fa-pencil-alt bg-icon mt-3" style="font-size: 23px;"></i>
                         </td>
                         <td class="p-0">
                             <div class="form-group">
-                                <input type="text" class="form-control border-top-0 border-right-0 border-left-0" placeholder="Insert title">
+                                <input type="text" formControlName="title" class="form-control border-top-0 border-right-0 border-left-0 mt-2" placeholder="Insert title">
                             </div>
                         </td>
                     </tr>
                     <tr>
                         <td class="p-0 pr-4">
-                            <i class="fas fa-calendar bg-icon" style="font-size: 23px;"></i>
+                            <i class="fas fa-calendar bg-icon mt-1" style="font-size: 23px;"></i>
                         </td>
                         <td class="p-0">
                             <div class="form-group">
-                                <input type="date" class="form-control border-top-0 border-right-0 border-left-0" placeholder="Default operation type">
+                                <input type="date" formControlName="date" class="form-control border-top-0 border-right-0 border-left-0" placeholder="date">
                             </div>
                         </td>
                     </tr>
@@ -310,7 +328,7 @@
             <hr>
             <div class="container text-center mb-5">
                 <div class="text-center">
-                    <button class="btn btn-sm ok-btn col-4 bg-default" type="reset">Ok</button>
+                    <button class="btn btn-sm ok-btn col-4 bg-default" type="submit">Ok</button>
                 </div>
             </div>
         </form>

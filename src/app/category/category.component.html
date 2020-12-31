@@ -166,10 +166,10 @@
 
     <!-- History -->
     <div *ngIf="val == 4" id="all" class="container mt-5 pl-1 pt-5 main">
-        <ul class="list-unstyled mb-0 col border rounded mt-5">
+        <ul class="list-unstyled mb-0 col border rounded mt-5 history-border">
             <li *ngFor="let category of sortData">
                 <div class="p-2 pr-4 row">
-                    <div>
+                    <div class="my-auto">
                         <span [style.background-color]="category.color" class="category-icon rounded-circle p-2 pl-3 pr-3">{{ category.name | uppercase | slice:0:1 }}</span>
                     </div>
                     <div class="main-content w-50 m-0 my-auto mr-auto">
