@@ -47,10 +47,11 @@
     <!-- Main -->
     <div class="row justify-content-center">
         <div id="main" class="container mt-3 pl-1 pt-5 mx-auto">
-            <ul class="list-unstyled mb-0 pt-3 col mt-3 border rounded">
-                <li class="p-2 row" *ngFor="let history of histories">
+            <ul class="list-unstyled mb-0 pt-3 col mt-3">
+                <li class="p-2 row" *ngFor="let history of sortData">
                     <div>
-                        <img src="assets/images/icons/a1.png" class="img rounded-circle" width="50px" alt="">
+                        <span [style.background-color]="history.color" class="history-icon rounded-circle p-2 pl-3 pr-3">{{ history.title | uppercase | slice:0:1 }}</span>
+                        <!-- <img src="assets/images/icons/a1.png" class="img rounded-circle" width="50px" alt=""> -->
                     </div>
                     <div class="main-content w-50 m-0 my-auto mr-auto">
                         <a data-toggle="collapse" href="" role="button" aria-expanded="false"
@@ -62,15 +63,15 @@
                                 ₹{{ history.amount }}
                             </p>
                             <p class="mb-0 pl-4 text-secondary">
-                                {{ history.category | titlecase }},
+                                {{ history.category.name | titlecase }},
                                 {{ history.title | titlecase }}
                             </p>
-                            <p *ngIf="history.tag" class="pl-4 category-title text-white">
+                            <p *ngIf="history.tag" class="pl-4 history-title text-white mb-0">
                                 <small class="bg-default rounded p-1 mb-1">{{ history.tag }}</small>
                             </p>
                         </a>
                     </div>
-                    <div class="main-content my-auto">
+                    <div class="mr-3 my-auto">
                         <p class="mb-0">{{ history.date }}</p>
                     </div>
                 </li>

@@ -47,14 +47,15 @@
 <div class="row justify-content-center">
     <div id="main" class="container mt-5 pl-1 pt-5 mx-auto">
         <ul class="list-unstyled mb-0 col mt-3">
-            <li class="p-2 row" *ngFor="let transaction of transactions; let i=index" (click)="toggleOption(i)">
+            <li class="p-2 row align-items-center" *ngFor="let transaction of transactions; let i=index" (click)="toggleOption(i)">
                 <div>
-                    <img src="assets/images/icons/a1.png" class="img rounded-circle" width="50px" alt="">
+                    <span [style.background-color]="transaction.color" class="desktop-icon rounded-circle p-2 pl-3 pr-3">{{ transaction.title | uppercase | slice:0:1 }}</span>
                 </div>
                 <div class="main-content w-50 m-0 my-auto mr-auto">
                     <a data-toggle="collapse" href="" role="button" aria-expanded="false" aria-controls="collapseExample">
                         <p class="mb-0 pl-4 text-secondary">{{ transaction.title | titlecase }}</p>
-                        <p class="mb-0 pl-4 category-title">{{ transaction.category['name'] | titlecase }}</p>
+                        <p class="mb-0 pl-4 desktop-title">{{ transaction.category['name'] | titlecase }}</p>
+                        <p *ngIf="transaction.tag" class="mb-0 pl-4"><span class="desktop-tag rounded p-1 pl-2 pr-2">{{ transaction.tag | lowercase }}</span></p>
                     </a>   
                 </div>
                 <div class="main-content my-auto">

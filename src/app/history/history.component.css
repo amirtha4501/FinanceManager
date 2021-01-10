@@ -50,13 +50,20 @@ a {
     z-index: 4;
 }
 
-.category-title {
+.history-title {
     font-size: 1em;
     color: black ;
 }
 
 .bg-default {
     background: #593481;
+}
+
+.history-icon {
+    background-color: #FC4242;
+    font-size: 1.3em;
+    color: white;
+    font-weight: 585;
 }
 
 /* search box */

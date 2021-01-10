@@ -2,15 +2,14 @@ import { Component, OnInit } from '@angular/core';
 import { CategoryService } from '../services/category.service';
 import { CreateService } from '../services/create.service';
 import { DesktopService } from '../services/desktop.service';
-import { DatePipe } from '@angular/common'
 import { Router } from '@angular/router';
 import { ToastService } from '../services/toast.service';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-category',
   templateUrl: './category.component.html',
   styleUrls: ['./category.component.css'],
-  // providers: [DatePipe]
 })
 export class CategoryComponent implements OnInit {
 
@@ -22,286 +21,6 @@ export class CategoryComponent implements OnInit {
   reverseCategories: any = [];
   transactedCategories: any = [];
   parentName: string = null;
-
-
-  allCategories: any = [
-    {
-      "title": "car",
-      "category": "accessories"
-    },
-    {
-      "title": "electronics",
-      "category": "accessories"
-    },
-    {
-      "title": "car",
-      "category": "amortization"
-    },
-    {
-      "title": "entertainment",
-      "category": "bar"
-    },
-    {
-      "title": "health & beauty",
-      "category": "beautician"
-    },
-    {
-      "title": "work",
-      "category": "bonus"
-    },
-    {
-      "title": "electronics",
-      "category": "camera"
-    },
-    {
-      "title": "",
-      "category": "car"
-    },
-    {
-      "title": "car",
-      "category": "car wash"
-    },
-    {
-      "title": "",
-      "category": "children"
-    },
-    {
-      "title": "entertainment",
-      "category": "cinema & theatre"
-    },
-    {
-      "title": "home",
-      "category": "cleaning products"
-    },
-    {
-      "title": "",
-      "category": "clothing"
-    },
-    {
-      "title": "children",
-      "category": "clothing"
-    },
-    {
-      "title": "electronics",
-      "category": "computer"
-    },
-    {
-      "title": "entertainment",
-      "category": "concert"
-    },
-    {
-      "title": "health & beauty",
-      "category": "cosmetics"
-    },
-    {
-      "title": "home",
-      "category": "credit"
-    },
-    {
-      "title": "entertainment",
-      "category": "disco"
-    },
-    {
-      "title": "home",
-      "category": "electricity"
-    },
-    {
-      "title": "",
-      "category": "electronics"
-    },
-    {
-      "title": "",
-      "category": "entertainment"
-    },
-    {
-      "title": "food",
-      "category": "every day"
-    },
-    {
-      "title": "",
-      "category": "food"
-    },
-    {
-      "title": "car",
-      "category": "fuel"
-    },
-    {
-      "title": "home",
-      "category": "furniture"
-    },
-    {
-      "title": "entertainment",
-      "category": "games"
-    },
-    {
-      "title": "electronics",
-      "category": "games"
-    },
-    {
-      "title": "home",
-      "category": "gas"
-    },
-    {
-      "title": "health & beauty",
-      "category": "hairdresser"
-    },
-    {
-      "title": "",
-      "category": "health & beauty"
-    },
-    {
-      "title": "home",
-      "category": "heating"
-    },
-    {
-      "title": "entertainment",
-      "category": "holiday"
-    },
-    {
-      "title": "",
-      "category": "home"
-    },
-    {
-      "title": "car",
-      "category": "insurance"
-    },
-    {
-      "title": "home",
-      "category": "insurance"
-    },
-    {
-      "title": "home",
-      "category": "internet"
-    },
-    {
-      "title": "clothing",
-      "category": "jackets"
-    },
-    {
-      "title": "clothing",
-      "category": "jewellery"
-    },
-    {
-      "title": "health & beauty",
-      "category": "medicament"
-    },
-    {
-      "title": "health & beauty",
-      "category": "nutrients"
-    },
-    {
-      "title": "work",
-      "category": "other"
-    },
-    {
-      "title": "health & beauty",
-      "category": "perfume"
-    },
-    {
-      "title": "children",
-      "category": "pocket money"
-    },
-    {
-      "title": "electronics",
-      "category": "printer"
-    },
-    {
-      "title": "home",
-      "category": "rent"
-    },
-    {
-      "title": "car",
-      "category": "repairs"
-    },
-    {
-      "title": "home",
-      "category": "repairs"
-    },
-    {
-      "title": "food",
-      "category": "restaurant"
-    },
-    {
-      "title": "car",
-      "category": "review"
-    },
-    {
-      "title": "work",
-      "category": "salary"
-    },
-    {
-      "title": "children",
-      "category": "school"
-    },
-    {
-      "title": "clothing",
-      "category": "shirts"
-    },
-    {
-      "title": "clothing",
-      "category": "shoes"
-    },
-    {
-      "title": "health & beauty",
-      "category": "solarium"
-    },
-    {
-      "title": "food",
-      "category": "supermarket"
-    },
-    {
-      "title": "clothing",
-      "category": "sweaters"
-    },
-    {
-      "title": "clothing",
-      "category": "t-shirt"
-    },
-    {
-      "title": "electronics",
-      "category": "tablet"
-    },
-    {
-      "title": "home",
-      "category": "telephone"
-    },
-    {
-      "title": "electronics",
-      "category": "telephone"
-    },
-    {
-      "title": "children",
-      "category": "toys"
-    },
-    {
-      "title": "entertainment",
-      "category": "trips"
-    },
-    {
-      "title": "clothing",
-      "category": "trouser"
-    },
-    {
-      "title": "home",
-      "category": "t v"
-    },
-    {
-      "title": "electronics",
-      "category": "t v"
-    },
-    {
-      "title": "clothing",
-      "category": "underwear"
-    },
-    {
-      "title": "home",
-      "category": "water"
-    },
-    {
-      "title": "",
-      "category": "work"
-    },
-  ];
 
   basicCategories: any = [
     {
@@ -425,7 +144,6 @@ export class CategoryComponent implements OnInit {
     private desktopService: DesktopService,
     private categoryService: CategoryService,
     private toastService: ToastService,
-    // public datepipe: DatePipe,
     private router: Router
   ) { }
 
@@ -455,18 +173,17 @@ export class CategoryComponent implements OnInit {
 
   modifyStar(id: number, starred: boolean) {
 
-    // let setupVal = this.val;
-    // console.log(id);
     let detail = { starred: !starred };
     this.categoryService.updateCategory(id, detail).subscribe(
       (res) => {
         this.getCategories();
+        this.toastService.success('Modified favourites');
         this.router.navigateByUrl('/about', { skipLocationChange: false }).then(() => {
           this.router.navigate(['category']);;
         });
 
       },
-      (err) => {
+      () => {
         // this.toastService.error('Oops! You cannot add it to favorites');
         // alert("Oops! You cannot add it to favorites");
       });
@@ -509,8 +226,7 @@ export class CategoryComponent implements OnInit {
         this.rawCategories = Array.from(this.categories);
         this.reverseCategories = Array.from(this.categories);
       },
-      (err) => {
-        // alert(err + "error");
+      () => {
         this.toastService.error("Categories not found");
       }
     )
@@ -567,6 +283,9 @@ export class CategoryComponent implements OnInit {
   }
 
   get sortData() {
+    this.transactedCategories.forEach(category => {
+      category.date = moment(new Date(category.date)).format('MMM D, YYYY');
+    });
     return this.transactedCategories.sort((a, b) => {
       return <any>new Date(b.date) - <any>new Date(a.date);
     });

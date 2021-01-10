@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { CreateService } from '../services/create.service';
+import { DesktopService } from '../services/desktop.service';
+import { ToastService } from '../services/toast.service';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-history',
@@ -9,7 +12,7 @@ import { CreateService } from '../services/create.service';
 export class HistoryComponent implements OnInit {
 
   searchToggler: boolean = false;
-  
+  transactionHistory: any = [];
   histories: any = [
     {
       "amount": 1000,
@@ -45,12 +48,14 @@ export class HistoryComponent implements OnInit {
     }
   ];
 
-
   constructor(
-    private createService: CreateService
+    private createService: CreateService,
+    private toastService: ToastService,
+    private desktopService: DesktopService
   ) { }
 
   ngOnInit(): void {
+    this.getTransactions();
   }
 
   searchToggle() {
@@ -69,4 +74,23 @@ export class HistoryComponent implements OnInit {
     this.createService.createName = "New transaction";
   }
 
+  getTransactions() {
+    this.desktopService.getTransactions().subscribe(
+      (transactions) => {
+        this.transactionHistory = transactions;
+      },
+      (err) => {
+        // if (err.status == '404') { this.toastService.error("Transactions not found") }
+      }
+    );
+  }
+
+  get sortData() {
+    this.transactionHistory.forEach(transaction => {
+      transaction.date = moment(new Date(transaction.date)).format('MMM D, YYYY');
+    });
+    return this.transactionHistory.sort((a, b) => {
+      return <any>new Date(b.date) - <any>new Date(a.date);
+    });
+  }
 }

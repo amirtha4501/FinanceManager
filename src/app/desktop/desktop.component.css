@@ -61,9 +61,15 @@ a {
     z-index: 4;
 }
 
-.category-title {
+.desktop-title {
     font-size: 1.1em;
     color: black;
+}
+
+.desktop-tag {
+    font-size: .8em;
+    color: #e0d8f0;
+    background-color: #593481;
 }
 
 #current-page {
@@ -84,4 +90,11 @@ a {
 
 #view-status-nav {
     z-index: 4;
+}
+
+.desktop-icon {
+    background-color: #FC4242;
+    font-size: 1.3em;
+    color: white;
+    font-weight: 585;
 }

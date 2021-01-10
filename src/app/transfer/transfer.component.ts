@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CreateService } from '../services/create.service';
 import { TransferService } from '../services/transfer.service';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-transfer',
@@ -10,32 +11,6 @@ import { TransferService } from '../services/transfer.service';
 export class TransferComponent implements OnInit {
 
   transfers: any = [];
-  // [
-  //   {
-  //     "date": "Aug 13, 2020",
-  //     "fromAccount": "personal account",
-  //     "toAccount": "public account",
-  //     "amount": "45000"
-  //   },
-  //   {
-  //     "date": "Aug 13, 2020",
-  //     "fromAccount": "personal account",
-  //     "toAccount": "public account",
-  //     "amount": "45000"
-  //   },
-  //   {
-  //     "date": "Aug 13, 2020",
-  //     "fromAccount": "personal account",
-  //     "toAccount": "public account",
-  //     "amount": "45000"
-  //   },
-  //   {
-  //     "date": "Aug 13, 2020",
-  //     "fromAccount": "personal account",
-  //     "toAccount": "public account",
-  //     "amount": "45000"
-  //   },
-  // ];
 
   constructor(
     private createService: CreateService,
@@ -63,6 +38,10 @@ export class TransferComponent implements OnInit {
       (transfers) => {
         console.log(transfers);
         this.transfers = transfers;
+
+        this.transfers.forEach(transfer => {
+          transfer.date = moment(new Date(transfer.date)).format('MMM D, YYYY');
+        });
       }
     )
   }
