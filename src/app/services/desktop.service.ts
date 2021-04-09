@@ -27,6 +27,10 @@ export class DesktopService {
         return this.http.get(`${environment.api}/transactions`, this.getHeader());
     }
 
+    getCategorizedTransactions() {
+        return this.http.get(`${environment.api}/transactions/review`, this.getHeader());
+    }
+
     getTransactionById(id: number) {
         return this.http.get(`${environment.api}/transactions/` + id, this.getHeader());
     }

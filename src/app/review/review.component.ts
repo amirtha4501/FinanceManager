@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CreateService } from '../services/create.service';
+import { DesktopService } from '../services/desktop.service';
+import { ToastService } from '../services/toast.service';
 
 @Component({
   selector: 'app-review',
@@ -8,38 +10,24 @@ import { CreateService } from '../services/create.service';
 })
 export class ReviewComponent implements OnInit {
 
-  transactions: any = [
-    {
-      "title": "car",
-      "category": "accessories",
-      "amount": "45000",
-      "type": "income"
-    },
-    {
-      "title": "car",
-      "category": "accessories",
-      "amount": "45000",
-      "type": "expense"
-    },
-    {
-      "title": "car",
-      "category": "accessories",
-      "amount": "45000",
-      "type": "expense"
-    },
-    {
-      "title": "car",
-      "category": "accessories",
-      "amount": "45000",
-      "type": "income"
-    },
-  ];
+  Math: any = Math;
+  value: number = -1;
+  show: boolean = false;
+  categorizedTransactions: any = [];
 
   constructor(
-    private createService: CreateService
+    private createService: CreateService,
+    private toastService: ToastService,
+    private desktopService: DesktopService
   ) { }
 
   ngOnInit(): void {
+    this.getCategorizedTransactions();
+  }
+
+  toggleOption(i: number) {
+    this.value = i;
+    this.show = !this.show;
   }
 
   enableComponent() {
@@ -52,5 +40,18 @@ export class ReviewComponent implements OnInit {
     this.createService.isPlannedTransaction = false;
     this.createService.isTransfer = false;
     this.createService.createName = "New transaction";
+  }
+
+  getCategorizedTransactions() {
+    this.desktopService.getCategorizedTransactions().subscribe(
+      (transactions) => {
+        this.categorizedTransactions = transactions;
+      },
+      (err) => {
+        if (err.status == '404') {
+          this.toastService.error("Transactions not found");
+        }
+      }
+    )
   }
 }

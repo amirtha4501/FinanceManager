@@ -1,7 +1,7 @@
 <div id="review">
     <nav id="top-nav" class="navbar navbar-expand-lg fixed-top">
         <div class="ml-auto">
-           <ul class="list-inline mb-0">
+            <ul class="list-inline mb-0">
                 <li class="list-inline-item">
                     <a class="nav-link text-white">
                         08/2020
@@ -12,13 +12,13 @@
                         <i class="far fa-bell"></i>
                     </a>
                 </li>
-            </ul> 
+            </ul>
         </div>
     </nav>
 </div>
 
 <div class="row justify-content-center">
-    <div id="main" class="container mt-5 pl-1 pt-3 mx-auto">
+    <!-- <div id="main" class="container mt-5 pl-1 pt-3 mx-auto">
         <ul class="list-unstyled mb-0 col mt-3">
             <li class="p-2 row" *ngFor="let transaction of transactions">
                 <div>
@@ -35,7 +35,108 @@
                 </div>
             </li>    
         </ul>
+        <ul class="list-unstyled mb-0 col mt-3">
+            <li class="p-2 row align-items-center" *ngFor="let transaction of transactions; let i=index" (click)="toggleOption(i)">
+                <div>
+                    <span [style.background-color]="transaction.color" class="desktop-icon rounded-circle p-2 pl-3 pr-3">{{ transaction.title | uppercase | slice:0:1 }}</span>
+                </div>
+                <div class="main-content w-50 m-0 my-auto mr-auto">
+                    <a data-toggle="collapse" href="" role="button" aria-expanded="false" aria-controls="collapseExample">
+                        <p class="mb-0 pl-4 text-secondary">{{ transaction.title | titlecase }}</p>
+                        <p class="mb-0 pl-4 desktop-title">{{ transaction.category['name'] | titlecase }}</p>
+                        <p *ngIf="transaction.tag" class="mb-0 pl-4"><span class="desktop-tag rounded p-1 pl-2 pr-2">{{ transaction.tag | lowercase }}</span></p>
+                    </a>   
+                </div>
+                <div class="main-content my-auto">
+                    <p class="mb-0 text-success" *ngIf="transaction.type === 'income'">₹{{ transaction.amount }}</p>
+                    <p class="mb-0 text-danger" *ngIf="transaction.type === 'expense'">- ₹{{ transaction.amount }}</p>
+                </div>
+                <div class="option row justify-content-end mr-2 my-auto" *ngIf="value === i && show">
+                    <div class="mt-3 ml-auto rounded position-absolute bg-white border" id="account-options">
+                        <a class="text-dark nav-link ml-3 mr-3">Edit</a>
+                        <a class="text-dark nav-link ml-3 mr-3" (click)="deleteTransaction(transaction.id)">Delete</a>
+                    </div>
+                </div>
+            </li>    
+        </ul>
+    </div> -->
+    <!-- <div id="basic" class="container rounded mt-5 p-0 pt-5 main line-border">
+        <div id="accordion" class="mt-5 mb-5">
+            <div class="card" *ngFor="let transaction of transactions">
+                <div *ngFor="let item of transaction | keyvalue">
+                    <a class="card-link" data-toggle="collapse" data-parent="#accordion" href="#{{item.key}}">
+                        <div class="card-header bg-white">
+                            <div class="row h-100 pl-2 pr-2">
+                                Key: <b>{{item.key}}</b> and Value: <b>{{item.value}}</b>
+                                <span class="category-icon rounded-circle p-2 pl-3 pr-3">{{ transaction.key | uppercase
+                                    | slice:0:1 }}</span>
+                                <span class="ml-3 my-auto category-title">{{ transaction.key | titlecase }}</span>
+                            </div>
+                        </div>
+                    </a>
+                    <div id="{{item.key}}" class="collapse">
+                        <div class="card-body pt-0">
+                            <ul class="list-unstyled mb-0 col">
+                                <li class="p-2 row text-center" *ngFor="let subCategory of transactions; let i=index">
+                                    <div>
+                                        <span [style.background-color]="subCategory.color"
+                                            class="category-icon rounded-circle p-2 pl-3 pr-3">{{ subCategory.name |
+                                            uppercase | slice:0:1 }}</span>
+                                    </div>
+                                    <div class="main-content w-50 m-0 my-auto mr-auto">
+                                        <a data-toggle="collapse" href="" role="button" aria-expanded="false">
+                                            <p class="mb-0 text-dark text-left pl-4 text-nowrap">{{ subCategory.name |
+                                                titlecase }}</p>
+                                        </a>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div> -->
+    
+    <div id="basic" class="container rounded mt-5 mb-5 p-0 pt-5 pb-5 main line-border">
+        <div id="accordion" class="mt-5 mb-5">
+            <div class="card" *ngFor="let data of categorizedTransactions">
+                <div *ngFor="let parent of data | keyvalue">
+                    <a class="card-link" data-toggle="collapse" data-parent="#accordion" href="#{{parent.key}}">
+                        <div class="card-header bg-white">
+                            <div class="row h-100 pl-2 pr-2">
+                                <span [style.background-color]="parent.value.color" class="category-icon rounded-circle p-2 pl-3 pr-3">{{ parent.value.name | uppercase | slice:0:1 }}</span>
+                                <span class="ml-3 my-auto category-title">{{ parent.value.name | titlecase }}</span>
+                            </div>
+                        </div> 
+                    </a>
+                    <div id="{{parent.key}}" class="collapse">
+                        <div class="card-body"> 
+                            <ul class="list-unstyled mb-0 col">
+                                <li class="p-2 row text-center" *ngFor="let detail of parent.value.info; let i=index">
+                                    <div>
+                                        <span [style.background-color]="detail.category.color" class="category-icon rounded-circle p-2 pl-3 pr-3">{{ detail.category.name | uppercase | slice:0:1 }}</span>
+                                    </div>
+                                    <div class="main-content w-50 m-0 my-auto mr-auto">
+                                        <a data-toggle="collapse" href="" role="button" aria-expanded="false">
+                                            <p class="mb-0 text-dark text-left pl-4 text-nowrap">{{ detail.category.name | titlecase }}</p>
+                                        </a>  
+                                    </div>
+                                    <div class="main-content my-auto">
+                                        <a>
+                                            <p class="mb-0 text-success" *ngIf="detail.total > 0">₹{{ Math.abs(detail.total) }}</p>
+                                            <p class="mb-0 text-danger" *ngIf="0 > detail.total">- ₹{{ Math.abs(detail.total) }}</p>                        
+                                        </a>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
+
 </div>
 
 <nav id="create-nav" class="navbar navbar-expand-lg fixed-bottom w-25 mb-5 ml-auto text-warning">
@@ -58,7 +159,8 @@
         </a>
 
         <div id="status" class="collapse-status collapse">
-            <div class="mb-0 bg-light text-left text-nowrap rounded" data-toggle="collapse" href="" role="button" aria-expanded="false">
+            <div class="mb-0 bg-light text-left text-nowrap rounded" data-toggle="collapse" href="" role="button"
+                aria-expanded="false">
                 <div class="current-status">
                     <p class="mb-0 p-1 pl-3 text-white">Available</p>
                     <p class="mb-0 p-1 pl-3 text-white"><small>Until 30-09-2020</small></p>
@@ -92,7 +194,7 @@
                     Transaction
                 </a>
             </li>
-            
+
             <li id="current-page" class="list-inline-item p-1 text-center">
                 <a class="nav-link p-0 text-white" routerLink='/review'>
                     <i class="fas fa-tags"></i>
@@ -100,7 +202,7 @@
                     Review
                 </a>
             </li>
-            
+
             <li class="list-inline-item p-1 text-center">
                 <a class="nav-link p-0" routerLink='/summary'>
                     <i class="fas fa-chart-bar"></i>
@@ -108,14 +210,14 @@
                     Summary
                 </a>
             </li>
-            
+
             <li class="list-inline-item p-1 text-center">
                 <a class="nav-link p-0" routerLink="/report">
                     <i class="fas fa-chart-pie"></i>
                     <br>
                     Reports
                 </a>
-            </li>           
+            </li>
         </ul>
     </div>
 </nav>
