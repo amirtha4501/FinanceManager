@@ -50,9 +50,8 @@ export class DesktopComponent implements OnInit {
                 this.transactions = transactions;
             },
             (err) => {
-                if (err.status == '404') { 
+                if (err.status == '404') {
                     this.toastService.error("Transactions not found");
-                    // alert('Transactions not found');
                 }
             }
         );
@@ -64,34 +63,30 @@ export class DesktopComponent implements OnInit {
     }
 
     deleteTransaction(id: number) {
-        this.desktopService.deleteTransaction(id).subscribe(
-            (res) => {
-                // alert("Transaction deleted");
-                Swal.fire({
-                    title: 'Are you sure to delete the transaction?',
-                    icon: 'question',
-                    showCancelButton: true,
-                    confirmButtonColor: '#593481',
-                    cancelButtonColor: '#d33',
-                    confirmButtonText: 'Delete!'
-                }).then(async (result) => {
-                    if (result.isConfirmed) {
-                        await Swal.fire({
-                            icon: 'success',
-                            text: 'Deleted successfully',
-                            showClass: { popup: 'animate__animated animate__fadeInDown' },
-                            hideClass: { popup: 'animate__animated animate__fadeOutUp' },
-                            timer: 1500,
-                            confirmButtonColor: '#593481'
-                        });
-                    }
-                });        
-                this.getTransactions();
-            },
-            (err) => {
-                // alert("Deletion failed");
-                this.toastService.error("Transaction deletion failed");
+        Swal.fire({
+            title: 'Are you sure to delete the transaction?',
+            icon: 'question',
+            showCancelButton: true,
+            confirmButtonColor: '#593481',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Delete!'
+        }).then(async (result) => {
+            if (result.isConfirmed) {
+                await this.desktopService.deleteTransaction(id).subscribe(() => {
+                    Swal.fire({
+                        icon: 'success',
+                        text: 'Deleted successfully',
+                        showClass: { popup: 'animate__animated animate__fadeInDown' },
+                        hideClass: { popup: 'animate__animated animate__fadeOutUp' },
+                        timer: 1500,
+                        confirmButtonColor: '#593481'
+                    });
+                    this.getTransactions();
+                }, () => {
+                    this.toastService.error("Transaction deletion failed");
+                }
+                );
             }
-        );
+        });
     }
 }

@@ -98,3 +98,7 @@ a {
     color: white;
     font-weight: 585;
 }
+
+#account-options {
+    cursor: pointer;
+}
