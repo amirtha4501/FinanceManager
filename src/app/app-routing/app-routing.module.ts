@@ -1,11 +1,13 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { SummaryResolver } from '../services/summary.resolver';
 import { allroutes } from './routes';
 
 const routes: Routes = allroutes; // sets up routes constant where you define your routes
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
+  providers: [SummaryResolver],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

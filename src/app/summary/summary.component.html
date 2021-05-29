@@ -20,30 +20,44 @@
 <div class="row justify-content-center">
     <div id="main" class="container-fluid rounded mt-5 p-0 pt-5">
         <!-- transact credit debit -->
-        <div class="transact-incomes-expenses text-center w-100">
-            <table class="table">
-                <tr *ngFor="let chart of transactionData; let i = index" class="row mb-5 border" style="margin: auto">
-                    <div class="col-sm-6 my-auto">
-                        <p class="text-secondary">
-                            {{ chart.month }}
-                        </p>
-                        <p class="text-secondary text-nowrap">
-                            <i class="fas fa-arrow-up"></i>
-                            ₹{{ chart.totalExpenses }}
-                            <i class="fas fa-arrow-down"></i>
-                            ₹{{ chart.totalIncomes }}
-                            Σ
-                            ₹{{ chart.totalIncomes - chart.totalExpenses }}
-                        </p>
-                        <p class="text-secondary">{{ chart.transactions }} transactions</p>
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-2 row-cols-lg-3 row-cols-xl-3 mb-5 p-1" style="margin: auto">
+            <div *ngFor="let chart of transactionData; let i = index" class="col mb-4">
+                <div class="card">
+                    <div class="card-header">
+                        <h5 class="mb-0">{{ chart.month }}</h5>
                     </div>
-                    <div class="col-sm-6 p-0">
+                    <div>
                         <canvas id="mychart{{i}}" #mycharts>
                             {{chart.chart}}
                         </canvas>
                     </div>
-                </tr>
-            </table>
+                    <div class="card-body">
+                        <div class="row p-0 m-0">
+                            <p class="text-secondary text-nowrap mb-2 col text-center">
+                                <i class="fas fa-arrow-up"></i>
+                                <strong> Expenses:</strong> 
+                                ₹{{ chart.totalExpenses }}
+                            </p>
+                            <p class="text-secondary text-nowrap mb-2 col text-center">
+                                <i class="fas fa-arrow-down"></i>
+                                <strong> Incomes:</strong>
+                                ₹{{ chart.totalIncomes }}
+                            </p>
+                        </div>
+                        <div class="row p-0 m-0">
+                            <p class="text-secondary col text-center">
+                                <strong>Σ Total:</strong> 
+                                ₹{{ chart.totalIncomes - chart.totalExpenses }}
+                            </p>
+                            <p class="text-secondary col text-center">
+                                <strong> Transactions:</strong> 
+                                {{ chart.transactions }}
+                            </p>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>

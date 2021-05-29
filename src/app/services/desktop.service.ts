@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Observable } from 'rxjs';
 
 @Injectable({
     providedIn: 'root'
@@ -29,6 +30,10 @@ export class DesktopService {
 
     getCategorizedTransactions() {
         return this.http.get(`${environment.api}/transactions/review`, this.getHeader());
+    }
+
+    getMonthlyTransactions(): Observable<any> {
+        return this.http.get(`${environment.api}/transactions/monthly-transactions`, this.getHeader());
     }
 
     getTransactionById(id: number) {

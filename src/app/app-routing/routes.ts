@@ -21,6 +21,7 @@ import { AuthLayoutComponent } from '../auth-layout/auth-layout.component';
 import { PublicLayoutComponent } from '../public-layout/public-layout.component';
 import { AuthGuard } from '../services/auth.guard';
 import { PublicGuard } from '../services/public.guard';
+import { SummaryResolver } from '../services/summary.resolver';
 
 
 export const allroutes: Routes = [
@@ -48,7 +49,7 @@ export const allroutes: Routes = [
             { path: 'transfer', component: TransferComponent },
             { path: 'about', component: AboutComponent },
             { path: 'review', component: ReviewComponent },
-            { path: 'summary', component: SummaryComponent },
+            { path: 'summary', component: SummaryComponent, resolve: {summary: SummaryResolver} },
             { path: 'report', component: ReportsComponent },
             { path: 'plannedtransaction', component: PlannedTransactionComponent },
             { path: 'filter', component: FilterComponent },

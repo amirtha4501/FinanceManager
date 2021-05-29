@@ -1,4 +1,5 @@
 import { Component, OnInit, ViewChildren } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { Chart } from 'node_modules/chart.js';
 import { CreateService } from '../services/create.service';
 
@@ -13,45 +14,38 @@ export class SummaryComponent implements OnInit {
   transactionData: any;
 
   constructor(
-    private createService: CreateService
-  ) {
-    this.transactionData = [
-      {
-        id: 1,
-        chart: [],
-        month: '08/2020',
-        totalExpenses: 100,
-        totalIncomes: 300,
-        transactions: 3
-      },
-      {
-        id: 2,
-        chart: [],
-        month: '08/2020',
-        totalExpenses: 600,
-        totalIncomes: 300,
-        transactions: 1
-      },
-      {
-        id: 3,
-        chart: [],
-        month: '08/2020',
-        totalExpenses: 100,
-        totalIncomes: 30,
-        transactions: 2
-      }
-    ]
+    private createService: CreateService,
+    private route: ActivatedRoute
+  ) { }
+
+
+  ngOnInit(): void { 
+    this.transactionData = this.route.snapshot.data["summary"];
   }
 
-  ngOnInit(): void { }
-
   ngAfterViewInit() {
+    this.createPieChart();
+  }
+
+  enableComponent() {
+    this.createService.isDesktop = true;
+    this.createService.isCategory = false;
+    this.createService.isUncategory = false;
+    this.createService.isHistory = false;
+    this.createService.isTemplate = false;
+    this.createService.isRecurringPayment = false;
+    this.createService.isPlannedTransaction = false;
+    this.createService.isTransfer = false;
+    this.createService.createName = "New transaction";
+  }
+
+  createPieChart() {
     let canvasCharts = this.allMyCanvas._results; // Get array with all canvas
     canvasCharts.map((myCanvas, i) => { // For each canvas, save the chart on the charts array
       this.transactionData[i].chart = new Chart(myCanvas.nativeElement.getContext('2d'), {
         type: 'pie',
         data: {
-          labels: ['credit', 'debit'],
+          labels: ['debit', 'credit'],
           datasets: [
             {
               label: '',
@@ -67,18 +61,7 @@ export class SummaryComponent implements OnInit {
         options: {}
       })
     })
-  }
 
-  enableComponent() {
-    this.createService.isDesktop = true;
-    this.createService.isCategory = false;
-    this.createService.isUncategory = false;
-    this.createService.isHistory = false;
-    this.createService.isTemplate = false;
-    this.createService.isRecurringPayment = false;
-    this.createService.isPlannedTransaction = false;
-    this.createService.isTransfer = false;
-    this.createService.createName = "New transaction";
   }
 
 }
