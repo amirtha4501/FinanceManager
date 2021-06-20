@@ -22,6 +22,7 @@ import { PublicLayoutComponent } from '../public-layout/public-layout.component'
 import { AuthGuard } from '../services/auth.guard';
 import { PublicGuard } from '../services/public.guard';
 import { SummaryResolver } from '../services/summary.resolver';
+import { ReportsResolver } from '../services/reports.resolver';
 
 
 export const allroutes: Routes = [
@@ -50,7 +51,7 @@ export const allroutes: Routes = [
             { path: 'about', component: AboutComponent },
             { path: 'review', component: ReviewComponent },
             { path: 'summary', component: SummaryComponent, resolve: {summary: SummaryResolver} },
-            { path: 'report', component: ReportsComponent },
+            { path: 'report', component: ReportsComponent, resolve: {report: ReportsResolver} },
             { path: 'plannedtransaction', component: PlannedTransactionComponent },
             { path: 'filter', component: FilterComponent },
             { path: 'create', component: CreateComponent },

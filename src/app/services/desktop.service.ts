@@ -36,6 +36,10 @@ export class DesktopService {
         return this.http.get(`${environment.api}/transactions/monthly-transactions`, this.getHeader());
     }
 
+    getReports(): Observable<any> {
+        return this.http.get(`${environment.api}/transactions/reports`, this.getHeader());
+    }
+
     getTransactionById(id: number) {
         return this.http.get(`${environment.api}/transactions/` + id, this.getHeader());
     }

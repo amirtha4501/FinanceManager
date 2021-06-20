@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { ReportsResolver } from '../services/reports.resolver';
 import { SummaryResolver } from '../services/summary.resolver';
 import { allroutes } from './routes';
 
@@ -7,7 +8,7 @@ const routes: Routes = allroutes; // sets up routes constant where you define yo
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  providers: [SummaryResolver],
+  providers: [SummaryResolver, ReportsResolver],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

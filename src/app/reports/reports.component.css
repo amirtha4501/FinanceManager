@@ -67,6 +67,17 @@
     z-index: 4;
 }
 
+.date-filter {
+    /* border: nolne; */
+    background: transparent;
+    color: white;
+}
+
+.date-filter option {
+    background: unset;
+    color: black;
+}
+
 /* =================================================================================================================== */
 
 #chart-transaction, #chart-balance {
