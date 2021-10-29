@@ -16,6 +16,7 @@ export class ReportsComponent implements OnInit {
   currentMonth;
   dates: any[];
   transactionReport: any;
+  transactionCharts;
   constructor(
     private createService: CreateService,
     private route: ActivatedRoute
@@ -23,10 +24,9 @@ export class ReportsComponent implements OnInit {
     this.determineFont();
   }
 
-  days: any[]
-  //  = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25];
-  incomeData: number[] = [1000, 300, 5000, 100, 200, 800, 50000, 300, 40000, 20, 7000];
-  expenseData: number[] = [100, 3000, 500, 10, 2000, 8000, 90000, 3000, 10000, 2000, 1000];
+  days: any[] //  = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25];
+  incomeData: number[] = []; //= [1000, 0, 5000, 100, 200, 0, 50000, 300, 40000, 20, 7000];
+  expenseData: number[] = []; //[100, 3000, 500, 10, 2000, 8000, 90000, 3000, 10000, 2000, 1000];
   balanceData: number[] = [100, 200, 200, 200, 500, 2000, 500, 500, 600, 1000, 900];
   totalExpenses: number = 60;
   totalIncomes: number = 60;
@@ -36,11 +36,11 @@ export class ReportsComponent implements OnInit {
 
   ngOnInit(): void {
     this.report = this.route.snapshot.data["report"];
-    this.transactionReport = this.report.transactionReport;
 
-    this.dateFilter();
     this.getTransactionReport();
     this.determineFont();
+    this.dateFilter();
+    this.setData();
     this.transactionChart("transaction-canvas", "line");
     this.balanceChart("balance-canvas", "line");
     this.incomeExpenseChart("incomes-expenses-canvas", "doughnut");
@@ -53,12 +53,37 @@ export class ReportsComponent implements OnInit {
     this.months = Object.keys(this.transactionReport[this.currentYear]).reverse();
     this.currentMonth = this.months[0]
     this.dates = this.transactionReport[this.currentYear][this.currentMonth]
-    this.days = Object.keys(this.dates);
-    console.log(this.days)
+    // this.days = Object.keys(this.dates);
+    // console.log(this.dates)
+    this.daysInMonth(this.currentMonth, this.currentYear);
+  }
+
+  setData() {
+    let dateKeys = Object.keys(this.dates).map(Number);
+
+    this.days.forEach((day) => {
+      if (dateKeys.includes(day)) {
+        this.incomeData.push(this.dates[day].income);
+        this.expenseData.push(this.dates[day].expense);
+      } else {
+        this.incomeData.push(0);
+        this.expenseData.push(0);
+      }
+    });
+    if(this.transactionCharts) {
+      this.transactionCharts.data.datasets[0].data = this.incomeData;
+      this.transactionCharts.data.datasets[1].data = this.expenseData;
+      this.transactionCharts.update();
+    }
   }
 
   daysInMonth (month, year) {
-    return new Date(year, month, 0).getDate();
+    let totalDays = new Date(year, month, 0).getDate();
+    this.days = Array.from({length: totalDays}, (_, i) => i + 1);
+    if(this.transactionCharts) {
+      this.transactionCharts.data.labels = Array.from({length: totalDays}, (_, i) => i + 1);
+      this.transactionCharts.update()
+    }
   }
 
   onChange($event, type: string) {
@@ -68,8 +93,12 @@ export class ReportsComponent implements OnInit {
       let yearObject = this.transactionReport[text];
       this.months = Object.keys(yearObject);
     } else {
-      this.currentMonth = text
-      let days = this.transactionReport[this.currentYear][this.currentMonth - 1]
+      this.currentMonth = text;
+      this.dates = this.transactionReport[this.currentYear][this.currentMonth];
+      this.daysInMonth(this.currentMonth, this.currentYear);
+      this.setData();
+      // this.transactionCharts.data.labels = this.days;
+      // this.transactionCharts.update()
     }
   }
 
@@ -97,7 +126,7 @@ export class ReportsComponent implements OnInit {
   }
 
   transactionChart(id, type) {
-    var transactionCharts = new Chart(id, {
+    this.transactionCharts = new Chart(id, {
       type: type,
       data: {
         labels: this.days,

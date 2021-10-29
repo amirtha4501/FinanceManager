@@ -62,7 +62,10 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     BrowserAnimationsModule,
     ToastrModule.forRoot()
   ],
-  providers: [AuthGuard, PublicGuard],
+  providers: [
+    AuthGuard,
+    PublicGuard
+  ],
   // DatePipe
   bootstrap: [AppComponent]
 })

@@ -5,7 +5,7 @@
                 <li class="list-inline-item">
                     <a class="nav-link text-white">
                         <select class="date-filter" (change)="onChange($event, 'date')">
-                            <option *ngFor="let month of months">{{+month + 1}}</option>
+                            <option *ngFor="let month of months">{{month}}</option>
                         </select>
                         <select class="date-filter" (change)="onChange($event, 'year')">
                             <option *ngFor="let year of years">{{year}}</option>
