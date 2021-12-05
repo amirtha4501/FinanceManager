@@ -3,6 +3,8 @@ import { Router } from '@angular/router';
 import { FormBuilder, Validators, FormGroup, FormControl } from '@angular/forms';
 import { UserService } from '../services/user.service';
 import Swal from 'sweetalert2';
+import { AuthService } from '../services/auth.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
     selector: 'app-signin',
@@ -17,7 +19,9 @@ export class SigninComponent implements OnInit {
     constructor(
         private router: Router,
         private fb: FormBuilder,
-        private userService: UserService
+        private userService: UserService,
+        private authService: AuthService,
+        private toastrService: ToastrService
     ) {
         this.createSignInForm();
     }
@@ -73,6 +77,27 @@ export class SigninComponent implements OnInit {
                 }
             }
         )
+    }
+
+    oauthLogin(event: any): void {
+        console.log(event);
+        const oauthProvider: string = event.provider;
+        const authorizationCode: string = event.authorizationCode;
+        if (!authorizationCode) {
+            this.toastrService.error('Login Failed');
+            this.toastrService.error('Please try again!');
+            return;
+        }
+        this.authService.oAuthLogin(oauthProvider, { code: authorizationCode }).subscribe(
+            response => {
+                this.toastrService.success(`Logged in using ${oauthProvider} successfully!`);
+                localStorage.setItem('token', response["accessToken"]);
+                this.router.navigate(['/desktop']);
+            },
+            errorResponse => {
+                this.toastrService.error('Something went wrong');
+            }
+        );
     }
 
 }

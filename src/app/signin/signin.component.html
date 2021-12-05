@@ -21,6 +21,10 @@
                             </div>
                         </div>
                     </form>
+                    <!-- Form ends -->
+                    <!-- Social icon starts -->
+                    <app-social-auth (authCode)="oauthLogin($event)"></app-social-auth>
+                    <!-- Social icon ends -->
                     <div class="card-footer bg-white text-center">
                         <a class="text-footer text-dark btn btn-block btn-light text-wrap" routerLink='/signup'>Don't have an account? Sign up now!</a>
                     </div>

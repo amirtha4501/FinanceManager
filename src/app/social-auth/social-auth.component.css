@@ -1,0 +1,11 @@
+.social-media-icon img {
+    width: 24px;
+    margin: 12px;
+}
+
+.social-media-icon:hover {
+    border-radius: 8px;
+    opacity: 0.8;
+    background-color: #f6f8f9;
+}
+  

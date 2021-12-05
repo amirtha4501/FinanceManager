@@ -4,7 +4,10 @@
 
 export const environment = {
     production: true,
-    api: 'http://localhost:3000'
+    api: 'http://localhost:3000',
+
+    GOOGLE_CLIENT_ID: '897206285625-i59baof7n0bknq8hf7npnpd4ubiuqpu8.apps.googleusercontent.com',
+    GOOGLE_REDIRECT_URL: 'http://localhost:4200/callback.html'
 };
 
 /*
