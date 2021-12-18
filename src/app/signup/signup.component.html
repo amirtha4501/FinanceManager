@@ -25,6 +25,9 @@
                             </div>
                         </div>
                     </form>
+                    <!-- Form ends -->
+                    <!-- Social icon starts -->
+                    <app-social-auth (authCode)="oauthLogin($event)"></app-social-auth>
                     <div class="card-footer bg-white text-center">
                         <a class="text-footer text-dark btn btn-block btn-light text-wrap" routerLink='/signin'>Already have an account? Sign in now!</a>
                     </div>
