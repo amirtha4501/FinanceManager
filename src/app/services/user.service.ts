@@ -12,18 +12,26 @@ export class UserService {
         private http: HttpClient
     ) { }
 
-    signIn(detail): Observable<Object> {
+    signIn(detail: any, image?: string): Observable<Object> {
         return this.http.post(`${environment.api}/auth/signin`, {
             email: detail.email,
-            password: detail.password
+            password: detail.password,
+            image: image ? image : null
         });
     }
 
-    signUp(detail): Observable<Object> {
+    signUp(detail: any, image?: string): Observable<Object> {
         return this.http.post(`${environment.api}/auth/signup`, {
             name: detail.name,
             email: detail.email,
-            password: detail.password
+            password: detail.password,
+            image: image ? image : null
+        });
+    }
+
+    isTwoFactor(email: string): Observable<Object> {
+        return this.http.post(`${environment.api}/auth/two-factor`, {
+            email
         });
     }
 }

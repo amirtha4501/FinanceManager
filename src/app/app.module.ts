@@ -30,6 +30,7 @@ import { PublicGuard } from './services/public.guard';
 import { ToastrModule } from 'ngx-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SocialAuthComponent } from './social-auth/social-auth.component';
+import { CaptureComponent } from './capture/capture.component';
 
 @NgModule({
   declarations: [
@@ -54,6 +55,7 @@ import { SocialAuthComponent } from './social-auth/social-auth.component';
     AuthLayoutComponent,
     PublicLayoutComponent,
     SocialAuthComponent,
+    CaptureComponent,
   ],
   imports: [
     BrowserModule,

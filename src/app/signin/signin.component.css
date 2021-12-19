@@ -32,3 +32,39 @@
     z-index: 4;
     position: absolute;
 }
+
+.social-media-icon img {
+    width: 24px;
+    margin: 12px;
+}
+
+.social-media-icon:hover {
+    border-radius: 8px;
+    opacity: 0.8;
+    background-color: #f6f8f9;
+}
+
+.ease-icons {
+    display: flex;
+    margin: auto;
+}
+
+.video-container {
+    display: grid;
+}
+#video, #canvas {
+    grid-column: 1;
+    grid-row: 1;
+    margin: auto;
+    border: 1px solid grey;
+    border-radius: 10px;
+}
+.snap-container {
+    text-align: center;
+    padding: 15px;
+}
+
+.mid-container {
+    max-height: 80vh;
+    overflow-y: auto;
+}
