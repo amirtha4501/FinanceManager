@@ -1,0 +1,54 @@
+<div class="bg-default">
+  <div class="row h-100 justify-content-center align-items-center" style="margin-top: 30px;">
+    <div id="main" class="container mx-auto">
+      <div class="row">
+        <div class="col-md-6 card mx-auto">
+          <div class="card-header text-center">
+            <h5><strong>Signup into Finance Manager with Two Factor Face Auth</strong></h5>
+          </div>
+          <form [formGroup]="signUpForm" (ngSubmit)="onSubmit()" novalidate>
+            <div class="card-body">
+              <div class="form-group">
+                <label>Name</label>
+                <input autofocus type="text" formControlName="name" class="form-control" id="name">
+              </div>
+              <div class="form-group">
+                <label>Email</label>
+                <input type="email" formControlName="email" class="form-control" id="email">
+              </div>
+              <div class="form-group">
+                <label>Password</label>
+                <input type="password" formControlName="password" class="form-control" id="password">
+              </div>
+              <div class="video-container">
+                <video [class.show]="!isCaptured" [class.hide]="isCaptured" #video id="video" [width]="WIDTH"
+                  [height]="HEIGHT" autoplay></video>
+                <canvas [class.show]="isCaptured" [class.hide]="!isCaptured" #canvas [style.opacity]="isCaptured? 1 : 0"
+                  id="canvas" [width]="WIDTH" [height]="HEIGHT"></canvas>
+              </div>
+
+              <div class="snap-container">
+                <button class="btn btn-primary" *ngIf="!isCaptured" (click)="capture()">
+                  Capture
+                </button>
+                <button class="btn btn-primary" *ngIf="isCaptured" (click)="recapture()">
+                  Recapture
+                </button>
+              </div>
+              <div class="mt-4">
+                <button type="submit" class="btn btn-gradient-primary btn-block text-white"><strong>SIGN
+                    UP</strong></button>
+              </div>
+            </div>
+          </form>
+
+          <app-social-auth (authCode)="oauthLogin($event)"></app-social-auth>
+          <div class="card-footer bg-white text-center">
+            <a class="text-footer text-dark btn btn-block btn-light text-wrap" routerLink='/signup'>Sign up with
+              Forms</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

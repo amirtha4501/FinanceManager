@@ -31,9 +31,6 @@ export class SignupComponent implements OnInit {
 
     signUp() {
         this.signUpForm = this.fb.group({
-            // name: [''],
-            // email: [''],
-            // password: ['']
             name: ['', [Validators.required]],
             email: ['', [Validators.required]],
             password: ['', [Validators.required, Validators.minLength(6), Validators.maxLength(20)]]
@@ -55,20 +52,14 @@ export class SignupComponent implements OnInit {
                     confirmButtonColor: '#593481'
                 })
                 this.router.navigate(['/desktop']);
-                // alert('Hi' + ', you\'re signed up successfully!');
-                // this.router.navigate(['/desktop']);
             },
             (err) => {
                 if (err.status == 401) {
-                    // this.error = 'Sign up failed. Try with correct email and password';
-                    // alert(this.error);
                     this.toastService.error('Sign up failed. Try with correct email and password');
                     this.signUpForm.reset();
                 }
                 else {
                     this.toastService.error('Something went wrong, please try again!');
-                    // this.error = 'Something went wrong, please try again!';
-                    // alert(this.error);
                     this.signUpForm.reset();
                 }
             }

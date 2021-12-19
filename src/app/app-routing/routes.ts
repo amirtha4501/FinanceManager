@@ -23,6 +23,7 @@ import { AuthGuard } from '../services/auth.guard';
 import { PublicGuard } from '../services/public.guard';
 import { SummaryResolver } from '../services/summary.resolver';
 import { ReportsResolver } from '../services/reports.resolver';
+import { CaptureComponent } from '../capture/capture.component';
 
 
 export const allroutes: Routes = [
@@ -32,7 +33,8 @@ export const allroutes: Routes = [
             { path: '', component: SigninComponent },
             // { path: '', redirectTo: 'signin', pathMatch: 'full' },
             { path: 'signin', component: SigninComponent },
-            { path: 'signup', component: SignupComponent }
+            { path: 'signup', component: SignupComponent },
+            { path: 'capture', component: CaptureComponent }
         ],
         canActivate: [PublicGuard]
     },

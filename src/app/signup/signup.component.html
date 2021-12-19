@@ -25,9 +25,12 @@
                             </div>
                         </div>
                     </form>
-                    <!-- Form ends -->
-                    <!-- Social icon starts -->
-                    <app-social-auth (authCode)="oauthLogin($event)"></app-social-auth>
+                    <div class="ease-icons">
+                        <a class="social-media-icon cursor-pointer" routerLink='/capture' title="Signup using Face">
+                            <img src="assets/images/face-recognitions.png" alt="Face recognition">
+                        </a>
+                        <app-social-auth (authCode)="oauthLogin($event)"></app-social-auth>
+                    </div>
                     <div class="card-footer bg-white text-center">
                         <a class="text-footer text-dark btn btn-block btn-light text-wrap" routerLink='/signin'>Already have an account? Sign in now!</a>
                     </div>

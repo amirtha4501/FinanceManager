@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormBuilder, Validators, FormGroup, FormControl } from '@angular/forms';
 import { UserService } from '../services/user.service';
@@ -12,6 +12,18 @@ import { ToastrService } from 'ngx-toastr';
     styleUrls: ['./signin.component.css']
 })
 export class SigninComponent implements OnInit {
+    WIDTH = 440;
+    HEIGHT = 330;
+    captures: string = null;
+    isCaptured: boolean;
+    isTwoFactor: boolean = false;
+
+    @ViewChild("video")
+    public video: ElementRef;
+
+    @ViewChild("canvas")
+    public canvas: ElementRef;
+
     signInForm: FormGroup;
     detail = {}
     error: any;
@@ -29,6 +41,47 @@ export class SigninComponent implements OnInit {
     ngOnInit(): void {
     }
 
+    async ngAfterViewInit() {
+        await this.setupDevices();
+    }
+
+    async setupDevices() {
+        if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
+            try {
+                const stream = await navigator.mediaDevices.getUserMedia({
+                    video: true
+                });
+                if (stream) {
+                    this.video.nativeElement.srcObject = stream;
+                    this.video.nativeElement.play();
+                    this.error = null;
+                } else {
+                    this.error = "You have no output video device";
+                }
+            } catch (e) {
+                this.error = e;
+            }
+        }
+    }
+
+    capture() {
+        this.drawImageToCanvas(this.video.nativeElement);
+        this.captures = this.canvas.nativeElement.toDataURL("image/png");
+        this.isCaptured = true;
+    }
+
+    recapture() {
+        this.captures = null;
+        this.isCaptured = false;
+    }
+
+    drawImageToCanvas(image: any) {
+        this.canvas.nativeElement
+            .getContext("2d")
+            .drawImage(image, 0, 0, this.WIDTH, this.HEIGHT);
+    }
+
+
     createSignInForm() {
         this.signInForm = this.fb.group({
             email: ['', [Validators.email]],
@@ -38,7 +91,16 @@ export class SigninComponent implements OnInit {
 
     onSubmit() {
         this.detail = this.signInForm.value;
-        this.userService.signIn(this.detail).subscribe(
+
+        if (this.isTwoFactor && !this.captures) {
+            this.toastrService.error("Image is required for authentication")
+            return;
+        }
+        if (!this.isTwoFactor) {
+            this.captures = null;
+        }
+
+        this.userService.signIn(this.detail, this.captures).subscribe(
             (res) => {
                 localStorage.setItem('token', res["accessToken"]);
                 this.signInForm.reset();
@@ -60,17 +122,18 @@ export class SigninComponent implements OnInit {
                         title: 'Authentication failed!',
                         text: 'Try with correct email and password',
                         showClass: { popup: 'animate__animated animate__fadeInDown' },
-                        hideClass: { popup: 'animate__animated animate__fadeOutUp'},
+                        hideClass: { popup: 'animate__animated animate__fadeOutUp' },
                         confirmButtonColor: '#593481'
                     })
                     this.signInForm.reset();
                 } else {
+                    console.log(err);
                     Swal.fire({
                         icon: 'error',
                         text: 'Something went wrong, please try again!',
                         timer: 1500,
                         showClass: { popup: 'animate__animated animate__fadeInDown' },
-                        hideClass: { popup: 'animate__animated animate__fadeOutUp'},
+                        hideClass: { popup: 'animate__animated animate__fadeOutUp' },
                         confirmButtonColor: '#593481'
                     })
                     this.signInForm.reset();
@@ -100,4 +163,19 @@ export class SigninComponent implements OnInit {
         );
     }
 
+    checkTwoFactor(event: any) {
+        console.log(event.target.value);
+        if (event.target.value) {
+            event.target.value
+            this.userService.isTwoFactor(event.target.value).subscribe(
+                res => {
+                    console.log("res", res);
+                    res['isTwoFact'] ? this.isTwoFactor = true : this.isTwoFactor = false; console.log('oops')
+                },
+                err => {
+                    console.log("err", err);
+                }
+            )
+        }
+    }
 }
