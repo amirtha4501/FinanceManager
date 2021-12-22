@@ -26,6 +26,8 @@ export class AuthLayoutComponent implements OnInit {
     sidebar: boolean = false;
     dismiss: boolean = false;
     collapseButton: boolean = true;
+    isEdit: boolean;
+    editAccountIndex: number;
 
     constructor(
         private fb: FormBuilder,
@@ -67,7 +69,7 @@ export class AuthLayoutComponent implements OnInit {
             }
         });
     }
- 
+
     createAccount() {
         this.createAccountForm = this.fb.group({
             name: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(20)]],
@@ -89,11 +91,26 @@ export class AuthLayoutComponent implements OnInit {
         )
     }
 
+    onEditAccount() {
+        this.createAccountDetail = this.createAccountForm.value;
+
+        this.accountService.editAccount(this.createAccountDetail, this.accounts[this.editAccountIndex].id).subscribe(
+            () => {
+                this.createAccountForm.reset();
+                this.getAccounts();
+                this.toastService.success('Account updated!');
+            },
+            () => {
+                this.toastService.error('Account updation failed');
+            }
+        )
+    }
+
     getAccounts() {
         this.accountService.getAccounts().subscribe(
             (accounts) => {
                 this.accounts = accounts;
-                this.accounts.forEach(element => {
+                this.accounts.forEach((element: { isChecked: boolean; }) => {
                     element.isChecked = false;
                 });
             },
@@ -113,5 +130,46 @@ export class AuthLayoutComponent implements OnInit {
     toggleOption(i: number) {
         this.val = i;
         this.show = !this.show;
+    }
+
+    editAccount(index: number) {
+        this.editAccountIndex = index;
+        this.isEdit = true;
+        this.createAccountForm.patchValue({
+            name: this.accounts[index].name,
+            current_amount: this.accounts[index].current_amount,
+            date: this.accounts[index].date
+        });
+    }
+
+    deleteAccount(index: number) {
+        Swal.fire({
+            title: `Are you sure to delete the account ${this.accounts[index].name.charAt(0).toUpperCase() + this.accounts[index].name.slice(1)}?`,
+            icon: 'question',
+            showCancelButton: true,
+            confirmButtonColor: '#593481',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, delete!'
+        }).then(async (result) => {
+            if (result.isConfirmed) {
+                this.accountService.deleteAccount(this.accounts[index].id).subscribe(
+                    () => {
+                        this.accounts.splice(index, 1);
+                        Swal.fire({
+                            icon: 'success',
+                            text: 'Deleted successfully',
+                            showClass: { popup: 'animate__animated animate__fadeInDown' },
+                            hideClass: { popup: 'animate__animated animate__fadeOutUp' },
+                            timer: 1500,
+                            confirmButtonColor: '#593481'
+                        });
+                    },
+                    () => {
+                        this.toastService.error('Account deletion failed');
+                    }
+                )
+
+            }
+        });
     }
 }

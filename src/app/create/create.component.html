@@ -67,8 +67,8 @@
                             <div class="form-group">
                                 <input formControlName="category" type="text" class="form-control border-top-0 border-right-0 border-left-0" placeholder="Select category" list="categories">
                                 <datalist id="categories">
-                                    <option value="{{ subCategory.name }}" *ngFor="let subCategory of subCategories">
-                                        {{ subCategory.name }}
+                                    <option value="{{ subCategory.name | titlecase }}" *ngFor="let subCategory of subCategories">
+                                        {{ subCategory.name | titlecase }}
                                     </option> 
                                 </datalist>
                             </div>
@@ -112,8 +112,8 @@
                             <div class="form-group">
                                 <input type="text" formControlName="account" class="form-control border-top-0 border-right-0 border-left-0" placeholder="Select Account" list="accounts">
                                 <datalist id="accounts">
-                                    <option value="{{ account.name }}" *ngFor="let account of accounts">
-                                        {{ account.name }}
+                                    <option value="{{ account.name | titlecase }}" *ngFor="let account of accounts">
+                                        {{ account.name | titlecase }}
                                     </option> 
                                 </datalist>
                             </div>
@@ -282,8 +282,8 @@
                             <div class="form-group">
                                 <input type="text" formControlName="fromAccount" class="form-control border-top-0 border-right-0 border-left-0" placeholder="Select source account" list="accounts">
                                 <datalist id="accounts">
-                                    <option value="{{ account.name }}" *ngFor="let account of accounts">
-                                        {{ account.name }}
+                                    <option value="{{ account.name | titlecase }}" *ngFor="let account of accounts">
+                                        {{ account.name | titlecase }}
                                     </option> 
                                 </datalist>
                             </div>
@@ -296,8 +296,8 @@
                         <td class="p-0">
                             <input type="text" formControlName="toAccount" class="form-control border-top-0 border-right-0 border-left-0" placeholder="Select target account" list="accounts">
                             <datalist id="accounts">
-                                <option value="{{ account.name }}" *ngFor="let account of accounts">
-                                    {{ account.name }}
+                                <option value="{{ account.name | titlecase }}" *ngFor="let account of accounts">
+                                    {{ account.name | titlecase }}
                                 </option> 
                             </datalist>
                         </td>

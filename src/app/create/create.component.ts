@@ -64,7 +64,7 @@ export class CreateComponent implements OnInit {
         this.accountService.getAccounts().subscribe(
             (accounts) => {
                 this.accounts = accounts;
-                this.accounts.forEach(element => {
+                this.accounts.forEach((element: { isChecked: boolean; }) => {
                     element.isChecked = false;
                 });
             },
@@ -81,8 +81,8 @@ export class CreateComponent implements OnInit {
         this.categoryService.getCategories().subscribe(
             (categories) => {
                 this.categories = categories;
-                this.categories.forEach(category => {
-                    category.subCategories.forEach(subCategory => {
+                this.categories.forEach((category: { subCategories: any[]; }) => {
+                    category.subCategories.forEach((subCategory: any) => {
                         this.subCategories.push(subCategory);
                     });
                 });
@@ -129,16 +129,16 @@ export class CreateComponent implements OnInit {
     onCreateTransaction() {
         this.detail = this.mainForm.value;
 
-        this.accounts.forEach(account => {
-            if (account.name === this.detail['account']) {
+        this.accounts.forEach((account: { name: string; id: any; }) => {
+            if (account.name.toLowerCase() === this.detail['account'].toString().toLowerCase()) {
                 this.isAccountExist = true;
                 this.detail['account'] = account.id;
             }
         });
 
-        this.categories.forEach(category => {
-            category.subCategories.forEach(subCategory => {
-                if (subCategory.name === this.detail['category']) {
+        this.categories.forEach((category: { subCategories: any[]; }) => {
+            category.subCategories.forEach((subCategory: { name: string; id: any; }) => {
+                if (subCategory.name.toLowerCase() === this.detail['category'].toString().toLowerCase()) {
                     this.isCategoryExist = true;
                     this.detail['category'] = subCategory.id;
                 }
@@ -148,21 +148,17 @@ export class CreateComponent implements OnInit {
         if (this.isAccountExist === true && this.isCategoryExist === true) {
             this.createService.createTransaction(this.detail).subscribe(
                 () => {
-                    // alert("Transaction created");
                     this.toastService.success("Transaction created");
                     this.router.navigate(['/desktop']);
                 },
                 (err) => {
                     this.toastService.error("Transaction creation failed");
-                    alert(err.status + " " + err.message);
                 }
             );
         } else if (this.isAccountExist === false) {
             this.toastService.error("Account doesn't exist");
-            // alert("Account doesn't exist");
         } else {
             this.toastService.error("Category doesn't exist");
-            // alert("Category doesn't exist");
         }
     }
 
@@ -172,12 +168,10 @@ export class CreateComponent implements OnInit {
         this.createService.createCategory(this.detail).subscribe(
             () => {
                 this.toastService.success("Category created");
-                // alert("Category created");
                 this.router.navigate(['/category']);
             },
             () => {
                 this.toastService.success("Category creation failed");
-                // alert(err.status + " " + err.message);
             }
         );
     }
@@ -191,7 +185,7 @@ export class CreateComponent implements OnInit {
             return;
         }
 
-        this.accounts.forEach(account => {
+        this.accounts.forEach((account: { name: any; id: any; }) => {
             if (account.name === this.detail['fromAccount']) {
                 this.isAccountExist = true;
                 this.detail['fromAccount'] = account.id;

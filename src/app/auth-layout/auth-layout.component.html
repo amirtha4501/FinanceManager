@@ -10,7 +10,7 @@
         <ul class="list-unstyled components">
               
             <li class="nav-item">
-                <a class="nav-link" (click)="sidebarToggler()" data-target="#account-modal" data-toggle="modal">
+                <a class="nav-link" (click)="sidebarToggler(); getAccounts();" data-target="#account-modal" data-toggle="modal">
                     <i class="far fa-user"></i>&nbsp;&nbsp;&nbsp;Accounts
                 </a>
             </li>
@@ -103,9 +103,11 @@
                     </a>
                     <div class="option row justify-content-end mr-2" *ngIf="val === i && show">
                         <div class="w-25 ml-auto rounded position-absolute" id="account-options">
-                            <a class="text-dark nav-link">Edit</a>
+                            <a class="text-dark nav-link" (click)="toggleOption(i); editAccount(i);" data-target="#new-account" data-toggle="modal" data-dismiss="modal">
+                                Edit
+                            </a>
                             <a class="text-dark nav-link">New Transfer</a>
-                            <a class="text-dark nav-link">Delete</a>
+                            <a class="text-dark nav-link" (click)="toggleOption(i); deleteAccount(i);" data-dismiss="modal">Delete</a>
                         </div>
                     </div>
                 </div>
@@ -125,7 +127,8 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header text-white bg-default p-2 pl-3 pr-3">
-                    <h5 class="modal-title">New account</h5>
+                    <h5 *ngIf="!isEdit" class="modal-title">New account</h5>
+                    <h5 *ngIf="isEdit" class="modal-title">Edit account</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -157,8 +160,11 @@
                     </div>
                 </div>
                 <div class="modal-footer p-0 pr-2 bg-white">
-                    <button type="button" (click)="onCreateAccount()" data-dismiss="modal" class="btn bg-default text-white pt-1 pb-1">
+                    <button *ngIf="!isEdit" type="button" (click)="onCreateAccount()" data-dismiss="modal" class="btn bg-default text-white pt-1 pb-1">
                         Ok
+                    </button>
+                    <button *ngIf="isEdit" type="button" (click)="onEditAccount()" data-dismiss="modal" class="btn bg-default text-white pt-1 pb-1">
+                        Edit
                     </button>
                 </div>
             </div>
