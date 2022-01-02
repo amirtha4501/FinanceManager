@@ -139,7 +139,7 @@
     
         <ul class="list-unstyled mb-0 col mt-5 border rounded pt-3 pb-4">
             <li *ngFor="let category of categories">
-                <div *ngFor="let subCategory of category.subCategories;" [ngClass]="{'starred-line': subCategory.starred === true}">
+                <div *ngFor="let subCategory of category.subCategories;let last = last" [ngClass]="{'starred-line': subCategory.starred === true}">
                     <div class="p-2 pr-4 row" *ngIf="subCategory.starred">
                         <div class="my-auto">
                             <span [style.background-color]="subCategory.color" class="category-icon rounded-circle p-2 pl-3 pr-3">{{ subCategory.name | uppercase | slice:0:1 }}</span>

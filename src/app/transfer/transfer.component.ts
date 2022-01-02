@@ -39,7 +39,7 @@ export class TransferComponent implements OnInit {
         console.log(transfers);
         this.transfers = transfers;
 
-        this.transfers.forEach(transfer => {
+        this.transfers.forEach((transfer: { date: string | number | Date; }) => {
           transfer.date = moment(new Date(transfer.date)).format('MMM D, YYYY');
         });
       }

@@ -152,6 +152,13 @@ export class CategoryComponent implements OnInit {
     this.getTransactions();
   }
 
+  setLineStyle() {
+    let starred = document.getElementsByClassName('starred-line');
+    let element = starred[starred?.length - 1];
+    element?.classList?.add("last-star");
+    // return 'yuyu'
+  }
+
   searchToggle() {
     this.searchToggler = !this.searchToggler;
   }
@@ -202,7 +209,7 @@ export class CategoryComponent implements OnInit {
   }
 
   sortCategories() {
-    this.categories.sort(function (a, b) {
+    this.categories.sort(function (a: { name: any; }, b: { name: any; }) {
       var textA = a.name;
       var textB = b.name;
       return (textA < textB) ? -1 : (textA > textB) ? 1 : 0;
@@ -211,7 +218,7 @@ export class CategoryComponent implements OnInit {
 
   sortSubCategories() {
     for (let i = 0; i < this.categories.length; i++) {
-      this.categories[i].subCategories.sort(function (a, b) {
+      this.categories[i].subCategories.sort(function (a: { name: any; }, b: { name: any; }) {
         var textA = a.name;
         var textB = b.name;
         return (textA < textB) ? -1 : (textA > textB) ? 1 : 0;
@@ -283,10 +290,10 @@ export class CategoryComponent implements OnInit {
   }
 
   get sortData() {
-    this.transactedCategories.forEach(category => {
+    this.transactedCategories.forEach((category: { date: string | number | Date; }) => {
       category.date = moment(new Date(category.date)).format('MMM D, YYYY');
     });
-    return this.transactedCategories.sort((a, b) => {
+    return this.transactedCategories.sort((a: { date: string | number | Date; }, b: { date: string | number | Date; }) => {
       return <any>new Date(b.date) - <any>new Date(a.date);
     });
   }

@@ -16,8 +16,8 @@ export class CreateService {
     isPlannedTransaction: boolean = false;
     isCategory: boolean = false;
     isTransfer: boolean = false;
-
     createName: string = "New transaction";
+    fromTransferAccount: any;
 
     constructor(
         private http: HttpClient

@@ -106,17 +106,17 @@
                             <a class="text-dark nav-link" (click)="toggleOption(i); editAccount(i);" data-target="#new-account" data-toggle="modal" data-dismiss="modal">
                                 Edit
                             </a>
-                            <a class="text-dark nav-link">New Transfer</a>
+                            <a class="text-dark nav-link" (click)="toggleOption(i); createTransfer(i);">New Transfer</a>
                             <a class="text-dark nav-link" (click)="toggleOption(i); deleteAccount(i);" data-dismiss="modal">Delete</a>
                         </div>
                     </div>
                 </div>
             </div>
             <div class="modal-footer p-0 pr-2 bg-white">
-                <a class="nav-link" data-target="#new-account" data-toggle="modal" data-dismiss="modal">
+                <a class="nav-link" (click)="createAccountForm.reset();" data-target="#new-account" data-toggle="modal" data-dismiss="modal">
                     <i class="fas fa-plus"></i>&nbsp;&nbsp;&nbsp;New Account
                 </a>
-                <button class="btn bg-default text-white pt-1 pb-1" (click)="filterAccounts()" data-dismiss="modal">Ok</button>
+                <button class="btn bg-default text-white pt-1 pb-1" id="closeTransferBtn" (click)="filterAccounts()" data-dismiss="modal">Ok</button>
             </div>
         </div>
     </div>

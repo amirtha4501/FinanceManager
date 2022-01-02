@@ -124,6 +124,11 @@ export class CreateComponent implements OnInit {
             title: ['', Validators.required],
             date: ['', Validators.required]
         })
+        if (this.createService.fromTransferAccount) {
+            this.transferForm.patchValue({
+                fromAccount: this.createService.fromTransferAccount.charAt(0).toUpperCase() + this.createService.fromTransferAccount.slice(1) 
+            });
+        }
     }
 
     onCreateTransaction() {
@@ -186,10 +191,10 @@ export class CreateComponent implements OnInit {
         }
 
         this.accounts.forEach((account: { name: any; id: any; }) => {
-            if (account.name === this.detail['fromAccount']) {
+            if (account.name.toLowerCase() === this.detail['fromAccount'].toLowerCase()) {
                 this.isAccountExist = true;
                 this.detail['fromAccount'] = account.id;
-            } else if (account.name === this.detail['toAccount']) {
+            } else if (account.name.toLowerCase() === this.detail['toAccount'].toLowerCase()) {
                 this.detail['toAccount'] = account.id;
             }
         });

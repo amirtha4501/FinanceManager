@@ -41,6 +41,10 @@
     border-bottom: 1px solid #cebce0ef; 
 }
 
+.last-star-line:after {
+    border-bottom: none;
+}
+
 .line-border ul li:last-child::after
 , .line-border ul li .sub-cat:last-child::after
 {

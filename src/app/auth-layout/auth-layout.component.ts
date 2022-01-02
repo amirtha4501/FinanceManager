@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
 import { AccountService } from '../services/account.service';
+import { CreateService } from '../services/create.service';
 import { ToastService } from '../services/toast.service';
 
 declare const $: any;
@@ -33,7 +34,8 @@ export class AuthLayoutComponent implements OnInit {
         private fb: FormBuilder,
         private router: Router,
         private toastService: ToastService,
-        private accountService: AccountService
+        private accountService: AccountService,
+        private createService: CreateService
     ) {
         this.createAccount();
     }
@@ -171,5 +173,24 @@ export class AuthLayoutComponent implements OnInit {
 
             }
         });
+    }
+
+    createTransfer(index: number) {
+        document.getElementById('closeTransferBtn').click();
+        this.enableComponent();
+        this.createService.fromTransferAccount = this.accounts[index].name;
+        this.router.navigate(['create']);
+    }
+
+    enableComponent() {
+        this.createService.isTransfer = true;
+        this.createService.isDesktop = false;
+        this.createService.isCategory = false;
+        this.createService.isUncategory = false;
+        this.createService.isHistory = false;
+        this.createService.isTemplate = false;
+        this.createService.isRecurringPayment = false;
+        this.createService.isPlannedTransaction = false;
+        this.createService.createName = "New transfer";
     }
 }
