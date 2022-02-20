@@ -24,6 +24,7 @@ import { PublicGuard } from '../services/public.guard';
 import { SummaryResolver } from '../services/summary.resolver';
 import { ReportsResolver } from '../services/reports.resolver';
 import { CaptureComponent } from '../capture/capture.component';
+import { FileUploadComponent } from '../file-upload/file-upload.component';
 
 
 export const allroutes: Routes = [
@@ -57,6 +58,7 @@ export const allroutes: Routes = [
             { path: 'plannedtransaction', component: PlannedTransactionComponent },
             { path: 'filter', component: FilterComponent },
             { path: 'create', component: CreateComponent },
+            { path: 'file-upload', component: FileUploadComponent },
             { path: 'notification', component: NotificationComponent }
         ],
         canActivate: [AuthGuard]

@@ -271,7 +271,7 @@ export class CategoryComponent implements OnInit {
             }
             this.transactedCategories.push(transactedCategory);
           },
-          (err) => { alert(categoryParentId); }
+          (err) => { console.log(categoryParentId); }
         );
       } else {
         let transactedCategory = {

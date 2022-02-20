@@ -31,6 +31,7 @@ import { ToastrModule } from 'ngx-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SocialAuthComponent } from './social-auth/social-auth.component';
 import { CaptureComponent } from './capture/capture.component';
+import { FileUploadComponent } from './file-upload/file-upload.component';
 
 @NgModule({
   declarations: [
@@ -56,6 +57,7 @@ import { CaptureComponent } from './capture/capture.component';
     PublicLayoutComponent,
     SocialAuthComponent,
     CaptureComponent,
+    FileUploadComponent,
   ],
   imports: [
     BrowserModule,

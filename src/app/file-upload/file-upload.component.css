@@ -1,0 +1,63 @@
+.top-nav {
+    background: #593481;
+    color: #c3b8d9;
+    z-index: 5;
+}
+
+#main {
+    z-index: 4;
+    position: absolute;
+    width: 99%;
+}
+
+#recurring-payment div a {
+    color: #d2cae4;
+}
+
+#recurring-payment ul li a:hover {
+    color: white;
+    cursor: pointer;
+}
+
+#main-content {
+    display: inline-block;
+}
+
+#main ul li:after {
+    content: ""; 
+    display: block;
+    margin: 0 auto;
+    width: 95%; 
+    padding-top: 1%;
+    border-bottom: 1px solid #cebce0ef; 
+}
+
+#main ul li:last-child::after {
+    border-bottom: none !important;
+}
+
+a {
+    text-decoration: none !important;
+}
+
+.category-title {
+    font-size: 1em;
+    color: #593481 ;
+}
+
+#create-nav {
+    z-index: 4;
+}
+
+.file-input {
+    display: none;
+}
+
+.bg-default {
+    background-color: #593481;
+    color: #d4cce4;
+}
+
+.bg-default:hover {
+    color: white;
+}
