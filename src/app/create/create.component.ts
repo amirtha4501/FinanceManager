@@ -103,6 +103,9 @@ export class CreateComponent implements OnInit {
             note: [''],
             account: [''],
             date: ['', Validators.required],
+            start_date: [''],
+            end_date: [''],
+            frequency: [''],
         });
     }
 
@@ -151,15 +154,27 @@ export class CreateComponent implements OnInit {
         });
 
         if (this.isAccountExist === true && this.isCategoryExist === true) {
-            this.createService.createTransaction(this.detail).subscribe(
-                () => {
-                    this.toastService.success("Transaction created");
-                    this.router.navigate(['/desktop']);
-                },
-                (err) => {
-                    this.toastService.error("Transaction creation failed");
-                }
-            );
+            if (this.isRecurringPayment) {
+                this.createService.createRecurringPayment(this.detail).subscribe(
+                    () => {
+                        this.toastService.success("Recurring payment created");
+                        this.router.navigate(['/desktop']);
+                    },
+                    (err) => {
+                        this.toastService.error("Recurring payment creation failed");
+                    }
+                );
+            } else {
+                this.createService.createTransaction(this.detail).subscribe(
+                    () => {
+                        this.toastService.success("Transaction created");
+                        this.router.navigate(['/desktop']);
+                    },
+                    (err) => {
+                        this.toastService.error("Transaction creation failed");
+                    }
+                );
+            }
         } else if (this.isAccountExist === false) {
             this.toastService.error("Account doesn't exist");
         } else {

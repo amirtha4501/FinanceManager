@@ -50,6 +50,22 @@ export class CreateService {
         }, this.getHeader());
     }
 
+    createRecurringPayment(detail: any): Observable<Object> {
+        return this.http.post(`${environment.api}/transactions/recurring-payments`, {
+            amount: detail.amount,
+            type: detail.type,
+            category_id: detail.category,
+            title: detail.title,
+            tag: detail.tag,
+            note: detail.note,
+            account_id: detail.account,
+            date: detail.date,
+            start_date: detail.start_date,
+            end_date: detail.end_date,
+            frequency: detail.frequency
+        }, this.getHeader());
+    }
+
     createCategory(detail: any): Observable<Object> {
         return this.http.post(`${environment.api}/categories`, {
             name: detail.name,
