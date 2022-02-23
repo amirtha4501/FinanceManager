@@ -20,9 +20,13 @@
     <div id="main" class="container mt-4 pl-1 pr-1 mx-auto">
         <div class="container p-0">
             <ul class="list-unstyled mb-0 col mt-5 border rounded">
-                <input type="file" class="file-input" (change)="onFileSelected($event)"
+
+                <input type="file" class="file-input" (change)="onFileChange($event)"
                     accept=".csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel"
                     #fileUpload>
+
+
+                <!-- <input type="file" class="file-input" (change)="onFileChange($event)" accept=".csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel"> -->
 
                 <div class="file-upload">
                     {{fileName || "No file uploaded yet."}}
@@ -31,7 +35,7 @@
                         <i class="fas fa-upload"></i>
                     </button>
 
-                    <button *ngIf="fileName" class="upload-btn btn btn-sm bg-default" (click)="upload()">
+                    <button *ngIf="transactionData" class="upload-btn btn btn-sm bg-default" (click)="upload()">
                         Upload
                     </button>
 

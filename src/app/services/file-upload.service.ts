@@ -21,7 +21,7 @@ export class FileUploadService {
     return header;
   }
 
-  uploadXlsxData(file: any) {
-    return this.http.post(`${environment.api}/fileload/uploadXlsxData`, {file}, this.getHeader());
+  uploadXlsxData(fileJson: any) {
+    return this.http.post(`${environment.api}/fileload/uploadXlsxData`, { fileJson }, this.getHeader());
   }
 }
